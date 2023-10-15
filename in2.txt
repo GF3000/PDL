@@ -1,0 +1,1 @@
+if x > 5 while y < 10 + z "Hello, World" !true [ ] { } miVariable++ == tuVariable[5]] su_variable = 8+9

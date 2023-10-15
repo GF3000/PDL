@@ -46,9 +46,18 @@ class Lexer:
                     self.token_list.append(Token(token_type, attribute, value))
                     position = match.end()
                     break
+                
 
             if not match:
-                position += 1
+                #Nos aseguramos de que no sea un espacio en blanco
+                if source_code[position] == ' ' or source_code[position] == '\n' or source_code[position] == '\t':
+                    position += 1
+                else:
+                    print(f'[-] Error en la posición {position} del código fuente')
+                    print(f'[-] Caracter no reconocido: "{source_code[position]}"')
+                    position += 1
+                    return []
+                
         return self.token_list
 
 
@@ -58,20 +67,22 @@ class Lexer:
 
 # Ejemplo de código fuente
 #source_code = 'if x > 5 while y < 10 + z "Hello, World" !true [ ] { } miVariable++ == tuVariable[5]] su_variable = 8+9'
-file = "in.txt"
+file = "in3.txt"
 #OPen file
 f = open(file, "r")
 source_code = f.read()
-print(f'Fuente:\n{source_code}')
 
 # Llamada al analizador léxico
 tokens_leguaje = tokens.Tokens.tokens
 mi_lexer = Lexer(tokens_leguaje, source_code)
 
-mi_lexer.analizar()
-tokens_analizados = mi_lexer.get_token_list()
+
+tokens_analizados = mi_lexer.analizar()
 # Imprimir los tokens encontrados
 #Write tokens in file
 f = open("tokens.txt", "w")
+for token in tokens_analizados:
+    f.write(str(token))
+    f.write("\n")
 for token in tokens_analizados:
     print(token)

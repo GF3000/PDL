@@ -57,7 +57,8 @@ class Tokens:
     
     ('INTEGER', None, r'\d+'),
     ('IDENTIFIER', None, r'[a-zA-Z_]\w*'),
-    ('CAD', None, r"'[^']*'")  
+    ('CAD', None, r"'[^']*'"),
+    ('CAD', None, r'"[^"]*"') 
     ]
     def get_tokens(self):
         return self.tokens

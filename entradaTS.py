@@ -1,11 +1,10 @@
 class entradaTS:
-    """Clase que representa una entrada de la tabla de simbolos"""
-    declarada= False
+    numero_entradas = 0
 
-    def __init__(self, nombre, tipo = "int", desplazamiento = 0, tipo_retorno = None, numero_parametros = 0, tipo_parametros = [], modo_parametros = []):
-        """Constructor de la entrada de la tabla de simbolos.
-        Recibe de 1 a 7 parametros:        
-        """
+    def __init__(self, nombre, tipo = None, desplazamiento = 0, tipo_retorno = None, numero_parametros = 0, tipo_parametros = [], modo_parametros = []):
+        self.id = entradaTS.numero_entradas
+        entradaTS.numero_entradas += 1
+        
         self.nombre = nombre
         self.tipo = tipo
         self.desplazamiento = desplazamiento
@@ -13,6 +12,37 @@ class entradaTS:
         self.numero_parametros = numero_parametros
         self.tipo_parametros = tipo_parametros
         self.modo_parametros = modo_parametros
+        # que pasa cuando es como una subtabla de una funcion y no necesita tantos parametros, dejarlo asi o crear algo especie de subentrada
+
+    def getId(self):
+        return self.id
+
+    def setId(self, id):
+        self.id = id
+
+    def getTabla(self):
+        return self.tabla
+
+    def setTabla(self, tabla):
+        self.tabla = tabla
+
+    def getLexema(self):
+        return self.lexema
+
+    def setLexema(self, lexema):
+        self.lexema = lexema
+
+    def getTipo(self):
+        return self.tipo
+
+    def setTipo(self, tipo):
+        self.tipo = tipo
+
+    def getDesp(self):
+        return self.desp
+
+    def setDesp(self, desp):
+        self.desp = desp
 
     def __str__(self) -> str:
         ret = f"* LEXEMA: '{self.nombre}'\n"
@@ -29,10 +59,13 @@ class entradaTS:
             ret += f"+ EtiqFuncion: Et{self.nombre}\n"
         return ret
 
-if __name__ == "__main__":
-    e1 = entradaTS("x", "int", 0)
-    e2 = entradaTS("suma", "funcion", 0, "int", 2, ["int", "int"], ["IN", "IN"])
-    e3 = entradaTS("y", "int", 1)
-    print(e1)
-    print(e2)
-    print(e3)
+class Tipo:
+    UNDEFINED = "UNDEFINED"
+
+class Writter:
+    def __init__(self, path):
+        self.path = path
+
+    def write(self, data):
+        with open(self.path, "w") as file:
+            file.write(data)

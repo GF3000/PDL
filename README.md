@@ -12,5 +12,12 @@ Existen 4 clases a día de hoy (12/10):
 
 ## Por hacer  
 
--Queda mucho trabajo que hacer en la tabla de símbolos. Hay qué entender bien qué se pide y qué tenemos hecho.  
--Integración de la TS con el lexer. Cuando se añade una nueva variable no sabemos qué desplazamiento hay que usar. Ahora mismo el desplazamiento está autoincrementado una unidad por entrada pero no es correcto (creo)
+-- Tabla de simbolos
+    He metido la imagen ejemplo_visual_tabla para que sea mas facil visualizarlo
+
+    Hay comentarios de lo que queda por hacer tanto en el lexer.py como en la tabladesimbolos.py
+    
+    Hay que centrarse en las subtablas de funciones y corregir tema desplazamientos y que se metan entradas a la tabla cuanto variables no vienen declaradas con el tipo delante. p.ej int x, o x = 0; la x deberia estar en la tabla de simbolos y aún no está implementado
+    P.ej: i.txt funciona bien, pero si usamos entrada.txt, ya entran funciones y aún no está implementado
+
+    El gestor.py es una idea para que desde ahi se lleve el control de las tablas y subtablas, y se encargue de eliminarlas depsues

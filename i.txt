@@ -1,0 +1,7 @@
+let int n1;
+let boolean l1;
+let string cad;
+let int n2;
+let boolean l2;
+input (n1);
+l1 = l2;

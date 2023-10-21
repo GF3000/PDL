@@ -16,7 +16,6 @@
 < DLlave, >
 < PalRes, let>
 < IDENTIFIER, >
-< PalRes, int>
 < IDENTIFIER, >
 < PalRes, get>
 < IDENTIFIER, >

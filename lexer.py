@@ -11,7 +11,7 @@ class Token:
         self.value = value
 
     def __str__(self):
-        #Cada token se imprime de la siguiente manera:
+        #Cada token se imprime de la siguiente manera:cd
         if self.attribute == None: #Sin atributo
             return f'< {self.token_type}, >'
         else:
@@ -66,7 +66,8 @@ class Lexer:
         while position < len(source_code): #Mientras no se haya llegado al final del código fuente
             match = None #Variable para saber si se ha encontrado un token
             for token_type, attribute, pattern in tokens_leguaje: #Recorremos la lista de tokens de nuestro lenguaje
-                regex = re.compile(pattern)
+                # regex = re.compile(pattern)
+                regex = re.compile(fr'{pattern}(?![e])')
                 match = regex.match(source_code, position)
                 if match: #Si se ha encontrado un token
                     value = match.group(0) #Tipo de token
@@ -87,8 +88,6 @@ class Lexer:
 
                     if (token_type == 'DParentesis' and (self.tablaActual != 0)):
                         self.tablaActual = 0
-
-
 
 
 

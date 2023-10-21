@@ -13,11 +13,6 @@ Existen 4 clases a día de hoy (12/10):
 ## Por hacer  
 
 -- Tabla de simbolos
-    He metido la imagen ejemplo_visual_tabla para que sea mas facil visualizarlo
+    Dejo en temporal.py el codigo que estaba implementado en TS, porque resulta que el analizador lexico solo tiene que añadir los lexemas de los ID que encuentre, y estaba programando lo que tenia que hacer el analizador semantico. Lo dejo ahi para reutilizarlo proximamente.
 
-    Hay comentarios de lo que queda por hacer tanto en el lexer.py como en la tabladesimbolos.py
-    
-    Hay que centrarse en las subtablas de funciones y corregir tema desplazamientos y que se metan entradas a la tabla cuanto variables no vienen declaradas con el tipo delante. p.ej int x, o x = 0; la x deberia estar en la tabla de simbolos y aún no está implementado
-    P.ej: i.txt funciona bien, pero si usamos entrada.txt, ya entran funciones y aún no está implementado
-
-    El gestor.py es una idea para que desde ahi se lleve el control de las tablas y subtablas, y se encargue de eliminarlas depsues
+    El gestor.py es una idea para que desde ahi se lleve el control de las tablas y subtablas, y se encargue de eliminarlas depsues. Aun no lo he implementado

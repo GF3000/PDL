@@ -1,0 +1,50 @@
+Tabla #0:
+* LEXEMA: 'x'
++ tipo: 'None'
++ despl: 0
+
+* LEXEMA: 'hola'
++ tipo: 'None'
++ despl: 0
+
+* LEXEMA: 'aaaaa99999'
++ tipo: 'None'
++ despl: 0
+
+* LEXEMA: 'eger'
++ tipo: 'None'
++ despl: 0
+
+* LEXEMA: '_bb_'
++ tipo: 'None'
++ despl: 0
+
+* LEXEMA: 'aaaaa9999'
++ tipo: 'None'
++ despl: 0
+
+* LEXEMA: 'num'
++ tipo: 'None'
++ despl: 0
+
+* LEXEMA: 'continue'
++ tipo: 'None'
++ despl: 0
+
+* LEXEMA: 'alert'
++ tipo: 'None'
++ despl: 0
+
+* LEXEMA: 'n1'
++ tipo: 'None'
++ despl: 0
+
+* LEXEMA: 'uu'
++ tipo: 'None'
++ despl: 0
+
+* LEXEMA: 'call'
++ tipo: 'None'
++ despl: 0
+
+

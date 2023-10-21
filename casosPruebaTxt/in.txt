@@ -1,0 +1,54 @@
+let int a ;
+let int b ;
+let int number;
+print ( "Introduce el primer operando" );
+input (a);
+print ("Introduce el segundo operando");input(b);
+function operacion int(int num_1, int num_2) {
+return num_1 + num_2+77;
+}
+number = 0;
+print(operacion(b,a));
+
+
+
+
+let a    int   ;
+let b     int  ;
+let number int ;
+put  'Introduce el primer operando' ;
+get a;
+put 'Introduce el segundo operando';get  
+	b;
+function operacion
+ int (int num1_, int num2_)
+{
+	let number int ;
+	number = 88  *  num1_-num2_;
+	return number;
+}
+number = 0;
+put operacion(b,a);
+
+
+
+
+let int n1;
+function ff boolean(boolean ss)
+{
+l2 = l1;
+if (l2) l1 = ff (ss);
+varglobal = 8888;
+return (ss);
+}
+
+let x int = 1;let num int ;
+continue
+;put{num};alert(num,
+n1)function boolean hola (string'hola')
+{return}
+let aaaaa99999 integer
+get _bb_ put _bb_;
+aaaaa99999 = aaaaa9999*0;
+let uu int;
+call hola();

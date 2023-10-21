@@ -10,10 +10,26 @@ class entradaTS:
         self.desplazamiento = desplazamiento
         self.tipo_retorno = tipo_retorno
         self.numero_parametros = numero_parametros
-        self.tipo_parametros = tipo_parametros
+        self.tipo_parametros = []
         self.modo_parametros = modo_parametros
+        
         # que pasa cuando es como una subtabla de una funcion y no necesita tantos parametros, dejarlo asi o crear algo especie de subentrada
 
+    def setNumero_parametros(self, numero_parametros):
+        self.numero_parametros = numero_parametros
+    def getNumero_parametros(self):
+        return self.numero_parametros
+    
+    def getTipo_parametros(self):
+        return self.tipo_parametros
+    def setTipo_parametros(self, tipo_parametros):
+        self.tipo_parametros = tipo_parametros
+
+    # def setModo_parametros(self, modo_parametros):
+    #     self.modo_parametros = modo_parametros
+    # def getModo_parametros(self):
+    #     return self.modo_parametros
+    
     def getId(self):
         return self.id
 
@@ -38,6 +54,8 @@ class entradaTS:
     def setTipo(self, tipo):
         self.tipo = tipo
 
+    def setTipoRetorno(self, retorno):
+        self.tipo_retorno = retorno
     def getDesp(self):
         return self.desp
 
@@ -46,26 +64,15 @@ class entradaTS:
 
     def __str__(self) -> str:
         ret = f"* LEXEMA: '{self.nombre}'\n"
-        ret += f"+  tipo: '{self.tipo}'\n"
+        ret += f"+ tipo: '{self.tipo}'\n"
         if (self.tipo != "function"):
             ret += f"+ despl: {self.desplazamiento}\n"
         else: #Es funcion
             ret += f"+ numParam: {self.numero_parametros}\n"
             for i in range(len(self.tipo_parametros)):
                 ret += f"+ TipoParam{i}: {self.tipo_parametros[i]}\n"
-                ret += f"+ ModoParam{i}: {self.modo_parametros[i]}\n"
+                # ret += f"+ ModoParam{i}: {self.modo_parametros[i]}\n"
 
             ret += f"+ TipoRetorno: {self.tipo_retorno}\n"
             ret += f"+ EtiqFuncion: Et{self.nombre}\n"
         return ret
-
-class Tipo:
-    UNDEFINED = "UNDEFINED"
-
-class Writter:
-    def __init__(self, path):
-        self.path = path
-
-    def write(self, data):
-        with open(self.path, "w") as file:
-            file.write(data)

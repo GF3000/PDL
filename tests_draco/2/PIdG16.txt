@@ -7,3 +7,4 @@ let num int = 1;
 continue;
 alert(num,n1);get{num};let uu int;
 call hola();
+

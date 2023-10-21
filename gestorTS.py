@@ -13,3 +13,4 @@ class TablaSimbolosControl:
     # def createTable(self):
 
     # def removeTable(self):
+# para implementar proximamente

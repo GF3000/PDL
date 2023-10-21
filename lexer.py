@@ -1,15 +1,18 @@
 import re
 import tokens
 import tabladesimbolos
+import entradaTS
 
 class Token:
     def __init__(self, token_type, attribute, value):
+        #Inicializamos los atributos de cada token
         self.token_type = token_type
         self.attribute = attribute
         self.value = value
 
     def __str__(self):
-        if self.attribute == None:
+        #Cada token se imprime de la siguiente manera:
+        if self.attribute == None: #Sin atributo
             return f'< {self.token_type}, >'
         else:
             return f'< {self.token_type}, {self.attribute}>'
@@ -24,14 +27,23 @@ class Token:
 
 class Lexer:
     def __init__(self, tokens, source_code):
+        #Inicializamos los atributos del lexer
         self.tokens_lenguaje = tokens
         self.source_code = source_code
         self.position = 0
-        self.desplazamiento = 0
+        self.desplazamiento = -1
         self.token_list = []
-        self.symbol_table = tabladesimbolos.tabla_de_simbolos("principal")
+        self.symbol_table = tabladesimbolos.tabla_de_simbolos()
+        self.totalNumTablas = 1
+        self.tables = []
+        self.tables.append(self.symbol_table)
+        self.tablaActual = 0
+        self.nombreUltFuncion = ""
+        self.entrada = entradaTS.entradaTS("inicio")
+
 
     def get_desplazamiento(self):
+        #Devuelve el desplazamiento de la tabla de simbolos
         return self.desplazamiento
     def get_token_list(self):
         return self.token_list
@@ -43,87 +55,86 @@ class Lexer:
             return None
     
     def print_symbol_table(self):
-        print(self.symbol_table)
+        # print(self.symbol_table)
+        for tabla in self.tables:
+            print(tabla)
 
 
     def analizar(self):
-        position = 0
-        while position < len(source_code):
-            match = None
-            for token_type, attribute, pattern in tokens_leguaje:
+        #Analiza el código fuente y devuelve la lista de tokens
+        position = 0 #Posición actual en el código fuente, es como un puntero
+        while position < len(source_code): #Mientras no se haya llegado al final del código fuente
+            match = None #Variable para saber si se ha encontrado un token
+            for token_type, attribute, pattern in tokens_leguaje: #Recorremos la lista de tokens de nuestro lenguaje
                 regex = re.compile(pattern)
                 match = regex.match(source_code, position)
-                if match:
-                    value = match.group(0)
-                    if token_type == 'INTEGER':
+                if match: #Si se ha encontrado un token
+                    value = match.group(0) #Tipo de token
+                    if token_type == 'INTEGER': #Si es un entero, lo convertimos a int
                         attribute = int(value)
-                    elif token_type == 'IDENTIFIER':
-
-                        token_atrib = self.get_last_token().atr()
-                        # hacer una funcion de si esta el id en la tabla porque a veces no tiene la palres delante
-                        # p. ej: tienes int x; o puedes tener x=0 a secas y deberia meter a la tabla la x
-                        if self.get_last_token().get_type() == 'PalRes':
-                            if token_atrib == 'function':
-                                # --- cosas por hacer
-                                # creo una tabla para la funcion
-                                # meterlas en un array o algo del lexer o gestor para guardarlas
-                                # igualmente, tiene que estar tbn en la tabla principal lo que meta ahi
-                                self.symbol_table.addEntrada(value, self.get_last_token().atr(), 0, 0, [], []) # esta mal, hay que calcular lo de parametros y desplazamiento
-
-                            self.symbol_table.addEntrada(value, self.get_last_token().atr(), 0, 0, [], [])
-                            if token_atrib == 'INTEGER':
-                                self.desplazamiento += 1 # revisar si estoy haciendo el desplazamiento bn, 2B?
-                            elif token_atrib == 'STRING':
-                                self.desplazamiento += len(value)
-                            elif token_atrib == 'BOOLEAN':
-                                self.desplazamiento += 1
-                            self.symbol_table.setUltimoDesp(self.desplazamiento)
-                            # no esta actualizando el desplazamiento -- revisar
-
-                    elif token_type == 'CAD':
+                    elif token_type == 'IDENTIFIER': #Si es un identificador, lo añadimos a la tabla de simbolos
+                        # comprobar si esta ya en la TS, si no esta, lo añadimos
+                        if (self.symbol_table.getEntradasTS(value) == None):
+                            self.symbol_table.addEntrada(value) # el lexer solo tiene que añadir los lexemas, el an. sem, añade el resto de atributos
+    
+                    elif token_type == 'CAD': #Si es una cadena, el atributo es el valor de la cadena
                         attribute = value
-                    self.token_list.append(Token(token_type, attribute, value))
-                    position = match.end()
+                    self.token_list.append(Token(token_type, attribute, value)) #Añadimos el token a la lista de tokens
+
+                    if (token_type == 'IParentesis' and (self.tablaActual != 0)):
+                        self.entrada = self.symbol_table.getEntradasTS(self.nombreUltFuncion)
+                        self.entrada.setTipoRetorno(self.token_list[-2].atr())
+
+                    if (token_type == 'DParentesis' and (self.tablaActual != 0)):
+                        self.tablaActual = 0
+
+
+
+
+
+                    position = match.end() #Actualizamos la posición actual al final de la coincidencia
                     break
                 
             if not match:
                 #Nos aseguramos de que no sea un espacio en blanco
                 if source_code[position] == ' ' or source_code[position] == '\n' or source_code[position] == '\t':
                     position += 1
-                else:
+                else: #Si no es un espacio en blanco, es un caracter no reconocido
                     print(f'[-] Error en la posición {position} del código fuente')
                     print(f'[-] Caracter no reconocido: "{source_code[position]}"')
                     position += 1
-                    return []
+                    return [] #Forzamos a que devuelva una lista vacía
                 
         return self.token_list
 
 
 
-
-# Definición de tokens y sus expresiones regulares
-
-# Ejemplo de código fuente
-#source_code = 'if x > 5 while y < 10 + z "Hello, World" !true [ ] { } miVariable++ == tuVariable[5]] su_variable = 8+9'
+#Archivo a analizar
 file = "i.txt"
-#OPen file
+#Abrimos el archivo
 f = open(file, "r")
 source_code = f.read()
 
-# Llamada al analizador léxico
+#Cargamos los tokens
 tokens_leguaje = tokens.Tokens.tokens
+#Creamos el objeto mi_lexer
 mi_lexer = Lexer(tokens_leguaje, source_code)
 
-
+#Analizamos el código fuente
 tokens_analizados = mi_lexer.analizar()
+
 # Imprimir los tokens encontrados
-#Write tokens in file
 f = open("tokens.txt", "w")
 for token in tokens_analizados:
-    f.write(str(token))
+    f.write(str(token)) #Guardamos los tokens en un archivo
     f.write("\n")
 for token in tokens_analizados:
-    print(token)
+    print(token) #Imprimimos los tokens por consola
 
+# Imprimir la tabla de simbolos
+f = open("tablas.txt", "w")
+for tabla in mi_lexer.tables:
+    f.write(str(tabla))
+    f.write("\n")
 
 mi_lexer.print_symbol_table()

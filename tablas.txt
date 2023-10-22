@@ -3,47 +3,15 @@ Tabla #0:
 + tipo: 'None'
 + despl: 0
 
-* LEXEMA: 'hola'
+* LEXEMA: 'b'
 + tipo: 'None'
 + despl: 0
 
-* LEXEMA: 'aaaaa99999'
+* LEXEMA: 'z'
 + tipo: 'None'
 + despl: 0
 
-* LEXEMA: 'integer'
-+ tipo: 'None'
-+ despl: 0
-
-* LEXEMA: '_bb_'
-+ tipo: 'None'
-+ despl: 0
-
-* LEXEMA: 'aaaaa9999'
-+ tipo: 'None'
-+ despl: 0
-
-* LEXEMA: 'num'
-+ tipo: 'None'
-+ despl: 0
-
-* LEXEMA: 'continue'
-+ tipo: 'None'
-+ despl: 0
-
-* LEXEMA: 'alert'
-+ tipo: 'None'
-+ despl: 0
-
-* LEXEMA: 'n1'
-+ tipo: 'None'
-+ despl: 0
-
-* LEXEMA: 'uu'
-+ tipo: 'None'
-+ despl: 0
-
-* LEXEMA: 'call'
+* LEXEMA: 'y'
 + tipo: 'None'
 + despl: 0
 

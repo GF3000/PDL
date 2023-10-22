@@ -4,18 +4,19 @@ class Tokens:
     # Token, atributo, expresión regular
 
     # Palabras reservadas
-    ('PalRes', 'if', r'if'),
-    ('PalRes', 'while', r'while'),
-    ('PalRes', 'for', r'for'),
-    ("PalRes", "get", r'get'),
-    ("PalRes", "put", r'put'),
-    ("PalRes", "return", r'return'),
-    ("PalRes", "let", r'let'),
-    ("PalRes", "int", r'int'),
-    ("PalRes", "float", r'float'),
-    ("PalRes", "string", r'string'),
-    ("PalRes", "boolean", r'boolean'),
-    ("PalRes", "function", r'function'),
+    #Se añade el \b para asegurarse que las palabras están rodeadas de espacios
+    ('PalRes', 'if', r'\bif\b'),
+    ('PalRes', 'while', r'\bwhile\b'),
+    ('PalRes', 'for', r'\bfor\b'),
+    ("PalRes", "get", r'\bget\b'),
+    ("PalRes", "put", r'\bput\b'),
+    ("PalRes", "return", r'\breturn\b'),
+    ("PalRes", "let", r'\blet\b'),
+    ("PalRes", "int", r'\bint\b'),
+    ("PalRes", "float", r'\bfloat\b'),
+    ("PalRes", "string", r'\bstring\b'),
+    ("PalRes", "boolean", r'\bboolean\b'),
+    ("PalRes", "function", r'\bfunction\b'),
 
 
     # Operadores

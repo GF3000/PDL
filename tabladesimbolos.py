@@ -40,16 +40,17 @@ class tabla_de_simbolos:
             ret += str(entrada) + "\n"
         return ret
     
-# # Ejemplo de uso
-# symbol_table = tabla_de_simbolos("prueba")
-# symbol_table.addSubEntrada("x", "int", 0)  # Variable
-# symbol_table.addEntrada('x', 'INTEGER', 0, 0, [], [])
-# symbol_table.add_identifier('x', 'INTEGER', 0, 0, [], [])  # Variable
-# symbol_table.add_identifier('suma', 'function', 0, 2, ['INTEGER', 'INTEGER'], ['IN', 'IN'], 'INTEGER')  # Función
-# symbol_table.add_identifier('y', 'INTEGER', 1, 0, [], [])  # Parámetro
-# symbol_table.add_identifier('z', 'INTEGER', 2, 0, [], [])  # Parámetro
-# symbol_table.add_identifier('w', 'INTEGER', 3, 0, [], [])  # Variable
-# symbol_table.add_identifier('resta', 'function', 0, 2, ['INTEGER', 'INTEGER'], ['IN', 'IN'], 'INTEGER')  # Función
+# Ejemplo de uso, no funciona
+# if __name__ == "__main__":
+#     symbol_table = tabla_de_simbolos()
+#     symbol_table.addSubEntrada("x", "int", 0)  # Variable
+#     symbol_table.addEntrada('x', 'INTEGER', 0, 0, [], [])
+#     symbol_table.add_identifier('x', 'INTEGER', 0, 0, [], [])  # Variable
+#     symbol_table.add_identifier('suma', 'function', 0, 2, ['INTEGER', 'INTEGER'], ['IN', 'IN'], 'INTEGER')  # Función
+#     symbol_table.add_identifier('y', 'INTEGER', 1, 0, [], [])  # Parámetro
+#     symbol_table.add_identifier('z', 'INTEGER', 2, 0, [], [])  # Parámetro
+#     symbol_table.add_identifier('w', 'INTEGER', 3, 0, [], [])  # Variable
+#     symbol_table.add_identifier('resta', 'function', 0, 2, ['INTEGER', 'INTEGER'], ['IN', 'IN'], 'INTEGER')  # Función
 
-# print(symbol_table)
-# print(symbol_table.get_desplazamiento())
+#     print(symbol_table)
+#     print(symbol_table.get_desplazamiento())

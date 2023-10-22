@@ -1,33 +1,5 @@
 Tabla #0:
-* LEXEMA: 'a'
-+ tipo: 'None'
-+ despl: 0
-
-* LEXEMA: 'b'
-+ tipo: 'None'
-+ despl: 0
-
-* LEXEMA: 'bbb'
-+ tipo: 'None'
-+ despl: 0
-
-* LEXEMA: 'aaaa'
-+ tipo: 'None'
-+ despl: 0
-
-* LEXEMA: 'ssss'
-+ tipo: 'None'
-+ despl: 0
-
-* LEXEMA: 'bbbb'
-+ tipo: 'None'
-+ despl: 0
-
-* LEXEMA: 'func'
-+ tipo: 'None'
-+ despl: 0
-
-* LEXEMA: 'Y'
+* LEXEMA: 'integer'
 + tipo: 'None'
 + despl: 0
 

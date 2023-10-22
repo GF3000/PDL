@@ -77,7 +77,7 @@ class Lexer:
                         # comprobar si esta ya en la TS, si no esta, lo añadimos
                         if (self.symbol_table.getEntradasTS(value) == None):
                             self.symbol_table.addEntrada(value) # el lexer solo tiene que añadir los lexemas, el an. sem, añade el resto de atributos
-    
+                        attribute = 0 #Habrá que cambiarlo cuando sepamos el desplazamiento de la TS
                     elif token_type == 'CAD': #Si es una cadena, el atributo es el valor de la cadena
                         attribute = value
                     self.token_list.append(Token(token_type, attribute, value)) #Añadimos el token a la lista de tokens
@@ -109,7 +109,7 @@ class Lexer:
 
 
 #Archivo a analizar
-file = "i.txt"
+file = "casosPruebaTxt\in5.txt"
 #Abrimos el archivo
 f = open(file, "r")
 source_code = f.read()

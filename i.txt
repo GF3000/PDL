@@ -1,13 +1,25 @@
-let x int;
-let b boolean;
-let z int;
-get x;put x;get z;
-put x*z;
-b=x>=z;if (b)
-x =
-  x % 6
-    / z
-    / 1
-    / (2
-    * y
-    * 7);
+let a int;
+let   b  int  ;
+let bbb boolean ;
+a = 3;
+b=a					    		 	 	 	 	 	 	 	 	 	 	 	 	 	 	 													;
+
+let aaaa int;
+let ssss string;
+let bbbb boolean;
+func getY;
+
+
+aaaa = 55  . 
+
+
+let  c  boolean
+;
+
+c = a <= b;
+if (c) b = 1;
+c = b > a;
+if (c) b = 4;
+a = a % b;
+put a ;
+put b;

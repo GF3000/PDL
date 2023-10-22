@@ -1,0 +1,18 @@
+Tabla #0:
+* LEXEMA: 'x'
++ tipo: 'None'
++ despl: 0
+
+* LEXEMA: 'b'
++ tipo: 'None'
++ despl: 0
+
+* LEXEMA: 'z'
++ tipo: 'None'
++ despl: 0
+
+* LEXEMA: 'y'
++ tipo: 'None'
++ despl: 0
+
+

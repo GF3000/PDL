@@ -109,7 +109,7 @@ class Lexer:
 
 
 #Archivo a analizar
-file = "casosPruebaTxt\in5.txt"
+file = "i.txt"
 #Abrimos el archivo
 f = open(file, "r")
 source_code = f.read()

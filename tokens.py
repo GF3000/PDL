@@ -17,6 +17,7 @@ class Tokens:
     ("PalRes", "string", r'\bstring\b'),
     ("PalRes", "boolean", r'\bboolean\b'),
     ("PalRes", "function", r'\bfunction\b'),
+    ("PalRes", "void", r'\bvoid\b'),
 
 
     # Operadores

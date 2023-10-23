@@ -7,6 +7,10 @@ Tabla #0:
 + tipo: 'None'
 + despl: 0
 
+* LEXEMA: 'void'
++ tipo: 'None'
++ despl: 0
+
 * LEXEMA: 'msg_'
 + tipo: 'None'
 + despl: 0

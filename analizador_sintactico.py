@@ -1,6 +1,10 @@
 class syntaxAnalyzer:
 
-    def __init__(self, grammar, first, follow):
+    def __init__(self, grammar, first = None, follow = None):
+        if follow is None:
+            follow = {}
+        if first is None:
+            first = {}
         self.grammar = grammar
         self.first = first
         self.follow = follow
@@ -12,8 +16,8 @@ class syntaxAnalyzer:
             return {symbol}
 
         # Si el conjunto FIRST ya ha sido calculado, devolverlo, evitando así bucles infinitos
-        if symbol in first:
-            return first[symbol]
+        if symbol in self.first:
+            return self.first[symbol]
 
         # Crear un conjunto vacío para el conjunto FIRST del símbolo no terminal
         first_set = set()
@@ -34,15 +38,15 @@ class syntaxAnalyzer:
                         first_set.update(self.calculate_first(simbolo_en_produccion)) # Calcular el conjunto FIRST del símbolo no terminal
                         break # Detener el ciclo
 
-        first[symbol] = first_set # Guardar el conjunto FIRST calculado para el símbolo no terminal
+        self.first[symbol] = first_set # Guardar el conjunto FIRST calculado para el símbolo no terminal
         return first_set
 
     # Función para calcular el conjunto FOLLOW para un símbolo no terminal
     def calculate_follow(self, symbol):
 
         # Si el conjunto FOLLOW ya ha sido calculado, devolverlo, evitando así bucles infinitos
-        if symbol in follow:
-            return follow[symbol]
+        if symbol in self.follow:
+            return self.follow[symbol]
 
         # Crear un conjunto vacío para el conjunto FOLLOW del símbolo no terminal
         follow_set = set()
@@ -68,16 +72,16 @@ class syntaxAnalyzer:
                             else: # Símbolo vacío no encontrado en el conjunto FIRST del siguiente símbolo
                                 follow_set.update(first_siguiente) # Calcular el conjunto FIRST del siguiente símbolo
 
-        follow[symbol] = follow_set # Guardar el conjunto FOLLOW calculado para el símbolo no terminal
+        self.follow[symbol] = follow_set # Guardar el conjunto FOLLOW calculado para el símbolo no terminal
         return follow_set
     
     def print_first(self):
         for symbol in grammar:
-            print(f"FIRST({symbol}) = {first[symbol]}")
+            print(f"FIRST({symbol}) = {self.first[symbol]}")
 
     def print_follow(self):
         for symbol in grammar:
-            print(f"FOLLOW({symbol}) = {follow[symbol]}")
+            print(f"FOLLOW({symbol}) = {self.follow[symbol]}")
     
     def print_grammar(self):
         for symbol in grammar:
@@ -106,12 +110,8 @@ if __name__ == "__main__":
     # Seleccionar la gramática a utilizar
     grammar = grammar2
 
-    # Conjuntos FIRST y FOLLOW iniciales vacíos
-    first = {}
-    follow = {}
-
     # Crear un objeto de la clase syntaxAnalyzer
-    miAnalizador = syntaxAnalyzer(grammar, first, follow)
+    miAnalizador = syntaxAnalyzer(grammar)
     
     # Calcular los conjuntos FIRST y FOLLOW para todos los símbolos no terminales
     for non_terminal in grammar:

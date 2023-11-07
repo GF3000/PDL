@@ -33,9 +33,11 @@ class syntaxAnalyzer:
                 for simbolo_en_produccion in production:
                     if (simbolo_en_produccion in grammar) and ('' in self.calculate_first(simbolo_en_produccion)): # Símbolo no terminal con símbolo vacío en su conjunto FIRST
                         first_set.update(self.calculate_first(simbolo_en_produccion)) # Calcular el conjunto FIRST del símbolo no terminal
+                        print(f"FIRST({symbol}) = {first_set}")
                         #Continuar con el siguiente símbolo en la producción
                     else:
                         first_set.update(self.calculate_first(simbolo_en_produccion)) # Calcular el conjunto FIRST del símbolo no terminal
+                        print(f"FIRST({symbol}) = {first_set}")
                         break # Detener el ciclo
 
         self.first[symbol] = first_set # Guardar el conjunto FIRST calculado para el símbolo no terminal

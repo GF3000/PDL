@@ -2,11 +2,14 @@ import OrderedSet
 
 class syntaxAnalyzer:
 
-    def __init__(self, grammar, first = None, follow = None):
+    def __init__(self, grammar, first = None, follow = None, axioma = "S"):
+
         if follow is None:
             follow = {}
         if first is None:
             first = {}
+        
+        self.axioma = axioma
         self.grammar = grammar
         self.first = first
         self.follow = follow
@@ -35,11 +38,9 @@ class syntaxAnalyzer:
                 for simbolo_en_produccion in production:
                     if (simbolo_en_produccion in grammar) and ('' in self.calculate_first(simbolo_en_produccion)): # Símbolo no terminal con símbolo vacío en su conjunto FIRST
                         first_set.update(self.calculate_first(simbolo_en_produccion)) # Calcular el conjunto FIRST del símbolo no terminal
-                        print(f"FIRST({symbol}) = {first_set}")
                         #Continuar con el siguiente símbolo en la producción
                     else:
                         first_set.update(self.calculate_first(simbolo_en_produccion)) # Calcular el conjunto FIRST del símbolo no terminal
-                        print(f"FIRST({symbol}) = {first_set}")
                         break # Detener el ciclo
 
         self.first[symbol] = first_set # Guardar el conjunto FIRST calculado para el símbolo no terminal
@@ -56,7 +57,7 @@ class syntaxAnalyzer:
         follow_set = OrderedSet.OrderedSet()
 
         # El símbolo inicial tiene '$' en su conjunto FOLLOW
-        if symbol == 'S':
+        if symbol == self.axioma:
             follow_set.add('$')  # El símbolo de fin de entrada
 
         # Iterar sobre todas las producciones
@@ -89,7 +90,13 @@ class syntaxAnalyzer:
     
     def print_grammar(self):
         for symbol in grammar:
-            print(f"{symbol} -> {grammar[symbol]}")
+            line = ""
+            for production in grammar[symbol]:
+                line += " ".join(production) + " | "
+            grammar[symbol] = line[:-3]
+
+
+            print(f"{symbol} -> {line}")
 
     def parse(tokens, grammar, start_symbol, first_sets, follow_sets):
         #Falta implementar
@@ -111,11 +118,41 @@ if __name__ == "__main__":
         'Z': [[], ['d', 'Z']]
     }
 
+    grammar3 = {
+    'P': [["B", "P"], ["F", "P"],[]], #Axioma
+    "B": [["if", "(", "E", ")", "S"], ["let", "T", "id", "Y", ";"], ["S"], ["for", "(", "id", "Y", ";", "E", ";", "D", ")", "{", "C", "}"]], #Sentencias compuestas, declaración de variables
+    "T": [["int"], ["boolean"], ["string"]], #Variables
+    "S": [["id", "=", "E", ";"], ["id", "(", "L",")", ";"], ["put", "E", ";"], ["get", "E", ";"], ["return", "X", ";"]], #Sentencias simples
+    "X": [["E"], []], #Retorno
+    "E": [["R"], ["E1"]],
+    "E1": [["true"], ["false"]],
+    # Error por recursividad infinita por la izquierda
+    # "R": [["R" , "<", "U"], ["!", "U"], ["U"]],
+    # "U": [["U", "+", "V"], ["V"], ["D"]],
+    "V": [["id"], ["(", "E", ")"], ["id", "(", "L", ")"],["entero"], ["cadena"]],
+    "Y": [["=", "V"]],
+    "D": [["id", "--"], ["--", "id"]], #¿No falta el caso de id++ y ++id?
+
+    #Funciones
+    "L": [["E", "Q"], []],
+    "Q": [[",", "E", "Q"], []],
+    "F": [["F1", "{", "C", "}"]], #declaracion
+    "F1": [["F2", "{", "C", "}"]],
+    "F2": [["function", "id", "H"]],
+    "H": [["T"], ["void"], []],
+    "A": [["T", "id", "K"],[]],
+    "K": [[",", "T", "id", "K"], []],
+    "C": [["B", "C"], []]
+
+
+    }
+
+
     # Seleccionar la gramática a utilizar
-    grammar = grammar2
+    grammar = grammar3
 
     # Crear un objeto de la clase syntaxAnalyzer
-    miAnalizador = syntaxAnalyzer(grammar)
+    miAnalizador = syntaxAnalyzer(grammar, axioma='P')
     
     # Calcular los conjuntos FIRST y FOLLOW para todos los símbolos no terminales
     for non_terminal in grammar:

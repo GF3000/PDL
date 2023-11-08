@@ -92,10 +92,13 @@ class syntaxAnalyzer:
         for symbol in grammar:
             line = ""
             for production in grammar[symbol]:
-                line += " ".join(production) + " | "
-            grammar[symbol] = line[:-3]
+                if (len(production) == 0):
+                    line += "λ  | "
+                else:
+                    line += " ".join(production) + " | "
 
-
+            #Remove last pipe for each line
+            line = line[:-3]
             print(f"{symbol} -> {line}")
 
     def parse(tokens, grammar, start_symbol, first_sets, follow_sets):

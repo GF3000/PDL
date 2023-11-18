@@ -1,5 +1,7 @@
 import OrderedSet  
 
+#Mal hecho, pensado para un analizador sintáctico descendente recursivo
+@DeprecationWarning
 class syntaxAnalyzer:
 
     def __init__(self, grammar, first = None, follow = None, axioma = "S"):
@@ -127,12 +129,18 @@ if __name__ == "__main__":
     "T": [["int"], ["boolean"], ["string"]], #Variables
     "S": [["id", "=", "E", ";"], ["id", "(", "L",")", ";"], ["put", "E", ";"], ["get", "E", ";"], ["return", "X", ";"]], #Sentencias simples
     "X": [["E"], []], #Retorno
-    "E": [["R"], ["E1"]],
-    "E1": [["true"], ["false"]],
+    "E": [["R", "E1"], ["E2"]],
+    "E1": [["<", "U"], ["!", "U"], []],
+    "E2": [["true"], ["false"]],
+    "R": [["U", "R1"]],
+    "R1": [["+", "V"], []],
+    "U": [["V", "U1"]],
+    "U1": [["+", "V", "U1"], []],
+    "V": [["id", "V1"]],
+    "V1": [ ["(", "E", ")"], ["id", "(", "L", ")"],["entero"], ["cadena"], []],
     # Error por recursividad infinita por la izquierda
     # "R": [["R" , "<", "U"], ["!", "U"], ["U"]],
-    # "U": [["U", "+", "V"], ["V"], ["D"]],
-    "V": [["id"], ["(", "E", ")"], ["id", "(", "L", ")"],["entero"], ["cadena"]],
+    # "U": [["U", "+", "V"], ["V"], ["D"]],,
     "Y": [["=", "V"]],
     "D": [["id", "--"], ["--", "id"]], #¿No falta el caso de id++ y ++id?
 

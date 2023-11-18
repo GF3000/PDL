@@ -28,8 +28,7 @@ class analizador_sintactico_ascendente:
     simbolos_no_terminales = []
     position = 0
 
-    def __init__(self, cadena, tabla_GOTO, tabla_ACCION, reglas):
-        self.cadena = cadena
+    def __init__(self, tabla_GOTO, tabla_ACCION, reglas):
         self.tabla_GOTO = tabla_GOTO
         self.tabla_ACCION = tabla_ACCION
         self.reglas = reglas
@@ -66,7 +65,10 @@ class analizador_sintactico_ascendente:
         print("Cadena por leer: ", self.cadena[self.position:])
        
     
-    def analizar(self):
+    def analizar(self, cadena):
+        self.cadena = cadena
+        print("[+] Analizando cadena: ", cadena)
+        
         #Analiza la cadena de entrada y devuelve la lista de tokens
         while True:
             elemento = self.pila[-1]
@@ -163,9 +165,9 @@ def ejemplo_diapositivas():
     ]
 
     # Creamos el analizador sintactico
-    analizador = analizador_sintactico_ascendente(cadena, tabla_GOTO, tabla_ACCION, reglas)
+    analizador = analizador_sintactico_ascendente(tabla_GOTO, tabla_ACCION, reglas)
     # Lo ejecutamos
-    analizador.analizar()
+    analizador.analizar(cadena)
 
 if __name__ == "__main__":
     ejemplo_diapositivas()

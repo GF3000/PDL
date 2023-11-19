@@ -113,11 +113,11 @@ def nuestro_lenguaje():
     # Tabla ACCION
     # Se usa un diccionario (creado con {}) para cada fila.
     # Se usaran las constantes REDUCE, DESPLAZA y EXITO en las acciones
-    # tabla_ACCION = [{TOKEKEN1: [accion, argumento], TOKEN2: [accion, estado_futuro], ...} , {...}, {...}, ...]
-    tabla_ACCION = [
+    # tabla_ACCION = {ESTADO1: {TOKEKEN1: [accion, argumento], TOKEN2: [accion, estado_futuro], ...} , ESTADO2: {...}, ESTADO3: {...}, ...]
+    tabla_ACCION = {
+
             
-    ]
-    
+    }    
     # Reglas
     # Las reglas se crean con: REGLA(izquierda, [derecha])
     reglas = [

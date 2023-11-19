@@ -107,7 +107,19 @@ def nuestro_lenguaje():
     # Tabla GOTO
     # tabla_GOTO = {ESTADO1: {NO_TERMINAL1: estado_futuro, NO_TERMINAL2: estado_futuro, ...}, ESTADO2: {...}, ESTADO3: {...}, ...}
     tabla_GOTO = {
-        
+        0: {"P": 1, "B": 2, "F": 3, "S": 4, "F1": 12, "F2": 13},
+        2: {"B": 2, "F1": 12, "F2": 13},
+        3: {"P" : 93, "F1" : 12, "F2" : 13, "S": 4, "B": 2, "F": 3},
+        4: {"S": 2},    
+        6: {"T": 46},
+        9: {"E": 71, "R": 18, "U": 20, "V": 21, "D": 22, }, 
+        10: {"E": 72, "R": 18, "U": 20, "V": 21, "D": 22 },
+        11: {"X": 73, "E": 74, "R": 18, "U": 20, "V": 21, "D": 22 },
+        16: {"E": 17, "R": 18, "U": 20, "V": 21, "D": 22 },
+        19: {"U": 35, "V": 21, "D": 22 },
+        24: {"U": 20, "V": 21, "D": 22 , "R": 18},
+        30: {"S": 94},
+        33: {"U": 3, "V": 21, "D": 22 }
     }
 
     # Tabla ACCION
@@ -115,6 +127,7 @@ def nuestro_lenguaje():
     # Se usaran las constantes REDUCE, DESPLAZA y EXITO en las acciones
     # tabla_ACCION = {ESTADO1: {TOKEKEN1: [accion, argumento], TOKEN2: [accion, estado_futuro], ...} , ESTADO2: {...}, ESTADO3: {...}, ...]
     tabla_ACCION = {
+        0: {"function": []}
 
             
     }    
@@ -138,20 +151,20 @@ def ejemplo_diapositivas():
     # Tabla ACCION
     
 
-    tabla_ACCION = [
-        {"id": [DESPLAZA, 5], "(": [DESPLAZA, 4]},
-        {"+": [DESPLAZA, 6], "$": [EXITO, None]},
-        {"+": [REDUCE, 2], "*": [DESPLAZA, 7], ")": [REDUCE, 2], "$": [REDUCE, 2]},
-        {"+": [REDUCE, 4], "*": [REDUCE, 4], ")": [REDUCE, 4], "$": [REDUCE, 4]},
-        {"id": [DESPLAZA, 5], "(": [DESPLAZA, 4]},
-        {"+": [REDUCE, 6], "*": [REDUCE, 6], ")": [REDUCE, 6], "$": [REDUCE, 6]},
-        {"id": [DESPLAZA, 5], "(": [DESPLAZA, 4]},
-        {"id": [DESPLAZA, 5], "(": [DESPLAZA, 4]},
-        {"+": [DESPLAZA, 6], ")": [DESPLAZA, 11]},
-        {"+": [REDUCE, 1], "*": [DESPLAZA, 7], ")": [REDUCE, 1], "$": [REDUCE, 1]},
-        {"+": [REDUCE, 3], "*": [REDUCE, 3], ")": [REDUCE, 3], "$": [REDUCE, 3]},
-        {"+": [REDUCE, 5], "*": [REDUCE, 5], ")": [REDUCE, 5], "$": [REDUCE, 5]}
-    ]
+    tabla_ACCION = {
+        0: {"id": [DESPLAZA, 5], "(": [DESPLAZA, 4]},
+        1: {"+": [DESPLAZA, 6], "$": [EXITO, None]},
+        2: {"+": [REDUCE, 2], "*": [DESPLAZA, 7], ")": [REDUCE, 2], "$": [REDUCE, 2]},
+        3: {"+": [REDUCE, 4], "*": [REDUCE, 4], ")": [REDUCE, 4], "$": [REDUCE, 4]},
+        4: {"id": [DESPLAZA, 5], "(": [DESPLAZA, 4]},
+        5: {"+": [REDUCE, 6], "*": [REDUCE, 6], ")": [REDUCE, 6], "$": [REDUCE, 6]},
+        6: {"id": [DESPLAZA, 5], "(": [DESPLAZA, 4]},
+        7: {"id": [DESPLAZA, 5], "(": [DESPLAZA, 4]},
+        8: {"+": [DESPLAZA, 6], ")": [DESPLAZA, 11]},
+        9: {"+": [REDUCE, 1], "*": [DESPLAZA, 7], ")": [REDUCE, 1], "$": [REDUCE, 1]},
+        10: {"+": [REDUCE, 3], "*": [REDUCE, 3], ")": [REDUCE, 3], "$": [REDUCE, 3]},
+        11: {"+": [REDUCE, 5], "*": [REDUCE, 5], ")": [REDUCE, 5], "$": [REDUCE, 5]}
+    }
 
     # Reglas
     reglas = [

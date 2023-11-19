@@ -6,9 +6,11 @@ DESCRIPTORES = {REDUCE: "REDUCE", DESPLAZA: "DESPLAZA", EXITO: "EXITO"} # Para i
 
 #Clase correspondiente al analizador sintactico para un analizador sintactico ascendente
 class REGLA:
+    """Clase correspondiente a una regla de produccion"""
     izquierda = ""
     derecha = []
     def __init__(self, izquierda, derecha):
+        """Inicializa la regla de produccion. izquierda es el simbolo no terminal de la izquierda y derecha es una lista de simbolos terminales y no terminales producidos"""
         self.izquierda = izquierda
         self.derecha = derecha
     def __str__(self):
@@ -18,6 +20,7 @@ class REGLA:
         return self.izquierda + " -> " + parte_derecha
     
 class analizador_sintactico_ascendente:
+    """Clase correspondiente al analizador sintactico ascendente"""
     #CONSTANTES:
     REDUCE = REDUCE
     DESPLAZA = DESPLAZA
@@ -29,27 +32,30 @@ class analizador_sintactico_ascendente:
     tabla_GOTO = []
     tabla_ACCION = []
     reglas = []
-    simbolos_no_terminales = []
     position = 0
 
     def __init__(self, tabla_GOTO, tabla_ACCION, reglas):
+        """Inicializa el analizador sintactico con la tabla GOTO, la tabla ACCION y las reglas de produccion"""
         self.tabla_GOTO = tabla_GOTO
         self.tabla_ACCION = tabla_ACCION
         self.reglas = reglas
         self.pila = [0]
-        for regla in reglas:
-            if regla.izquierda not in self.simbolos_no_terminales:
-                self.simbolos_no_terminales.append(regla.izquierda)
+
 
     def GOTO(self, estado, simbolo):
+        """Calcula el estado al que se llega desde el estado actual con el simbolo dado"""
         try:
             print(f"[+] Calculando GOTO({estado}, {simbolo}) -> {self.tabla_GOTO[estado][simbolo]}")
             return self.tabla_GOTO[estado][simbolo]
         except:
             print(f"[-] Calculando GOTO({estado}, {simbolo}) -> None") 
-            return None, None
+            return None
 
     def ACCION(self, estado, simbolo):
+        """Calcula la accion a tomar y su argumento.
+        Si la accion es REDUCE, el argumento es el numero de regla a aplicar.
+        Si la accion es DESPLAZA, el argumento es el estado al que se llega."""
+
         try:
             print(f"[+] Calculando ACCION({estado}, {simbolo}) -> {DESCRIPTORES[self.tabla_ACCION[estado][simbolo][0]]}, {self.tabla_ACCION[estado][simbolo][1]}")
             return self.tabla_ACCION[estado][simbolo][0], self.tabla_ACCION[estado][simbolo][1]
@@ -58,50 +64,69 @@ class analizador_sintactico_ascendente:
             return None, None
         
     def REGLA(self, num):
+        """Devuelve la regla correspondiente al numero dado"""
         try:
             print(f"[+] Calculando REGLA({num}): {self.reglas[num]}")
             return self.reglas[num]
         except:
             print(f"[-] Calculando REGLA({num}): None")
             return None
+    
     def print_estado(self):
+        """Imprime el estado actual del analizador"""
         print("Pila: ", self.pila)
         print("Cadena por leer: ", self.cadena[self.position:])
        
     
     def analizar(self, cadena):
+        """Analiza la cadena dada.
+        Devuelve True si la cadena es aceptada, False en caso contrario"""
         self.cadena = cadena
-        print("[+] Analizando cadena: ", cadena)
+        print(f"Analizando cadena: {cadena}\n")
+        
         
         #Analiza la cadena de entrada y devuelve la lista de tokens
         while True:
-            elemento = self.pila[-1]
-            
-            if (elemento in self.simbolos_no_terminales): #En la cima de la pila hay un simbolo
-                self.pila.append(self.GOTO(self.pila[-2], elemento))
+            # Obtenemos el etsado actual
+            nuevo_estado = self.pila[-1]
+            # Obtenemos el token actual 
+            token = self.cadena[self.position]
+            # Obtenemos la accion a tomar y su argumento
+            accion, argumento = self.ACCION(nuevo_estado, token)
 
-            else:  #En la cima de la pila hay un estado    
-                token = self.cadena[self.position]
-                accion, argumento = self.ACCION(elemento, token)
-                match accion:
-                    case self.REDUCE: 
-                        regla = self.REGLA(argumento)
-                        for _ in range(2*len(regla.derecha)):
-                            self.pila.pop()
-                        self.pila.append(regla.izquierda)
+            #Evalua la accion a tomar
+            match accion:
+                case self.REDUCE: 
+                    # Obtenemos la regla
+                    regla = self.REGLA(argumento)
+                    # Eliminamos de la pila el doble de simbolos como elementos tenga la parte derecha de la regla
+                    for _ in range(2*len(regla.derecha)):
+                        self.pila.pop()
+                    # Apilamos simbolo a la pila
+                    self.pila.append(regla.izquierda)
+                    # Apilamos devolucion de llamada a GOTO con estado actual y nuevo simbolo (regla.izquierda)
+                    self.pila.append(self.GOTO(self.pila[-2], self.pila[-1]))
 
-                    case self.DESPLAZA:
-                        self.pila.append(token)
-                        self.pila.append(argumento)
-                        self.position += 1
+                case self.DESPLAZA:
+                    # Apilamos el token a la pila
+                    self.pila.append(token)
+                    # Apilamos el nuevo estado a la pila
+                    self.pila.append(argumento)
+                    # Avanzamos en la cadena de entrada
+                    self.position += 1
 
-                    case self.EXITO:
-                        print("[+] Cadena aceptada")
-                        return True
-                    case _:
-                        print("[-] Error")
-                        self.print_estado()
-                        return False
+                case self.EXITO:
+                    # Analisis sintactico correcto
+                    print("[+] Cadena aceptada")
+                    return True
+                
+                # Default
+                case _: 
+                    # Estado inválido
+                    print("[-] Error")
+                    # Imprimimos estado actual
+                    self.print_estado()
+                    return False
                 
 
 def nuestro_lenguaje():
@@ -143,7 +168,7 @@ def nuestro_lenguaje():
 
 def ejemplo_diapositivas():
     # Cadena de entrada, cadena de tokens
-    cadena = ["id", "+", "id", "*", "id", "$"] 
+    cadena = ["id", "+", "id", "*", "id", "+", "(", "id", "*", "id" , ")", "$"] 
 
     # Tabla GOTO
     tabla_GOTO = {

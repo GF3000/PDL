@@ -123,38 +123,7 @@ if __name__ == "__main__":
         'Z': [[], ['d', 'Z']]
     }
 
-    grammar3 = {
-    'P': [["B", "P"], ["F", "P"],[]], #Axioma
-    "B": [["if", "(", "E", ")", "S"], ["let", "T", "id", "Y", ";"], ["S"], ["for", "(", "id", "Y", ";", "E", ";", "D", ")", "{", "C", "}"]], #Sentencias compuestas, declaración de variables
-    "T": [["int"], ["boolean"], ["string"]], #Variables
-    "S": [["id", "=", "E", ";"], ["id", "(", "L",")", ";"], ["put", "E", ";"], ["get", "E", ";"], ["return", "X", ";"]], #Sentencias simples
-    "X": [["E"], []], #Retorno
-    "E": [["R", "E1"], ["E2"]],
-    "E1": [["<", "U"], ["!", "U"], []],
-    "E2": [["true"], ["false"]],
-    "R": [["U", "R1"]],
-    "R1": [["+", "V"], []],
-    "U": [["V", "U1"]],
-    "U1": [["+", "V", "U1"], []],
-    "V": [["id", "V1"]],
-    "V1": [ ["(", "E", ")"], ["id", "(", "L", ")"],["entero"], ["cadena"], []],
-    # Error por recursividad infinita por la izquierda
-    # "R": [["R" , "<", "U"], ["!", "U"], ["U"]],
-    # "U": [["U", "+", "V"], ["V"], ["D"]],,
-    "Y": [["=", "V"]],
-    "D": [["id", "--"], ["--", "id"]], #¿No falta el caso de id++ y ++id?
-
-    #Funciones
-    "L": [["E", "Q"], []],
-    "Q": [[",", "E", "Q"], []],
-    "F": [["F1", "{", "C", "}"]], #declaracion
-    "F1": [["F2", "{", "C", "}"]],
-    "F2": [["function", "id", "H"]],
-    "H": [["T"], ["void"], []],
-    "A": [["T", "id", "K"],[]],
-    "K": [[",", "T", "id", "K"], []],
-    "C": [["B", "C"], []]
-
+    grammar4 = {
 
     }
 

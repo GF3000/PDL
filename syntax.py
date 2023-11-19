@@ -1,7 +1,8 @@
-
+#Constantes
 REDUCE = 0
 DESPLAZA = 1
 EXITO = 2
+DESCRIPTORES = {REDUCE: "REDUCE", DESPLAZA: "DESPLAZA", EXITO: "EXITO"} # Para imprimir el tipo de accion
 
 #Clase correspondiente al analizador sintactico para un analizador sintactico ascendente
 class REGLA:
@@ -11,13 +12,16 @@ class REGLA:
         self.izquierda = izquierda
         self.derecha = derecha
     def __str__(self):
-        return self.izquierda + " -> " + str(self.derecha)
+        parte_derecha = ""
+        for simbolo in self.derecha:
+            parte_derecha += simbolo + " "
+        return self.izquierda + " -> " + parte_derecha
     
 class analizador_sintactico_ascendente:
     #CONSTANTES:
-    REDUCE = 0
-    DESPLAZA = 1
-    EXITO = 2
+    REDUCE = REDUCE
+    DESPLAZA = DESPLAZA
+    EXITO = EXITO
 
     #ATRIBUTOS:
     cadena = ""
@@ -47,7 +51,7 @@ class analizador_sintactico_ascendente:
 
     def ACCION(self, estado, simbolo):
         try:
-            print(f"[+] Calculando ACCION({estado}, {simbolo}) -> {self.tabla_ACCION[estado][simbolo]}")
+            print(f"[+] Calculando ACCION({estado}, {simbolo}) -> {DESCRIPTORES[self.tabla_ACCION[estado][simbolo][0]]}, {self.tabla_ACCION[estado][simbolo][1]}")
             return self.tabla_ACCION[estado][simbolo][0], self.tabla_ACCION[estado][simbolo][1]
         except:
             print(f"[-] Calculando ACCION({estado}, {simbolo}) -> None")
@@ -55,10 +59,10 @@ class analizador_sintactico_ascendente:
         
     def REGLA(self, num):
         try:
-            print(f"[+] Calculando REGLA({num}) -> {self.reglas[num]}")
+            print(f"[+] Calculando REGLA({num}): {self.reglas[num]}")
             return self.reglas[num]
         except:
-            print(f"[-] Calculando REGLA({num}) -> None")
+            print(f"[-] Calculando REGLA({num}): None")
             return None
     def print_estado(self):
         print("Pila: ", self.pila)

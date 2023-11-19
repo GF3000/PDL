@@ -7,8 +7,7 @@ DESCRIPTORES = {REDUCE: "REDUCE", DESPLAZA: "DESPLAZA", EXITO: "EXITO"} # Para i
 #Clase correspondiente al analizador sintactico para un analizador sintactico ascendente
 class REGLA:
     """Clase correspondiente a una regla de produccion"""
-    izquierda = ""
-    derecha = []
+
     def __init__(self, izquierda, derecha):
         """Inicializa la regla de produccion. izquierda es el simbolo no terminal de la izquierda y derecha es una lista de simbolos terminales y no terminales producidos"""
         self.izquierda = izquierda
@@ -21,26 +20,21 @@ class REGLA:
     
 class analizador_sintactico_ascendente:
     """Clase correspondiente al analizador sintactico ascendente"""
-    #CONSTANTES:
-    REDUCE = REDUCE
-    DESPLAZA = DESPLAZA
-    EXITO = EXITO
-
-    #ATRIBUTOS:
-    cadena = ""
-    pila = [0]
-    tabla_GOTO = []
-    tabla_ACCION = []
-    reglas = []
-    position = 0
 
     def __init__(self, tabla_GOTO, tabla_ACCION, reglas):
         """Inicializa el analizador sintactico con la tabla GOTO, la tabla ACCION y las reglas de produccion"""
+
+        # Constantes
+        self.REDUCE = REDUCE
+        self.DESPLAZA = DESPLAZA
+        self.EXITO = EXITO
+
+        # Atributos
         self.tabla_GOTO = tabla_GOTO
         self.tabla_ACCION = tabla_ACCION
         self.reglas = reglas
         self.pila = [0]
-
+        self.position = 0
 
     def GOTO(self, estado, simbolo):
         """Calcula el estado al que se llega desde el estado actual con el simbolo dado"""
@@ -77,7 +71,6 @@ class analizador_sintactico_ascendente:
         print("Pila: ", self.pila)
         print("Cadena por leer: ", self.cadena[self.position:])
        
-    
     def analizar(self, cadena):
         """Analiza la cadena dada.
         Devuelve True si la cadena es aceptada, False en caso contrario"""

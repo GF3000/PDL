@@ -386,6 +386,5 @@ def ejemplo_diapositivas():
     analizador.analizar(cadena)
 
 if __name__ == "__main__":
-    #if ( entero + entero) return true;
-    cadena = ["if", "(", "id", "+", "id", ")", "return", "true", ";", "$"]
-    nuestro_lenguaje(cadena)
+    tokens = ["if", "(", "id", "+", "id", ")", "return", "true", ";", "$"]
+    nuestro_lenguaje(tokens)

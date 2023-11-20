@@ -21,8 +21,8 @@ class REGLA:
 class analizador_sintactico_ascendente:
     """Clase correspondiente al analizador sintactico ascendente"""
 
-    def __init__(self, tabla_GOTO, tabla_ACCION, reglas):
-        """Inicializa el analizador sintactico con la tabla GOTO, la tabla ACCION y las reglas de produccion"""
+    def __init__(self, tabla_GOTO, tabla_ACCION, reglas, impresion = True):
+        """Inicializa el analizador sintactico con la tabla GOTO, la tabla ACCION y las reglas de produccion. El parametro impresion indica si se imprimen los pasos del analisis sintactico"""
 
         # Constantes
         self.REDUCE = REDUCE
@@ -36,14 +36,17 @@ class analizador_sintactico_ascendente:
         self.pila = [0]
         self.position = 0
         self.cadena = ""
+        self.impresion = impresion
 
     def GOTO(self, estado, simbolo):
         """Calcula el estado al que se llega desde el estado actual con el simbolo dado"""
         try:
-            print(f"[+] Calculando GOTO({estado}, {simbolo}) -> {self.tabla_GOTO[estado][simbolo]}")
+            if self.impresion:
+                print(f"[+] Calculando GOTO({estado}, {simbolo}) -> {self.tabla_GOTO[estado][simbolo]}")
             return self.tabla_GOTO[estado][simbolo]
         except:
-            print(f"[-] Calculando GOTO({estado}, {simbolo}) -> None") 
+            if self.impresion:
+                print(f"[-] Calculando GOTO({estado}, {simbolo}) -> None") 
             return None
 
     def ACCION(self, estado, simbolo):
@@ -52,19 +55,23 @@ class analizador_sintactico_ascendente:
         Si la accion es DESPLAZA, el argumento es el estado al que se llega."""
 
         try:
-            print(f"[+] Calculando ACCION({estado}, {simbolo}) -> {DESCRIPTORES[self.tabla_ACCION[estado][simbolo][0]]}, {self.tabla_ACCION[estado][simbolo][1]}")
+            if self.impresion:
+                print(f"[+] Calculando ACCION({estado}, {simbolo}) -> {DESCRIPTORES[self.tabla_ACCION[estado][simbolo][0]]}, {self.tabla_ACCION[estado][simbolo][1]}")
             return self.tabla_ACCION[estado][simbolo][0], self.tabla_ACCION[estado][simbolo][1]
         except:
-            print(f"[-] Calculando ACCION({estado}, {simbolo}) -> None")
+            if self.impresion:
+                print(f"[-] Calculando ACCION({estado}, {simbolo}) -> None")
             return None, None
         
     def REGLA(self, num):
         """Devuelve la regla correspondiente al numero dado"""
         try:
-            print(f"[+] Calculando REGLA({num}): {self.reglas[num]}")
+            if self.impresion:
+                print(f"[+] Calculando REGLA({num}): {self.reglas[num]}")
             return self.reglas[num]
         except:
-            print(f"[-] Calculando REGLA({num}): None")
+            if self.impresion:
+                print(f"[-] Calculando REGLA({num}): None")
             return None
     
     def print_estado(self):
@@ -77,6 +84,7 @@ class analizador_sintactico_ascendente:
         Devuelve True si la cadena es aceptada, False en caso contrario"""
         self.cadena = cadena
         print(f"Analizando cadena: {cadena}\n")
+        texto_archivo = "ascendente "
         
         
         #Analiza la cadena de entrada y devuelve la lista de tokens
@@ -93,6 +101,7 @@ class analizador_sintactico_ascendente:
                 case self.REDUCE: 
                     # Obtenemos la regla
                     regla = self.REGLA(argumento)
+                    texto_archivo += str(argumento) + " "
                     # Eliminamos de la pila el doble de simbolos como elementos tenga la parte derecha de la regla
                     for _ in range(2*len(regla.derecha)):
                         self.pila.pop()
@@ -112,6 +121,8 @@ class analizador_sintactico_ascendente:
                 case self.EXITO:
                     # Analisis sintactico correcto
                     print("[+] Cadena aceptada")
+                    with open("parse", "a") as f:
+                        f.write(texto_archivo + "\n")
                     return True
                 
                 # Default
@@ -120,6 +131,8 @@ class analizador_sintactico_ascendente:
                     print("[-] Error")
                     # Imprimimos estado actual
                     self.print_estado()
+                    with open("parse", "w") as f:
+                       f.write(texto_archivo + "\n")
                     return False
                 
 

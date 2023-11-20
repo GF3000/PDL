@@ -1,0 +1,41 @@
+Procedimiento analizar()
+    posición = 0 // Posición actual en el código fuente, es como un puntero
+    mientras posición < longitud(código_fuente) hacer
+        coincidencia = Nulo // Variable para saber si se ha encontrado un token
+        para cada tipo_token, atributo, patrón en tokens_lenguaje hacer
+            regex = compilar_expresión_regular(f'({patrón})(?![e])')
+            coincidencia = aplicar_expresión_regular(regex, código_fuente, posición)
+            si coincidencia entonces // Si se ha encontrado un token
+                valor = obtener_grupo(coincidencia, 0) // Tipo de token
+                si tipo_token == 'ENTERO' entonces // Si es un entero, lo convertimos a int
+                    atributo = convertir_a_entero(valor)
+                sino si tipo_token == 'IDENTIFICADOR' entonces // Si es un identificador
+                    // Comprobamos si está en la tabla de símbolos; si no está, lo añadimos
+                    si (tabla_símbolos.obtener_entradas(valor) == Nulo) entonces
+                        tabla_símbolos.agregar_entrada(valor)
+                    atributo = 0 // Habrá que cambiarlo cuando sepamos el desplazamiento de la TS
+                sino si tipo_token == 'CAD' entonces // Si es una cadena, el atributo es el valor de la cadena
+                    atributo = valor
+                agregar_a_lista_tokens(Token(tipo_token, atributo, valor)) // Añadimos el token a la lista de tokens
+
+                // Actualizamos la entrada de la tabla de símbolos si el token es un paréntesis izquierdo
+                si (tipo_token == 'IParentesis' y (tabla_actual != 0)) entonces
+                    entrada = tabla_símbolos.obtener_entradas(self.nombre_ult_función)
+                    entrada.establecer_tipo_retorno(último_token.atributo())
+
+                // Reiniciamos la tabla de símbolos si el token es un paréntesis derecho
+                si (tipo_token == 'DParentesis' y (tabla_actual != 0)) entonces
+                    tabla_actual = 0
+
+                posición = finalizar_coincidencia(coincidencia) // Actualizamos la posición actual al final de la coincidencia
+                romper
+        si no coincidencia entonces
+            // Nos aseguramos de que no sea un espacio en blanco
+            si código_fuente[posición] == ' ' o código_fuente[posición] == '\n' o código_fuente[posición] == '\t' entonces
+                posición += 1
+            sino // Si no es un espacio en blanco, es un caracter no reconocido
+                imprimir(f'[-] Error en la posición {posición} del código fuente')
+                imprimir(f'[-] Caracter no reconocido: "{código_fuente[posición]}"')
+                posición += 1
+                retornar [] // Forzamos a que devuelva una lista vacía
+    retornar lista_tokens

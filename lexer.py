@@ -66,7 +66,6 @@ class Lexer:
         while position < len(source_code): #Mientras no se haya llegado al final del código fuente
             match = None #Variable para saber si se ha encontrado un token
             for token_type, attribute, pattern in tokens_leguaje: #Recorremos la lista de tokens de nuestro lenguaje
-                # regex = re.compile(pattern)
                 regex = re.compile(fr'{pattern}(?![e])')
                 match = regex.match(source_code, position)
                 if match: #Si se ha encontrado un token

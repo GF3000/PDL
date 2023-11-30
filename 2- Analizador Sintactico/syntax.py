@@ -429,25 +429,28 @@ def ejemplo_documento(cadena):
     return mi_analizador.analizar(cadena)
 
 if __name__ == "__main__":
+
+
+    # Cadenas con las que no funciona
     # tokens = ["if", "(", "id", "+", "id", ")", "return", "true", ";", "$"]
     # tokens = ["if", "(", "id", "<", "id", ")", "return", "true", ";", "$"]
-    # tokens = ["id", "=", "id", "+", "id", ";", "if", "(", "!", "id", ")", "return", "id", ";", "$"]  #error
-    # tokens = ["id", "=", "id", "+", "id", "+", "id","+", "id", ";", "$"] #error
-    # tokens = ["id", "=", "id", "<", "id", ";", "$"] #error
-
-
+    # tokens = ["id", "=", "id", "+", "id", ";", "if", "(", "!", "id", ")", "return", "id", ";", "$"] 
+    # tokens = ["id", "=", "id", "+", "id", "+", "id","+", "id", ";", "$"] 
+    # tokens = ["id", "=", "id", "<", "id", ";", "$"] 
     # tokens = ["let", "int", "id", ";", "if", "(", "!", "id", ")", "return", "id", "+", "id", ";", "$"]
     # tokens = ["if", "(", "true", ")", "return", "true", ";", "$"]
-    # tokens = ["let", "int", "id", ";", "$"]
     # tokens = ["for", "(", "id", "=", "entero", ";", "true", ";", "--", "id", ")", "{"," ", "}", "$"]
-    # tokens = ["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "$"]
     # tokens = ["function", "id", "void", "(","int", ")", "{", "C", "}", "$"]
-
-
-    tokens = ["get","id", ";","get","id", ";", "put","id", ";", "$"]
+    # tokens = ["get","id", ";","get","id", ";", "put","id", ";", "$"]
     # tokens = ["get","id", ";","get","id", ";","id","=","id", ";","put","id", ";", "$"]
     # tokens = ["id","=", "!", "id", ";", "$"]
+
+    # Cadenas con las que funciona
+    tokens = ["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "$"]
+    # tokens = ["let", "int", "id", ";", "$"]
     # tokens = ["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "id", "=", "id", "$"]
+
+
     nuestro_lenguaje(tokens)
 
 

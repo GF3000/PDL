@@ -13,7 +13,7 @@ for regla in reglas:
         if len(elemento) == 0:
             linea.remove(elemento)
         if elemento == 'lambda':
-            linea[linea.index(elemento)] = ' '
+            linea.remove(elemento)
     
     print(f"{contador}: REGLA( '{linea[0]}', {linea[2:]}),")
     with open('reglas_dict.txt', 'a') as f:

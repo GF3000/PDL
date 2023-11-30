@@ -88,7 +88,7 @@ class analizador_sintactico_ascendente:
         
         
         #Analiza la cadena de entrada y devuelve la lista de tokens
-        while True:
+        while self.position < len(self.cadena):
             # Obtenemos el etsado actual
             nuevo_estado = self.pila[-1]
             # Obtenemos el token actual 
@@ -113,7 +113,6 @@ class analizador_sintactico_ascendente:
                     self.pila.append(self.GOTO(self.pila[-2], self.pila[-1]))
                     # if nulo == None: self.pila.append(self.GOTO(self.pila[-4], self.pila[-1]))
 
-                    print("PILA " + str(self.pila))
                 case self.DESPLAZA:
                     # Apilamos el token a la pila
                     self.pila.append(token)
@@ -138,6 +137,9 @@ class analizador_sintactico_ascendente:
                     with open("parse", "w") as f:
                        f.write(texto_archivo + "\n")
                     return False
+        print("[-] Error")
+        self.print_estado()
+        return False
                 
 
 def nuestro_lenguaje(cadena):
@@ -177,15 +179,14 @@ def nuestro_lenguaje(cadena):
         80: {'T': 87,'H': 85},
         84: {'K': 88},
         89: {'T': 90},
-        91: {'K': 92},
-
+        91: {'K': 92}
     }
+
 
     # Tabla ACCION
     # Se usa un diccionario (creado con {}) para cada fila.
     # Se usaran las constantes REDUCE, DESPLAZA y EXITO en las acciones
     # tabla_ACCION = {ESTADO1: {TOKEKEN1: [accion, argumento], TOKEN2: [accion, estado_futuro], ...} , ESTADO2: {...}, ESTADO3: {...}, ...]
-
     tabla_ACCION = {
         0: {'if': [DESPLAZA, 5], 'let': [DESPLAZA, 6], 'for': [DESPLAZA, 7], 'id': [DESPLAZA, 8], 'put': [DESPLAZA, 9], 'get': [DESPLAZA, 10], 'return': [DESPLAZA, 11], 'function': [DESPLAZA, 14], '$': [REDUCE, 3]},
         1: {'$': [EXITO, None]},
@@ -219,7 +220,7 @@ def nuestro_lenguaje(cadena):
         29: {'<': [REDUCE, 33], '+': [REDUCE, 33], ',': [REDUCE, 33], ';': [REDUCE, 33], ')': [REDUCE, 33], '$': [REDUCE, 33]},
         30: {'id': [DESPLAZA, 8], 'put': [DESPLAZA, 9], 'get': [DESPLAZA, 10], 'return': [DESPLAZA, 11]},
         31: {'<': [REDUCE, 34], '+': [REDUCE, 34], ',': [REDUCE, 34], ';': [REDUCE, 34], ')': [REDUCE, 34], '$': [REDUCE, 34]},
-        32: {'if': [REDUCE, 17], 'let': [REDUCE, 17], 'for': [REDUCE, 17], 'id': [REDUCE, 17], 'put': [REDUCE, 17], 'get': [REDUCE, 17], 'return': [REDUCE, 17], 'function': [REDUCE, 17], '$': [REDUCE, 17]},
+        32: {},
         33: {'id': [DESPLAZA, 23], 'entero': [DESPLAZA, 26], 'cadena': [DESPLAZA, 27], 'true': [DESPLAZA, 28], 'false': [DESPLAZA, 29], '--': [DESPLAZA, 25], '(': [DESPLAZA, 24]},
         34: {'<': [REDUCE, 21], '+': [DESPLAZA, 36], ',': [REDUCE, 21], ';': [REDUCE, 21], ')': [REDUCE, 21], '$': [REDUCE, 21]},
         35: {'<': [REDUCE, 22], '+': [DESPLAZA, 36], ',': [REDUCE, 22], ';': [REDUCE, 22], ')': [REDUCE, 22], '$': [REDUCE, 22]},
@@ -249,7 +250,7 @@ def nuestro_lenguaje(cadena):
         59: {'--': [DESPLAZA, 25]},
         60: {')': [DESPLAZA, 61]},
         61: {'{': [DESPLAZA, 62]},
-        62: {'for': [DESPLAZA, 7], ' ': [DESPLAZA,62],'}': [REDUCE, 49]},
+        62: {'for': [DESPLAZA, 7], '}': [REDUCE, 49]},
         63: {'}': [DESPLAZA, 64]},
         64: {'if': [REDUCE, 7], 'let': [REDUCE, 7], 'for': [REDUCE, 7], 'id': [REDUCE, 7], 'put': [REDUCE, 7], 'get': [REDUCE, 7], 'return': [REDUCE, 7], 'function': [REDUCE, 7], '$': [REDUCE, 7]},
         65: {'}': [REDUCE, 49]},
@@ -258,9 +259,9 @@ def nuestro_lenguaje(cadena):
         68: {')': [DESPLAZA, 69]},
         69: {';': [DESPLAZA, 70]},
         70: {'if': [REDUCE, 14], 'let': [REDUCE, 14], 'for': [REDUCE, 14], 'id': [REDUCE, 14], 'put': [REDUCE, 14], 'get': [REDUCE, 14], 'return': [REDUCE, 14], 'function': [REDUCE, 14], '$': [REDUCE, 14]},
-        71: {';': [DESPLAZA, 98],'if': [REDUCE, 15], 'let': [REDUCE, 15], 'for': [REDUCE, 15], 'id': [REDUCE, 15], 'put': [REDUCE, 15], 'get': [REDUCE, 15], 'return': [REDUCE, 15], 'function': [REDUCE, 15], '$': [REDUCE, 15]},
-        72: {';': [DESPLAZA, 101],'if': [REDUCE, 16], 'let': [REDUCE, 16], 'for': [REDUCE, 16], 'id': [REDUCE, 16], 'put': [REDUCE, 16], 'get': [REDUCE, 16], 'return': [REDUCE, 16], 'function': [REDUCE, 16], '$': [REDUCE, 16]},
-        73: {';': [DESPLAZA, 32],'if': [REDUCE, 17], 'let': [REDUCE, 17], 'for': [REDUCE, 17], 'id': [REDUCE, 17], 'put': [REDUCE, 17], 'get': [REDUCE, 17], 'return': [REDUCE, 17], 'function': [REDUCE, 17], '$': [REDUCE, 17]},
+        71: {'if': [REDUCE, 15], 'let': [REDUCE, 15], 'for': [REDUCE, 15], 'id': [REDUCE, 15], 'put': [REDUCE, 15], 'get': [REDUCE, 15], 'return': [REDUCE, 15], 'function': [REDUCE, 15], '$': [REDUCE, 15]},
+        72: {'if': [REDUCE, 16], 'let': [REDUCE, 16], 'for': [REDUCE, 16], 'id': [REDUCE, 16], 'put': [REDUCE, 16], 'get': [REDUCE, 16], 'return': [REDUCE, 16], 'function': [REDUCE, 16], '$': [REDUCE, 16]},
+        73: {'if': [REDUCE, 17], 'let': [REDUCE, 17], 'for': [REDUCE, 17], 'id': [REDUCE, 17], 'put': [REDUCE, 17], 'get': [REDUCE, 17], 'return': [REDUCE, 17], ';': [DESPLAZA, 32], 'function': [REDUCE, 17], '$': [REDUCE, 17]},
         74: {';': [REDUCE, 19]},
         75: {'}': [REDUCE, 49]},
         76: {'}': [DESPLAZA, 77]},
@@ -284,12 +285,9 @@ def nuestro_lenguaje(cadena):
         94: {'if': [REDUCE, 4], 'let': [REDUCE, 4], 'for': [REDUCE, 4], 'id': [REDUCE, 4], 'put': [REDUCE, 4], 'get': [REDUCE, 4], 'return': [REDUCE, 4], 'function': [REDUCE, 4], '$': [REDUCE, 4]},
         95: {')': [DESPLAZA, 96]},
         96: {'<': [REDUCE, 28], '+': [REDUCE, 28], ',': [REDUCE, 28], ';': [REDUCE, 28], ')': [REDUCE, 28], '$': [REDUCE, 28]},
-        97: {';': [DESPLAZA, 99],'if': [REDUCE, 13], 'let': [REDUCE, 13], 'for': [REDUCE, 13], 'id': [REDUCE, 13], 'put': [REDUCE, 13], 'get': [REDUCE, 13], 'return': [REDUCE, 13], 'function': [REDUCE, 13], '$': [REDUCE, 13]},
-        98: {'$': [REDUCE, 15],'if': [REDUCE, 15], 'let': [REDUCE, 15], 'for': [REDUCE, 15], 'id': [REDUCE, 15], 'put': [REDUCE, 15], 'get': [REDUCE, 15], 'return': [REDUCE, 15], 'function': [REDUCE, 15], '$': [REDUCE, 15]},
-        99: {'$': [REDUCE, 13]},
-        101: {'$': [REDUCE, 16],'if': [REDUCE, 16], 'let': [REDUCE, 16], 'for': [REDUCE, 16], 'id': [REDUCE, 16], 'put': [REDUCE, 16], 'get': [REDUCE, 16], 'return': [REDUCE, 16], 'function': [REDUCE, 16], '$': [REDUCE, 16]},
-    }    
-
+        97: {'if': [REDUCE, 13], 'let': [REDUCE, 13], 'for': [REDUCE, 13], 'id': [REDUCE, 13], 'put': [REDUCE, 13], 'get': [REDUCE, 13], 'return': [REDUCE, 13], 'function': [REDUCE, 13], '$': [REDUCE, 13]}
+    }
+    
     # Reglas
     # Las reglas se crean con: REGLA(izquierda, [derecha])
     reglas = {
@@ -393,6 +391,43 @@ def ejemplo_diapositivas():
     # Lo ejecutamos
     analizador.analizar(cadena)
 
+
+def ejemplo_documento(cadena):
+    # Tabla GOTO
+    tabla_GOTO = {
+        0: {"S": 1, "A": 2},
+        3: {"B": 5},
+        4: {"B": 7},
+        6: {"A": 9},
+    }
+
+    # Tabla ACCION
+    tabla_ACCION = {
+        0: {"x": [DESPLAZA, 3], "z": [DESPLAZA, 4]},
+        1: {"$": [EXITO, None]},
+        2: {"$": [REDUCE, 1]},
+        3: {"y": [DESPLAZA, 6], "z": [REDUCE, 3]},
+        4: {"y": [DESPLAZA, 6], "z": [REDUCE, 3]},
+        5: {"z": [DESPLAZA, 8]},
+        6: {"z": [DESPLAZA, 4]},
+        7: {"z": [DESPLAZA, 10]},
+        8: {"$": [REDUCE, 0]},
+        9: {"z": [REDUCE, 2]},
+        10: {"z": [REDUCE, 4], "$": [REDUCE, 4]}
+    }
+
+    # Reglas
+    reglas = {
+        0: REGLA("S", ["x", "B", "z"]),
+        1: REGLA("S", ["A"]),
+        2: REGLA("B", ["y", "A"]),
+        3: REGLA("B", []),
+        4: REGLA("A", ["z", "B", "z"])
+    }
+
+    mi_analizador = analizador_sintactico_ascendente(tabla_GOTO, tabla_ACCION, reglas)
+    return mi_analizador.analizar(cadena)
+
 if __name__ == "__main__":
     # tokens = ["if", "(", "id", "+", "id", ")", "return", "true", ";", "$"]
     # tokens = ["if", "(", "id", "<", "id", ")", "return", "true", ";", "$"]
@@ -414,4 +449,5 @@ if __name__ == "__main__":
     # tokens = ["id","=", "!", "id", ";", "$"]
     # tokens = ["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "id", "=", "id", "$"]
     nuestro_lenguaje(tokens)
+
 

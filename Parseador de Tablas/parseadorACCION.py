@@ -6,7 +6,7 @@ with open('ACCION.csv', 'r') as f:
     reader = csv.reader(f)
     your_list = list(reader)
 
-nombres_columnas = "if	let	for	='	int	boolean	string	id	put	get	return	<	!	+'	entero	cadena	true'	false'	--	,	;	{	}	(	)	void	function	$"
+nombres_columnas = "if	let	for	=	int	boolean	string	id	put	get	return	<	!	+	entero	cadena	true	false	--	,	;	{	}	(	)	void	function	$"
 nombres_columnas = nombres_columnas.split('\t')
 filas = your_list[1:]
 for fila in filas:

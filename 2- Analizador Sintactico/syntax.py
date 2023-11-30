@@ -258,8 +258,8 @@ def nuestro_lenguaje(cadena):
         68: {')': [DESPLAZA, 69]},
         69: {';': [DESPLAZA, 70]},
         70: {'if': [REDUCE, 14], 'let': [REDUCE, 14], 'for': [REDUCE, 14], 'id': [REDUCE, 14], 'put': [REDUCE, 14], 'get': [REDUCE, 14], 'return': [REDUCE, 14], 'function': [REDUCE, 14], '$': [REDUCE, 14]},
-        71: {'if': [REDUCE, 15], 'let': [REDUCE, 15], 'for': [REDUCE, 15], 'id': [REDUCE, 15], 'put': [REDUCE, 15], 'get': [REDUCE, 15], 'return': [REDUCE, 15], 'function': [REDUCE, 15], '$': [REDUCE, 15]},
-        72: {'if': [REDUCE, 16], 'let': [REDUCE, 16], 'for': [REDUCE, 16], 'id': [REDUCE, 16], 'put': [REDUCE, 16], 'get': [REDUCE, 16], 'return': [REDUCE, 16], 'function': [REDUCE, 16], '$': [REDUCE, 16]},
+        71: {';': [DESPLAZA, 98],'if': [REDUCE, 15], 'let': [REDUCE, 15], 'for': [REDUCE, 15], 'id': [REDUCE, 15], 'put': [REDUCE, 15], 'get': [REDUCE, 15], 'return': [REDUCE, 15], 'function': [REDUCE, 15], '$': [REDUCE, 15]},
+        72: {';': [DESPLAZA, 101],'if': [REDUCE, 16], 'let': [REDUCE, 16], 'for': [REDUCE, 16], 'id': [REDUCE, 16], 'put': [REDUCE, 16], 'get': [REDUCE, 16], 'return': [REDUCE, 16], 'function': [REDUCE, 16], '$': [REDUCE, 16]},
         73: {';': [DESPLAZA, 32],'if': [REDUCE, 17], 'let': [REDUCE, 17], 'for': [REDUCE, 17], 'id': [REDUCE, 17], 'put': [REDUCE, 17], 'get': [REDUCE, 17], 'return': [REDUCE, 17], 'function': [REDUCE, 17], '$': [REDUCE, 17]},
         74: {';': [REDUCE, 19]},
         75: {'}': [REDUCE, 49]},
@@ -284,8 +284,10 @@ def nuestro_lenguaje(cadena):
         94: {'if': [REDUCE, 4], 'let': [REDUCE, 4], 'for': [REDUCE, 4], 'id': [REDUCE, 4], 'put': [REDUCE, 4], 'get': [REDUCE, 4], 'return': [REDUCE, 4], 'function': [REDUCE, 4], '$': [REDUCE, 4]},
         95: {')': [DESPLAZA, 96]},
         96: {'<': [REDUCE, 28], '+': [REDUCE, 28], ',': [REDUCE, 28], ';': [REDUCE, 28], ')': [REDUCE, 28], '$': [REDUCE, 28]},
-        97: {'if': [REDUCE, 13], 'let': [REDUCE, 13], 'for': [REDUCE, 13], 'id': [REDUCE, 13], 'put': [REDUCE, 13], 'get': [REDUCE, 13], 'return': [REDUCE, 13], 'function': [REDUCE, 13], '$': [REDUCE, 13]},
-    
+        97: {';': [DESPLAZA, 99],'if': [REDUCE, 13], 'let': [REDUCE, 13], 'for': [REDUCE, 13], 'id': [REDUCE, 13], 'put': [REDUCE, 13], 'get': [REDUCE, 13], 'return': [REDUCE, 13], 'function': [REDUCE, 13], '$': [REDUCE, 13]},
+        98: {'$': [REDUCE, 15],'if': [REDUCE, 15], 'let': [REDUCE, 15], 'for': [REDUCE, 15], 'id': [REDUCE, 15], 'put': [REDUCE, 15], 'get': [REDUCE, 15], 'return': [REDUCE, 15], 'function': [REDUCE, 15], '$': [REDUCE, 15]},
+        99: {'$': [REDUCE, 13]},
+        101: {'$': [REDUCE, 16],'if': [REDUCE, 16], 'let': [REDUCE, 16], 'for': [REDUCE, 16], 'id': [REDUCE, 16], 'put': [REDUCE, 16], 'get': [REDUCE, 16], 'return': [REDUCE, 16], 'function': [REDUCE, 16], '$': [REDUCE, 16]},
     }    
 
     # Reglas
@@ -406,7 +408,10 @@ if __name__ == "__main__":
     # tokens = ["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "$"]
     # tokens = ["function", "id", "void", "(","int", ")", "{", "C", "}", "$"]
 
-    tokens = ["id","=", "!", "id", ";", "$"]
-    # tokens = ["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "id" "=" "id" "$"]
+
+    tokens = ["get","id", ";","get","id", ";", "put","id", ";", "$"]
+    # tokens = ["get","id", ";","get","id", ";","id","=","id", ";","put","id", ";", "$"]
+    # tokens = ["id","=", "!", "id", ";", "$"]
+    # tokens = ["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "id", "=", "id", "$"]
     nuestro_lenguaje(tokens)
 

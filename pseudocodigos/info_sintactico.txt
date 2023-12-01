@@ -5,20 +5,20 @@ pila = [0]
 
 while True:
 
-	estado_futuro = pila[-1]
+	estado = pila[-1]
 	
 	token = cadena[0]
 	accion, argumento = ACCION(elemento, token)
 	swicth (accion):
 
-		case REDUCE:
+		caso REDUCE:
 			regla = REGLAS(argumento)
 			repeat 2*len(regla.derecha):
 				pila.pop()
 			pila.append(regla.izquierda) 
 			self.pila.append(self.GOTO(self.pila[-2], regla.izquierda))
 
-		case SHIFT:
+		caso SHIFT:
 			pila.append(cadena[0])
 			cadena = cadena [1:]
 			pila.append(argumento)

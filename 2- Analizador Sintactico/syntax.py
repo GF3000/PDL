@@ -297,7 +297,7 @@ def nuestro_lenguaje(cadena):
         4: REGLA( 'B', ['if', '(', 'E', ')', 'S']),
         5: REGLA( 'B', ['S']),
         6: REGLA( 'B', ['let', 'T', 'id', ';']),
-        7: REGLA( 'B', ['for', '(', 'id', 'Y', ';', 'E', ';', 'D)', '{', 'C', '}']),
+        7: REGLA( 'B', ['for', '(', 'id', 'Y', ';', 'E', ';', 'D', ')', '{', 'C', '}']),
         8: REGLA( 'Y', ['=', 'E']),
         9: REGLA( 'Y', []),
         10: REGLA( 'T', ['int']),

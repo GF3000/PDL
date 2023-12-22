@@ -199,7 +199,7 @@ def nuestro_lenguaje(cadena):
 10: {'id': [DESPLAZA, 23], '!': [DESPLAZA, 19], 'entero': [DESPLAZA, 26], 'cadena': [DESPLAZA, 27], 'true': [DESPLAZA, 28], 'false': [DESPLAZA, 29], '--': [DESPLAZA, 25], '(': [DESPLAZA, 24]},
 11: {'id': [DESPLAZA, 23], '!': [DESPLAZA, 19], 'entero': [DESPLAZA, 26], 'cadena': [DESPLAZA, 27], 'true': [DESPLAZA, 28], 'false': [DESPLAZA, 29], '--': [DESPLAZA, 25], ';': [REDUCE, 19], '(': [DESPLAZA, 24], '$': [REDUCE, 19]},
 12: {'{': [DESPLAZA, 75]},
-13: {'(': [DESPLAZA, 13]},
+13: {'(': [DESPLAZA, 79]},
 14: {'id': [DESPLAZA, 80]},
 15: {'$': [REDUCE, 1]},
 16: {'id': [DESPLAZA, 23], '!': [DESPLAZA, 19], 'entero': [DESPLAZA, 26], 'cadena': [DESPLAZA, 27], 'true': [DESPLAZA, 28], 'false': [DESPLAZA, 29], '--': [DESPLAZA, 25], '(': [DESPLAZA, 24]},
@@ -433,22 +433,24 @@ if __name__ == "__main__":
 
     # Cadenas con las que no funciona
     lista_tokens = [
-    ["if", "(", "id", "+", "id", ")", "return", "true", ";", "$"]
-    ,["if", "(", "id", "<", "id", ")", "return", "true", ";", "$"]
-    ,["id", "=", "id", "+", "id", ";", "if", "(", "!", "id", ")", "return", "id", ";", "$"] 
-    ,["id", "=", "id", "+", "id", "+", "id","+", "id", ";", "$"] 
-    ,["id", "=", "id", "<", "id", ";", "$"] 
-    ,["let", "int", "id", ";", "if", "(", "!", "id", ")", "return", "id", "+", "id", ";", "$"]
-    ,["if", "(", "true", ")", "return", "true", ";", "$"]
-    ,["for", "(", "id", "=", "entero", ";", "true", ";", "--", "id", ")", "{"," ", "}", "$"]
-    ,["function", "id", "void", "(","int", ")", "{", "C", "}", "$"]
-    ,["get","id", ";","get","id", ";", "put","id", ";", "$"]
-    ,["get","id", ";","get","id", ";","id","=","id", ";","put","id", ";", "$"]
-    ,["id","=", "!", "id", ";", "$"]
+    # ["if", "(", "id", "+", "id", ")", "return", "true", ";", "$"]
+    # ,["if", "(", "id", "<", "id", ")", "return", "true", ";", "$"]
+    # ,["id", "=", "id", "+", "id", ";", "if", "(", "!", "id", ")", "return", "id", ";", "$"] 
+    # ,["id", "=", "id", "+", "id", "+", "id","+", "id", ";", "$"] 
+    # ,["id", "=", "id", "<", "id", ";", "$"] 
+    # ,["let", "int", "id", ";", "if", "(", "!", "id", ")", "return", "id", "+", "id", ";", "$"]
+    # ,["if", "(", "true", ")", "return", "true", ";", "$"]
+    # ["function", "id", "void", "(","int" ,"id", ")", "{", "}", "$"] # el estado 13 estaba mal hecho en el excel
+    # ,["get","id", ";","get","id", ";", "put","id", ";", "$"]
+    # ,["get","id", ";","get","id", ";","id","=","id", ";","put","id", ";", "$"]
+    # ,["id","=", "!", "id", ";", "$"]
 
-    ,["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "$"]
-    ,["let", "int", "id", ";", "$"]
-    ,["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "id", "=", "id", "$"]
+    # ,["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "$"]
+    # ,["let", "int", "id", ";", "$"]
+
+    # novan:
+    # ,["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "id", "=", "id", ";", "$"] # le faltaba ; al final
+    ["for", "(", "id", "=", "entero", ";", "true", ";", "--", "id", ")", "{", "}", "$"]
     ]
     
     cadenas_que_no_funcionan = []

@@ -103,12 +103,12 @@ class analizador_sintactico_ascendente:
                     regla = self.REGLA(argumento)
                     texto_archivo += str(argumento) + " "
                     # Eliminamos de la pila el doble de simbolos como elementos tenga la parte derecha de la regla
-                  
+                    # print("Pila pre-reduccion: ", self.pila)
                     for _ in range(2*len(regla.derecha)):
                         self.pila.pop()
-                    
                     # Apilamos simbolo a la pila
                     self.pila.append(regla.izquierda)
+                    # print("Pila post-reduccion: ", self.pila)
                     # Apilamos devolucion de llamada a GOTO con estado actual y nuevo simbolo (regla.izquierda)
                     self.pila.append(self.GOTO(self.pila[-2], self.pila[-1]))
                     # if nulo == None: self.pila.append(self.GOTO(self.pila[-4], self.pila[-1]))
@@ -297,7 +297,11 @@ def nuestro_lenguaje(cadena):
         4: REGLA( 'B', ['if', '(', 'E', ')', 'S']),
         5: REGLA( 'B', ['S']),
         6: REGLA( 'B', ['let', 'T', 'id', ';']),
+<<<<<<< Updated upstream
         7: REGLA( 'B', ['for', '(', 'id', 'Y', ';', 'E', ';', 'D', ')', '{', 'C', '}']),
+=======
+        7: REGLA( 'B', ['for', '(', 'id', 'Y', ';', 'E', ';', 'D' , ')', '{', 'C', '}']),
+>>>>>>> Stashed changes
         8: REGLA( 'Y', ['=', 'E']),
         9: REGLA( 'Y', []),
         10: REGLA( 'T', ['int']),
@@ -433,6 +437,7 @@ if __name__ == "__main__":
 
     # Cadenas con las que no funciona
     lista_tokens = [
+<<<<<<< Updated upstream
     # ["if", "(", "id", "+", "id", ")", "return", "true", ";", "$"]
     # ,["if", "(", "id", "<", "id", ")", "return", "true", ";", "$"]
     # ,["id", "=", "id", "+", "id", ";", "if", "(", "!", "id", ")", "return", "id", ";", "$"] 
@@ -451,10 +456,31 @@ if __name__ == "__main__":
     # novan:
     # ,["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "id", "=", "id", ";", "$"] # le faltaba ; al final
     ["for", "(", "id", "=", "entero", ";", "true", ";", "--", "id", ")", "{", "}", "$"]
+=======
+    ["if", "(", "id", "+", "id", ")", "return", "true", ";", "$"]
+    ,["if", "(", "id", "<", "id", ")", "return", "true", ";", "$"]
+    ,["id", "=", "id", "+", "id", ";", "if", "(", "!", "id", ")", "return", "id", ";", "$"] 
+    ,["id", "=", "id", "+", "id", "+", "id","+", "id", ";", "$"] 
+    ,["id", "=", "id", "<", "id", ";", "$"] 
+    ,["let", "int", "id", ";", "if", "(", "!", "id", ")", "return", "id", "+", "id", ";", "$"]
+    ,["if", "(", "true", ")", "return", "true", ";", "$"]
+    ,["for", "(", "id", "=", "entero", ";", "true", ";", "--", "id", ")", "{", "}", "$"]
+    ,["function", "id", "void", "(","int", ")", "{", "C", "}", "$"]
+    ,["get","id", ";","get","id", ";", "put","id", ";", "$"]
+    ,["get","id", ";","get","id", ";","id","=","id", ";","put","id", ";", "$"]
+    ,["id","=", "!", "id", ";", "$"]
+
+    ,["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "$"]
+    ,["let", "int", "id", ";", "$"]
+    ,["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "id", "=", "id", "$"]
+    ,["let", "int", "id", ";","let", "int", "id", ";", "let", "int", "id", ";","$"]
+
+>>>>>>> Stashed changes
     ]
     
     cadenas_que_no_funcionan = []
     cadenas_que_funcionan = []
+
     for tokens in lista_tokens:
 
         if(nuestro_lenguaje(tokens)):
@@ -468,6 +494,10 @@ if __name__ == "__main__":
     print("Cadenas que no funcionan: ")
     for cadena in cadenas_que_no_funcionan:
         print(cadena)
+
+    print("Imprimiendo trazas de cadenas que no funcionan: ")
+    for cadena in cadenas_que_no_funcionan:
+        nuestro_lenguaje(cadena)
    
 
 

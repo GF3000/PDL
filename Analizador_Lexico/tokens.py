@@ -62,5 +62,5 @@ class Tokens:
     ('CAD', None, r"'[^']*'"),
     ('CAD', None, r'"[^"]*"') 
     ]
-    def get_tokens(self):
-        return self.tokens
+    def get_tokens():
+        return Tokens.tokens

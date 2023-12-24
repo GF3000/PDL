@@ -1,7 +1,7 @@
 import re
-import tokens
-import tabladesimbolos
-import entradaTS
+from Analizador_Lexico import tokens
+from Analizador_Lexico import tabladesimbolos
+from Analizador_Lexico import entradaTS
 
 class Token:
     def __init__(self, token_type, attribute, value):
@@ -26,7 +26,7 @@ class Token:
         return self.token_type
 
 class Lexer:
-    def __init__(self, tokens, source_code):
+    def __init__(self, tokens, source_code = None):
         #Inicializamos los atributos del lexer
         self.tokens_lenguaje = tokens
         self.source_code = source_code
@@ -40,6 +40,8 @@ class Lexer:
         self.tablaActual = 0
         self.nombreUltFuncion = ""
         self.entrada = entradaTS.entradaTS("inicio")
+    
+    
 
 
     def get_desplazamiento(self):
@@ -60,12 +62,14 @@ class Lexer:
             print(tabla)
 
 
-    def analizar(self):
+    def analizar(self, source_code = None):
+        if source_code == None :
+            source_code = self.source_code
         #Analiza el código fuente y devuelve la lista de tokens
         position = 0 #Posición actual en el código fuente, es como un puntero
         while position < len(source_code): #Mientras no se haya llegado al final del código fuente
             match = None #Variable para saber si se ha encontrado un token
-            for token_type, attribute, pattern in tokens_leguaje: #Recorremos la lista de tokens de nuestro lenguaje
+            for token_type, attribute, pattern in self.tokens_lenguaje: #Recorremos la lista de tokens de nuestro lenguaje
                 regex = re.compile(fr'{pattern}(?![e])')
                 match = regex.match(source_code, position)
                 if match: #Si se ha encontrado un token
@@ -106,33 +110,33 @@ class Lexer:
         return self.token_list
 
 
+if __name__ == "__main__":
+    #Archivo a analizar
+    file = "casosPruebaTxt/casoPrueba1.txt"
+    #Abrimos el archivo
+    f = open(file, "r")
+    source_code = f.read()
 
-#Archivo a analizar
-file = "i.txt"
-#Abrimos el archivo
-f = open(file, "r")
-source_code = f.read()
+    #Cargamos los tokens
+    tokens_leguaje = tokens.Tokens.tokens
+    #Creamos el objeto mi_lexer
+    mi_lexer = Lexer(tokens_leguaje, source_code)
 
-#Cargamos los tokens
-tokens_leguaje = tokens.Tokens.tokens
-#Creamos el objeto mi_lexer
-mi_lexer = Lexer(tokens_leguaje, source_code)
+    #Analizamos el código fuente
+    tokens_analizados = mi_lexer.analizar()
 
-#Analizamos el código fuente
-tokens_analizados = mi_lexer.analizar()
+    # Imprimir los tokens encontrados
+    f = open("tokens.txt", "w")
+    for token in tokens_analizados:
+        f.write(str(token)) #Guardamos los tokens en un archivo
+        f.write("\n")
+    for token in tokens_analizados:
+        print(token) #Imprimimos los tokens por consola
 
-# Imprimir los tokens encontrados
-f = open("tokens.txt", "w")
-for token in tokens_analizados:
-    f.write(str(token)) #Guardamos los tokens en un archivo
-    f.write("\n")
-for token in tokens_analizados:
-    print(token) #Imprimimos los tokens por consola
+    # Imprimir la tabla de simbolos
+    f = open("tablas.txt", "w")
+    for tabla in mi_lexer.tables:
+        f.write(str(tabla))
+        f.write("\n")
 
-# Imprimir la tabla de simbolos
-f = open("tablas.txt", "w")
-for tabla in mi_lexer.tables:
-    f.write(str(tabla))
-    f.write("\n")
-
-mi_lexer.print_symbol_table()
+    mi_lexer.print_symbol_table()

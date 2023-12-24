@@ -297,11 +297,7 @@ def nuestro_lenguaje(cadena):
         4: REGLA( 'B', ['if', '(', 'E', ')', 'S']),
         5: REGLA( 'B', ['S']),
         6: REGLA( 'B', ['let', 'T', 'id', ';']),
-<<<<<<< Updated upstream
         7: REGLA( 'B', ['for', '(', 'id', 'Y', ';', 'E', ';', 'D', ')', '{', 'C', '}']),
-=======
-        7: REGLA( 'B', ['for', '(', 'id', 'Y', ';', 'E', ';', 'D' , ')', '{', 'C', '}']),
->>>>>>> Stashed changes
         8: REGLA( 'Y', ['=', 'E']),
         9: REGLA( 'Y', []),
         10: REGLA( 'T', ['int']),
@@ -437,26 +433,6 @@ if __name__ == "__main__":
 
     # Cadenas con las que no funciona
     lista_tokens = [
-<<<<<<< Updated upstream
-    # ["if", "(", "id", "+", "id", ")", "return", "true", ";", "$"]
-    # ,["if", "(", "id", "<", "id", ")", "return", "true", ";", "$"]
-    # ,["id", "=", "id", "+", "id", ";", "if", "(", "!", "id", ")", "return", "id", ";", "$"] 
-    # ,["id", "=", "id", "+", "id", "+", "id","+", "id", ";", "$"] 
-    # ,["id", "=", "id", "<", "id", ";", "$"] 
-    # ,["let", "int", "id", ";", "if", "(", "!", "id", ")", "return", "id", "+", "id", ";", "$"]
-    # ,["if", "(", "true", ")", "return", "true", ";", "$"]
-    # ["function", "id", "void", "(","int" ,"id", ")", "{", "}", "$"] # el estado 13 estaba mal hecho en el excel
-    # ,["get","id", ";","get","id", ";", "put","id", ";", "$"]
-    # ,["get","id", ";","get","id", ";","id","=","id", ";","put","id", ";", "$"]
-    # ,["id","=", "!", "id", ";", "$"]
-
-    # ,["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "$"]
-    # ,["let", "int", "id", ";", "$"]
-
-    # novan:
-    # ,["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "id", "=", "id", ";", "$"] # le faltaba ; al final
-    ["for", "(", "id", "=", "entero", ";", "true", ";", "--", "id", ")", "{", "}", "$"]
-=======
     ["if", "(", "id", "+", "id", ")", "return", "true", ";", "$"]
     ,["if", "(", "id", "<", "id", ")", "return", "true", ";", "$"]
     ,["id", "=", "id", "+", "id", ";", "if", "(", "!", "id", ")", "return", "id", ";", "$"] 
@@ -464,18 +440,15 @@ if __name__ == "__main__":
     ,["id", "=", "id", "<", "id", ";", "$"] 
     ,["let", "int", "id", ";", "if", "(", "!", "id", ")", "return", "id", "+", "id", ";", "$"]
     ,["if", "(", "true", ")", "return", "true", ";", "$"]
-    ,["for", "(", "id", "=", "entero", ";", "true", ";", "--", "id", ")", "{", "}", "$"]
-    ,["function", "id", "void", "(","int", ")", "{", "C", "}", "$"]
+    ,["function", "id", "void", "(","int" ,"id", ")", "{", "}", "$"] # el estado 13 estaba mal hecho en el excel
     ,["get","id", ";","get","id", ";", "put","id", ";", "$"]
     ,["get","id", ";","get","id", ";","id","=","id", ";","put","id", ";", "$"]
     ,["id","=", "!", "id", ";", "$"]
 
     ,["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "$"]
     ,["let", "int", "id", ";", "$"]
-    ,["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "id", "=", "id", "$"]
-    ,["let", "int", "id", ";","let", "int", "id", ";", "let", "int", "id", ";","$"]
-
->>>>>>> Stashed changes
+    ,["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "id", "=", "id", ";", "$"] # le faltaba ; al final
+    ,["for", "(", "id", "=", "entero", ";", "true", ";", "--", "id", ")", "{", "}", "$"]
     ]
     
     cadenas_que_no_funcionan = []

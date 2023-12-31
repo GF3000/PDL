@@ -1,49 +1,20 @@
-P -> B P 
-P -> F P 
-P -> lambda
-B -> if ( E ) S 
-B -> S 
-B -> let T id ; 
-B -> for ( id Y ; E ; D) { C }
-Y -> = E 
-Y -> lambda
-T -> int 
-T -> boolean 
-T -> string
-S -> id = E ; 
-S -> id ( L ) ; 
-S -> put E ; 
-S -> get E ; 
-S -> return X ;
-X -> E 
-X -> lambda
-E -> R 
-R -> R < U 
-R -> ! U 
-R -> U 
-U -> U + V 
-U -> V 
-U -> D 
-V -> id 
-V -> ( E ) 
-V -> id ( L ) 
-V -> entero 
-V -> cadena 
-V -> true 
-V -> false 
-D -> -- id 
+P -> B P | F P | lambda
+B -> if ( E ) S | S | let T id ; | for ( Y ; E ; D ) { C }
+Y -> id = E
+T -> int | boolean | string
+S -> id = E ; | id ( L ) ; | put E ; | get E ; | return X ;
+X -> E | lambda
+E -> R
+R -> R < U | U
+U -> U + V | V | D | ! V
+V -> id | ( E ) | id ( L ) | entero | cadena | true | false
+D -> -- id
 L -> E Q
-Q -> , E Q 
-Q -> lambda
+Q -> , E Q | lambda
 F -> F1 { C }
 F1 -> F2 ( A )
 F2 -> function id H
-H -> T 
-H -> void 
-H -> lambda
-A -> T id K 
-A -> lambda
-K -> , T id K 
-K -> lambda
-C -> B C
-C -> lambda
+H -> T | void | lambda
+A -> T id K | lambda
+K -> , T id K | lambda
+C -> B C | lambda

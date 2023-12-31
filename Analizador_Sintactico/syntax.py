@@ -1,4 +1,5 @@
-from Analizador_Sintactico import tablas
+# from Analizador_Sintactico import tablas
+import tablas
 
 #Constantes
 REDUCE = tablas.Constantes.REDUCE
@@ -113,7 +114,7 @@ class Syntax:
                 case self.EXITO:
                     # Analisis sintactico correcto
                     print("[+] Cadena aceptada")
-                    with open("parse", "a") as f:
+                    with open("parse", "w") as f:
                         f.write(texto_archivo + "\n")
                     return True
                 
@@ -162,8 +163,8 @@ if __name__ == "__main__":
 
     ,["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "$"]
     ,["let", "int", "id", ";", "$"]
-    ,["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "id", "=", "id", ";", "$"] # le faltaba ; al final
-    ,["for", "(", "id", "=", "entero", ";", "true", ";", "--", "id", ")", "{", "}", "$"]
+    ,["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "id", "=", "id", ";", "$"], # le faltaba ; al final
+    ["for", "(", "id", "=", "entero", ";", "true", ";", "--", "id", ")", "{", "}", "$"]
     ]
     
     cadenas_que_no_funcionan = []
@@ -184,9 +185,9 @@ if __name__ == "__main__":
     for cadena in cadenas_que_no_funcionan:
         print(cadena)
 
-    print("Imprimiendo trazas de cadenas que no funcionan: ")
-    for cadena in cadenas_que_no_funcionan:
-        nuestro_lenguaje(cadena)
+    # print("Imprimiendo trazas de cadenas que no funcionan: ")
+    # for cadena in cadenas_que_no_funcionan:
+    #     nuestro_lenguaje(cadena)
    
 
 

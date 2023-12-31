@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import csv
 
-with open('GOTO.csv', 'r') as f:
+with open('Parseador de Tablas/GOTO.csv', 'r') as f:
     reader = csv.reader(f)
     your_list = list(reader)
 
@@ -23,6 +23,6 @@ for fila in your_list:
     impresion += "},"
     if (len(impresion) > 10):
         #If file GOTO_dict.txt  exists, it will be overwritten
-        with open('GOTO_dict.txt', 'a') as f:
+        with open('Parseador de Tablas/GOTO_dict.txt', 'a') as f:
             f.write(impresion + "\n")
         print(impresion)

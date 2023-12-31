@@ -27,6 +27,7 @@ def main():
     tabla_ACCION = tablas.Tabla_ACCION.get_tabla_ACCION()
     reglas = tablas.Reglas.get_reglas()
     mi_syntax = syntax.Syntax(tabla_GOTO, tabla_ACCION, reglas, impresion=True)
+
     #Se analizan los tokens
     exito = mi_syntax.analizar(tokens_analizados)
 

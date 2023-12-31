@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import csv
 
-with open('ACCION.csv', 'r') as f:
+with open('Parseador de Tablas/ACCION.csv', 'r') as f:
     reader = csv.reader(f)
     your_list = list(reader)
 
@@ -29,7 +29,7 @@ for fila in filas:
     #Remove last comma
     cadena = cadena[:-2]
     print(estado + ": {" + cadena + "},")
-    with open('ACCION_dict.txt', 'a') as f:
+    with open('Parseador de Tablas/', 'a') as f:
         f.write(estado + ": {" + cadena + "},\n")
 
 

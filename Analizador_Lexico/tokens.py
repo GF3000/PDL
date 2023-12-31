@@ -5,13 +5,13 @@ class Tokens:
 
     # Palabras reservadas
     #Se añade el \b para asegurarse que las palabras están rodeadas de espacios
-    ('PalRes', 'if', r'\bif\b'),
+    ('if', None, r'\bif\b'),
     ('PalRes', 'while', r'\bwhile\b'),
-    ('PalRes', 'for', r'\bfor\b'),
+    ('for', None, r'\bfor\b'),
     ("PalRes", "get", r'\bget\b'),
     ("PalRes", "put", r'\bput\b'),
     ("PalRes", "return", r'\breturn\b'),
-    ("PalRes", "let", r'\blet\b'),
+    ("let", None, r'\blet\b'),
     ("PalRes", "int", r'\bint\b'),
     ("PalRes", "float", r'\bfloat\b'),
     ("PalRes", "string", r'\bstring\b'),
@@ -57,6 +57,7 @@ class Tokens:
     ("False", None, r'false'),
     ("EOF", None, r'EOF'),
     
+    # Con atributos
     ('INTEGER', None, r'\d+'),
     ('IDENTIFIER', None, r'[a-zA-Z_]\w*'),
     ('CAD', None, r"'[^']*'"),

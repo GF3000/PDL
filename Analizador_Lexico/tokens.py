@@ -3,65 +3,55 @@ class Tokens:
     tokens = [
     # Token, atributo, expresión regular
 
+# boolean 
+# for 
+# function 
+# get
+# if
+# int 
+# let 
+# put
+# return 
+# string 
+# void 
+
+
+
+
     # Palabras reservadas
     #Se añade el \b para asegurarse que las palabras están rodeadas de espacios
-    ('if', None, r'\bif\b'),
-    ('PalRes', 'while', r'\bwhile\b'),
+    ('boolean', None, r'\bboolean\b'),
     ('for', None, r'\bfor\b'),
-    ("PalRes", "get", r'\bget\b'),
-    ("PalRes", "put", r'\bput\b'),
-    ("PalRes", "return", r'\breturn\b'),
-    ("let", None, r'\blet\b'),
-    ("PalRes", "int", r'\bint\b'),
-    ("PalRes", "float", r'\bfloat\b'),
-    ("PalRes", "string", r'\bstring\b'),
-    ("PalRes", "boolean", r'\bboolean\b'),
-    ("PalRes", "function", r'\bfunction\b'),
-    ("PalRes", "void", r'\bvoid\b'),
+    ('function', None, r'\bfunction\b'),
+    ('get', None, r'\bget\b'),
+    ('if', None, r'\bif\b'),
+    ('int', None, r'\bint\b'),
+    ('let', None, r'\blet\b'),
+    ('put', None, r'\bput\b'),
+    ('return', None, r'\breturn\b'),
+    ('string', None, r'\bstring\b'),
+    ('void', None, r'\bvoid\b'),
+    ('autodecremento', None, r'\-\-'),
+    ('asignacion', None, r'\='),
+    ('coma', None, r'\,'),
+    ('puntoycoma', None, r'\;'),
+    ('paretesisabierto', None, r'\('),
+    ('parentesiscerrado', None, r'\)'),
+    ('llaaveabierta', None, r'\{'),
+    ('llavecerrada', None, r'\}'),
+    ('suma', None, r'\+'),
+    ('negacion', None, r'\!'),
+    ('menor', None, r'\<'),
+    ('false', None, r'\false\b'),
+    ('true', None, r'\true\b'),
+    ('entero', None, r'\d+'),
+    ('EOF', None, r'\$'), #Token de fin de fichero
 
-
-    # Operadores
-    ('OP', 'igual', r'=='),
-    ('OP', 'asignacion', r'='),
-    ('OP', 'incremento', r'\+\+'),
-    ('OP', 'decremento', r'--'),
-
-    ('OP', 'suma', r'\+'),
-    ("OP", "multiplicacion", r'\*'),
-    ('OP', 'resta', r'-'),
-    ('OP', 'division', r'/'),
-    ("OP", "modulo", r'%'),
-    ('OP', 'and', r'&&'),
-    ('OP', 'or', r'\|\|'),
-    ('OP', 'not', r'!'),
-    ('OP', 'diferente', r'!='),
-    ('OP', 'menor', r'<'),
-    ('OP', 'menorIgual', r'<='),
-    ('OP', 'mayor', r'>'),
-    ('OP', 'mayorIgual', r'>='),
-
-    # Puntuación
-    ("Coma", None, r','),
-    ("PuntoComa", None, r';'),
-
-    # Agrupadores
-    ("IParentesis", None, r'\('),
-    ("DParentesis", None, r'\)'),
-    ("ILlave", None, r'\{'),
-    ("DLlave", None, r'\}'),
-    ("ICorchete", None, r'\['),
-    ("DCorchete", None, r'\]'),
-
-    # Otros
-    ("True", None, r'true'),
-    ("False", None, r'false'),
-    ("EOF", None, r'EOF'),
     
     # Con atributos
-    ('INTEGER', None, r'\d+'),
-    ('IDENTIFIER', None, r'[a-zA-Z_]\w*'),
-    ('CAD', None, r"'[^']*'"),
-    ('CAD', None, r'"[^"]*"') 
+    ('entero', None, r'[+-]?\d+'), #Lee entero con y sin signo
+    ('id', None, r'[a-zA-Z_]\w*'), #Lee identificadores
+    ('cadena', None, r'(\'[^\']*\'|\"[^\"]*\")') #Lee cadenas con comillas simples o dobles
     ]
     def get_tokens():
         return Tokens.tokens

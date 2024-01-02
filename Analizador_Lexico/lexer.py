@@ -1,7 +1,7 @@
 import re
-from Analizador_Lexico import tokens
-from Analizador_Lexico import tabladesimbolos
-from Analizador_Lexico import entradaTS
+import tokens
+import tabladesimbolos
+import entradaTS
 
 class Token:
     def __init__(self, token_type, attribute, value):
@@ -74,14 +74,14 @@ class Lexer:
                 match = regex.match(source_code, position)
                 if match: #Si se ha encontrado un token
                     value = match.group(0) #Tipo de token
-                    if token_type == 'INTEGER': #Si es un entero, lo convertimos a int
+                    if token_type == 'entero': #Si es un entero, lo convertimos a int
                         attribute = int(value)
-                    elif token_type == 'IDENTIFIER': #Si es un identificador, lo añadimos a la tabla de simbolos
+                    elif token_type == 'id': #Si es un identificador, lo añadimos a la tabla de simbolos
                         # comprobar si esta ya en la TS, si no esta, lo añadimos
                         if (self.symbol_table.getEntradasTS(value) == None):
                             self.symbol_table.addEntrada(value) # el lexer solo tiene que añadir los lexemas, el an. sem, añade el resto de atributos
                         attribute = 0 #Habrá que cambiarlo cuando sepamos el desplazamiento de la TS
-                    elif token_type == 'CAD': #Si es una cadena, el atributo es el valor de la cadena
+                    elif token_type == 'cad': #Si es una cadena, el atributo es el valor de la cadena
                         attribute = value
                     self.token_list.append(Token(token_type, attribute, value)) #Añadimos el token a la lista de tokens
 

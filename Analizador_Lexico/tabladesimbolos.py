@@ -1,4 +1,4 @@
-from Analizador_Lexico import entradaTS
+import entradaTS
 # clase que representa una tabla de simbolos
 
 class tabla_de_simbolos:

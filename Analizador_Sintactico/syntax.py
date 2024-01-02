@@ -73,6 +73,8 @@ class Syntax:
         """Analiza la cadena dada.
         Devuelve True si la cadena es aceptada, False en caso contrario"""
         self.cadena = cadena
+        self.pila = [0]
+        self.position = 0
         # print(f"\nAnalizando cadena: {cadena}\n")
         texto_archivo = "ascendente "
         
@@ -170,7 +172,6 @@ if __name__ == "__main__":
     cadenas_que_no_funcionan = []
     cadenas_que_funcionan = []
     mi_syntax = Syntax(tablas.Tabla_GOTO.get_tabla_GOTO(), tablas.Tabla_ACCION.get_tabla_ACCION(), tablas.Reglas.get_reglas())
-
     for tokens in lista_tokens:
 
         if(mi_syntax.analizar(tokens)):

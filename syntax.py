@@ -6,6 +6,7 @@ REDUCE = tablas.Constantes.REDUCE
 DESPLAZA = tablas.Constantes.DESPLAZA
 EXITO = tablas.Constantes.EXITO
 DESCRIPTORES = tablas.Constantes.DESCRIPTORES
+FILE = "outputs/parse.txt"
 
 
 class Syntax:
@@ -116,7 +117,7 @@ class Syntax:
                 case self.EXITO:
                     # Analisis sintactico correcto
                     print("[+] Cadena aceptada")
-                    with open("parse", "w") as f:
+                    with open(FILE, "w") as f:
                         f.write(texto_archivo + "\n")
                     return True
                 
@@ -126,7 +127,7 @@ class Syntax:
                     print("[-] Error")
                     # Imprimimos estado actual
                     self.print_estado()
-                    with open("parse", "w") as f:
+                    with open(FILE, "w") as f:
                        f.write(texto_archivo + "\n")
                     return False
         print("[-] Error")

@@ -126,7 +126,7 @@ if __name__ == "__main__":
     tokens_analizados = mi_lexer.analizar()
 
     # Imprimir los tokens encontrados
-    f = open("tokens.txt", "w")
+    f = open("outputs/tokens.txt", "w")
     for token in tokens_analizados:
         f.write(str(token)) #Guardamos los tokens en un archivo
         f.write("\n")
@@ -134,7 +134,7 @@ if __name__ == "__main__":
         print(token) #Imprimimos los tokens por consola
 
     # Imprimir la tabla de simbolos
-    f = open("tablas.txt", "w")
+    f = open("outputs/tablas.txt", "w")
     for tabla in mi_lexer.tables:
         f.write(str(tabla))
         f.write("\n")

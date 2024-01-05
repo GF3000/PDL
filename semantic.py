@@ -2,13 +2,14 @@ import tablas
 
 class semantic:
 
-    def analizar (gestor_TS =  None, numero_regla = None, regla_izquierda = None, pila = None):
+    def analizar (gestor_TS =  None, numero_regla = None, regla_izquierda = None, pila = None, imprimir = False):
         if gestor_TS == None or numero_regla == None or regla_izquierda == None or pila == None:
             return False
-        pila_naranja = []
-        print("Analizando regla: ", numero_regla)
-        print("Pila: ", pila)
-        print("Regla izquierda: ", regla_izquierda)
+        
+        if imprimir:
+            print("Analizando regla: ", numero_regla)
+            print("Pila: ", pila)
+            print("Regla izquierda: ", regla_izquierda)
             
         tablas.AccionesSemanticas.get_accion(numero_regla)(gestor_TS, pila, regla_izquierda)
         

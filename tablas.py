@@ -1,3 +1,5 @@
+import tabladesimbolos
+
 #Constantes
 class Constantes:
     REDUCE = 0
@@ -257,20 +259,22 @@ class AccionesSemanticas:
         
     def dar_valor_variable_con_puntoycoma(gestorTS, pila, regla_izquierda):
         try:
+            # TODO : ¿Se puede acceder desde una funcion a una variable global? ¿Cómo se hace?
             tabla = gestorTS.getActual()
             E = pila[-4]
-            if tabla.get(pila[-8].valor)[0].tipo == E.tipo: #Cambio de valor
+            id = pila[-8]
+            if tabla.get(id.valor)[0].tipo == E.tipo: #Cambio de valor
             
                 regla_izquierda.tipo = "ok"
-            elif tabla.get(pila[-8].valor)[0].tipo == None and E.tipo in ["entero", "cadena", "boolean"]: #Primera declaracion
-                tabla.get(pila[-8].valor)[0].tipo = E.tipo
+            elif tabla.get(id.valor)[0].tipo == None and E.tipo in ["entero", "cadena", "boolean"]: #Primera declaracion
+                tabla.get(id.valor)[0].tipo = E.tipo
                 regla_izquierda.tipo = "ok"
             else:
                 regla_izquierda.tipo = "error"
                 raise Exception("Error semantico: no coinciden los tipos de la asignacion")
-        except:
+        except Exception as e:
             regla_izquierda.tipo = "error"
-            raise Exception("Error semantico desconocido")
+            raise e
         
     def dar_valor_variable_sin_puntoycoma(gestorTS, pila, regla_izquierda):
         try:
@@ -286,18 +290,18 @@ class AccionesSemanticas:
                 regla_izquierda.tipo = "error"
                 raise Exception("Error semantico: no coinciden los tipos de la asignacion")
 
-        except:
+        except Exception as e:
             regla_izquierda.tipo = "error"
-            raise Exception("Error semantico desconocido")
+            raise e
     
     def asignacion_id(gestorTS, pila, regla_izquierda):
         try:
             tabla = gestorTS.getActual()
             id = pila[-2]
             regla_izquierda.tipo = tabla.get(id.valor)[0].tipo
-        except:
+        except Exception as e:
             regla_izquierda.tipo = "error"
-            raise Exception("Error semantico: el identificador " + id.lexema + " no estaba declarada")
+            raise e
     
     def bloque_if(gestorTS, pila, regla_izquierda):
         try:
@@ -308,9 +312,9 @@ class AccionesSemanticas:
             else:
                 regla_izquierda.tipo = "error"
                 raise Exception("Error semantico: la expresion del if no es booleana")
-        except:
+        except Exception as e:
             regla_izquierda.tipo = "error"
-            raise Exception("Error semantico desconocido")
+            raise e
     
     def asignacion_booleana(gestorTS, pila, regla_izquierda):
         regla_izquierda.tipo = "boolean"
@@ -324,9 +328,9 @@ class AccionesSemanticas:
             else:
                 regla_izquierda.tipo = "error"
                 raise Exception("Error semantico: no coinciden los tipos de la comparacion")
-        except:
+        except Exception as e:
             regla_izquierda.tipo = "error"
-            raise Exception("Error semantico desconocido")
+            raise e
     
     def autodecremento(gestorTS, pila, regla_izquierda):
         try:
@@ -337,21 +341,24 @@ class AccionesSemanticas:
             else:
                 regla_izquierda.tipo = "error"
                 raise Exception("Error semantico: el tipo de la variable no es entero")
-        except:
+        except Exception as e:
             regla_izquierda.tipo = "error"
-            raise Exception("Error semantico desconocido")
+            raise e
     def suma(gestorTS, pila, regla_izquierda):
         try:
             V = pila[-2]
             U = pila[-6]
             if U.tipo == V.tipo and U.tipo == "entero":
                 regla_izquierda.tipo = "entero"
+            elif U.tipo == None or V.tipo == None:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: variable no declarada")
             else:
                 regla_izquierda.tipo = "error"
                 raise Exception("Error semantico: se deben sumar enteros")
-        except:
+        except Exception as e:
             regla_izquierda.tipo = "error"
-            raise Exception("Error semantico desconocido")
+            raise e
 
     def comprobar_error_dos_simbolos(gestorTS, pila, regla_izquierda):
         try:
@@ -379,13 +386,36 @@ class AccionesSemanticas:
             regla_izquierda.tipo = "error"
             raise Exception("Error semantico desconocido")
         
-     
-                
+    def asignacion_void(gestorTS, pila, regla_izquierda):
+        regla_izquierda.tipo = "void"
 
+    def declaracion_funcion(gestorTS, pila, regla_izquierda):
+        try:
+            # TODO: Asegurarse de que no este tb en la TS Global
+            tabla_local = gestorTS.add()
+            tabla_local.add(tabladesimbolos.entradaTS(pila[-4].valor, tipo =  pila[-6].tipo, tipoRetorno = pila[-2].tipo))
 
-    
-    
-    #Por Hacer : 5 
+        except Exception as e:
+            regla_izquierda.tipo = "error"
+            raise e
+        
+    def asignacion_id_triple(gestorTS, pila, regla_izquierda):
+        try:
+            tabla = gestorTS.getActual()
+            k = pila[-2]
+            T = pila[-6]
+            id = pila[-4]
+            if tabla.get(id.valor)[0].tipo == None:
+                tabla.add(tabladesimbolos.entradaTS(id.valor, tipo = T.tipo))
+
+                regla_izquierda.tipo = "ok"
+            else:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: variable ya declarada")
+        except Exception as e:
+            regla_izquierda.tipo = "error"
+            raise e
+
     
     diccionario_acciones_semanticas = {
         0: inicio,
@@ -417,11 +447,23 @@ class AccionesSemanticas:
         33: asignacion_booleana,
         34: autodecremento,
 
+        40: declaracion_funcion,
+
+        42: asignacion_void,
+
+        44:asignacion_id_triple,
+
+
+        47: asignacion,
         48: comprobar_error_dos_simbolos,
         49: asignacion,
     }
     def get_accion(accion):
-        return AccionesSemanticas.diccionario_acciones_semanticas[accion]
+        try:
+            return AccionesSemanticas.diccionario_acciones_semanticas[accion]
+        except Exception as e:
+            print(e)
+            return None
 
 if __name__ == "__main__":
     AccionesSemanticas.diccionario_acciones_semanticas[1]()

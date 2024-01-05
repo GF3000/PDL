@@ -1,73 +1,28 @@
-< let, >
-< int, >
-< id, 0>
-< asignacion, >
-< entero, 0>
-< puntoycoma, >
-< let, >
-< int, >
-< id, 1>
-< asignacion, >
-< entero, 0>
-< puntoycoma, >
-< put, >
-< parentesisabierto, >
-< id, 0>
-< parentesiscerrado, >
-< id, 2>
-< parentesisabierto, >
-< cadena, 'Introduce el primer operando'>
-< parentesiscerrado, >
-< puntoycoma, >
-< let, >
-< int, >
-< id, 3>
-< puntoycoma, >
-< id, 2>
-< parentesisabierto, >
-< cadena, 'Introduce el segundo operando'>
-< parentesiscerrado, >
-< puntoycoma, >
-< get, >
-< parentesisabierto, >
-< id, 1>
-< parentesiscerrado, >
-< puntoycoma, >
-< function, >
-< id, 4>
-< int, >
-< parentesisabierto, >
-< int, >
-< id, 5>
-< coma, >
-< int, >
-< id, 6>
-< parentesiscerrado, >
-< llaveabierta, >
-< return, >
-< id, 5>
-< suma, >
-< id, 6>
-< puntoycoma, >
-< llavecerrada, >
-< id, 3>
-< asignacion, >
-< id, 4>
-< parentesisabierto, >
-< id, 0>
-< coma, >
-< id, 1>
-< parentesiscerrado, >
-< puntoycoma, >
-< let, >
-< int, >
-< id, 7>
-< asignacion, >
-< entero, 0>
-< puntoycoma, >
-< id, 2>
-< parentesisabierto, >
-< id, 3>
-< parentesiscerrado, >
-< puntoycoma, >
-< EOF, >
+[< let, >, < int, >, < id, 0 >, < asignacion, >, < entero, 0 >, < puntoycoma, >, < let, >, < int, >, < id, 1 >, < asignacion, >, < entero, 0 >, < puntoycoma, >, < put, >, < parentesisabierto, >, < id, 0 >, < parentesiscerrado, >, < id, 2 >, < parentesisabierto, >, < cadena, 'Introduce el primer operando' >, < parentesiscerrado, >, < puntoycoma, >, < let, >, < int, >, < id, 3 >, < puntoycoma, >, < id, 2 >, < parentesisabierto, >, < cadena, 'Introduce el segundo operando' >, < parentesiscerrado, >, < puntoycoma, >, < get, >, < parentesisabierto, >, < id, 1 >, < parentesiscerrado, >, < puntoycoma, >, < function, >, < id, 4 >, < int, >, < parentesisabierto, >, < int, >, < id, 5 >, < coma, >, < int, >, < id, 6 >, < parentesiscerrado, >, < llaveabierta, >, < return, >, < id, 5 >, < suma, >, < id, 6 >, < puntoycoma, >, < llavecerrada, >, < id, 3 >, < asignacion, >, < id, 4 >, < parentesisabierto, >, < id, 0 >, < coma, >, < id, 1 >, < parentesiscerrado, >, < puntoycoma, >, < let, >, < int, >, < id, 7 >, < asignacion, >, < entero, 0 >, < puntoycoma, >, < id, 2 >, < parentesisabierto, >, < id, 3 >, < parentesiscerrado, >, < puntoycoma, >, < EOF, >]
+Tabla #1:
+* LEXEMA : 'x'
+	+ tipo : 'None'
+	+ desplazamiento : 0
+* LEXEMA : 'y'
+	+ tipo : 'None'
+	+ desplazamiento : 0
+* LEXEMA : 'print'
+	+ tipo : 'None'
+	+ desplazamiento : 0
+* LEXEMA : 'res'
+	+ tipo : 'None'
+	+ desplazamiento : 0
+* LEXEMA : 'suma'
+	+ tipo : 'None'
+	+ desplazamiento : 0
+* LEXEMA : 'num_1'
+	+ tipo : 'None'
+	+ desplazamiento : 0
+* LEXEMA : 'num_2'
+	+ tipo : 'None'
+	+ desplazamiento : 0
+* LEXEMA : 'w'
+	+ tipo : 'None'
+	+ desplazamiento : 0
+
+

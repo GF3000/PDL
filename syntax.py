@@ -14,7 +14,7 @@ FILE = "outputs/parse.txt"
 class Syntax:
     """Clase correspondiente al analizador sintactico ascendente"""
 
-    def __init__(self, tabla_GOTO, tabla_ACCION, reglas, gestor_TS = None,  impresion = True):
+    def __init__(self, tabla_GOTO, tabla_ACCION, reglas, gestor_TS = None,  imprimir = False):
         """Inicializa el analizador sintactico con la tabla GOTO, la tabla ACCION y las reglas de produccion. El parametro impresion indica si se imprimen los pasos del analisis sintactico"""
 
         # Constantes
@@ -29,17 +29,17 @@ class Syntax:
         self.pila = [0]
         self.position = 0
         self.cadena = ""
-        self.impresion = impresion
+        self.imprimir = imprimir
         self.gestor_TS = gestor_TS
 
     def GOTO(self, estado, simbolo):
         """Calcula el estado al que se llega desde el estado actual con el simbolo dado"""
         try:
-            if self.impresion:
+            if self.imprimir:
                 print(f"[+] Calculando GOTO({estado}, {simbolo}) -> {self.tabla_GOTO[estado][simbolo]}")
             return self.tabla_GOTO[estado][simbolo]
         except:
-            if self.impresion:
+            if self.imprimir:
                 print(f"[-] Calculando GOTO({estado}, {simbolo}) -> None") 
             return None
 
@@ -49,22 +49,22 @@ class Syntax:
         Si la accion es DESPLAZA, el argumento es el estado al que se llega."""
 
         try:
-            if self.impresion:
+            if self.imprimir:
                 print(f"[+] Calculando ACCION({estado}, {simbolo}) -> {DESCRIPTORES[self.tabla_ACCION[estado][simbolo][0]]}, {self.tabla_ACCION[estado][simbolo][1]}")
             return self.tabla_ACCION[estado][simbolo][0], self.tabla_ACCION[estado][simbolo][1]
         except:
-            if self.impresion:
+            if self.imprimir:
                 print(f"[-] Calculando ACCION({estado}, {simbolo}) -> None")
             return None, None
         
     def REGLA(self, num):
         """Devuelve la regla correspondiente al numero dado"""
         try:
-            if self.impresion:
+            if self.imprimir:
                 print(f"[+] Calculando REGLA({num}): {self.reglas[num]}")
             return self.reglas[num]
         except:
-            if self.impresion:
+            if self.imprimir:
                 print(f"[-] Calculando REGLA({num}): None")
             return None
     
@@ -105,7 +105,11 @@ class Syntax:
                     # Eliminamos de la pila el doble de simbolos como elementos tenga la parte derecha de la regla
                     # print("Pila pre-reduccion: ", self.pila)
                     regla_izquierda = mi_token.Estado(estado = regla.izquierda)
-                    semantic.semantic.analizar(gestor_TS=self.gestor_TS, numero_regla=argumento, regla_izquierda= regla_izquierda, pila = self.pila)
+                    try:
+                        semantic.semantic.analizar(gestor_TS=self.gestor_TS, numero_regla=argumento, regla_izquierda= regla_izquierda, pila = self.pila, imprimir = self.imprimir)
+                    except Exception as e:
+                        raise(e)
+
                     for _ in range(2*len(regla.derecha)):
                         self.pila.pop()
                     # Apilamos simbolo a la pila
@@ -133,15 +137,16 @@ class Syntax:
                 # Default
                 case _: 
                     # Estado inválido
-                    print("[-] Error")
                     # Imprimimos estado actual
-                    self.print_estado()
+                    if self.imprimir:
+                        self.print_estado()
                     with open(FILE, "w") as f:
                        f.write(texto_archivo + "\n")
-                    return False
-        print("[-] Error")
-        self.print_estado()
-        return False
+                    raise Exception(f"[-] Error en la posición {self.position} de la cadena de entrada. Token erroneo: {self.cadena[self.position]}")
+        if self.imprimir:
+            self.print_estado()
+            raise(Exception("[-] Error desconocido"))
+   
                 
 
 def nuestro_lenguaje(cadena):

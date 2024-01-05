@@ -67,10 +67,8 @@ class Lexer:
                 if source_code[position] == ' ' or source_code[position] == '\n' or source_code[position] == '\t':
                     position += 1
                 else: #Si no es un espacio en blanco, es un caracter no reconocido
-                    print(f'[-] Error en la posición {position} del código fuente')
-                    print(f'[-] Caracter no reconocido: "{source_code[position]}"')
-                    position += 1
-                    return [] #Forzamos a que devuelva una lista vacía
+                    raise Exception(f'[-] Error léxico: Caracter no reconocido: \'{source_code[position]}\' en la posición {position}')
+     
         self.token_list.append(mi_token.Token('EOF', None, None)) #Añadimos el token de fin de fichero
                 
         return self.token_list, self.gestor_tabla_simbolos #Devolvemos la lista de tokens y la tabla de simbolos

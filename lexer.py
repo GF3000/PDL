@@ -81,15 +81,15 @@ class Lexer:
                         if (self.symbol_table.getEntradasTS(value) == None):
                             self.symbol_table.addEntrada(value) # el lexer solo tiene que añadir los lexemas, el an. sem, añade el resto de atributos
                         attribute = 0 #Habrá que cambiarlo cuando sepamos el desplazamiento de la TS
-                    elif token_type == 'cad': #Si es una cadena, el atributo es el valor de la cadena
+                    elif token_type == 'cadena': #Si es una cadena, el atributo es el valor de la cadena
                         attribute = value
                     self.token_list.append(Token(token_type, attribute, value)) #Añadimos el token a la lista de tokens
 
-                    if (token_type == 'IParentesis' and (self.tablaActual != 0)):
+                    if (token_type == 'paretesisabierto' and (self.tablaActual != 0)):
                         self.entrada = self.symbol_table.getEntradasTS(self.nombreUltFuncion)
                         self.entrada.setTipoRetorno(self.token_list[-2].atr())
 
-                    if (token_type == 'DParentesis' and (self.tablaActual != 0)):
+                    if (token_type == 'parentesiscerrado' and (self.tablaActual != 0)):
                         self.tablaActual = 0
 
 
@@ -106,6 +106,7 @@ class Lexer:
                     print(f'[-] Caracter no reconocido: "{source_code[position]}"')
                     position += 1
                     return [] #Forzamos a que devuelva una lista vacía
+        self.token_list.append(Token('EOF', None, None)) #Añadimos el token de fin de fichero
                 
         return self.token_list
 

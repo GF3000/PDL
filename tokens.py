@@ -35,16 +35,15 @@ class Tokens:
     ('asignacion', None, r'\='),
     ('coma', None, r'\,'),
     ('puntoycoma', None, r'\;'),
-    ('paretesisabierto', None, r'\('),
+    ('parentesisabierto', None, r'\('),
     ('parentesiscerrado', None, r'\)'),
-    ('llaaveabierta', None, r'\{'),
+    ('llaveabierta', None, r'\{'),
     ('llavecerrada', None, r'\}'),
     ('suma', None, r'\+'),
     ('negacion', None, r'\!'),
     ('menor', None, r'\<'),
     ('false', None, r'\false\b'),
     ('true', None, r'\true\b'),
-    ('entero', None, r'\d+'),
     ('EOF', None, r'\$'), #Token de fin de fichero
 
     

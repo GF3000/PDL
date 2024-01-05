@@ -151,23 +151,27 @@ if __name__ == "__main__":
 
 
     # Cadenas con las que no funciona
-    lista_tokens = [
-    ["if", "(", "id", "+", "id", ")", "return", "true", ";", "$"]
-    ,["if", "(", "id", "<", "id", ")", "return", "true", ";", "$"]
-    ,["id", "=", "id", "+", "id", ";", "if", "(", "!", "id", ")", "return", "id", ";", "$"] 
-    ,["id", "=", "id", "+", "id", "+", "id","+", "id", ";", "$"] 
-    ,["id", "=", "id", "<", "id", ";", "$"] 
-    ,["let", "int", "id", ";", "if", "(", "!", "id", ")", "return", "id", "+", "id", ";", "$"]
-    ,["if", "(", "true", ")", "return", "true", ";", "$"]
-    ,["function", "id", "void", "(","int" ,"id", ")", "{", "}", "$"] # el estado 13 estaba mal hecho en el excel
-    ,["get","id", ";","get","id", ";", "put","id", ";", "$"]
-    ,["get","id", ";","get","id", ";","id","=","id", ";","put","id", ";", "$"]
-    ,["id","=", "!", "id", ";", "$"]
+    # lista_tokens = [
+    # ["if", "(", "id", "+", "id", ")", "return", "true", ";", "$"]
+    # ,["if", "(", "id", "<", "id", ")", "return", "true", ";", "$"]
+    # ,["id", "=", "id", "+", "id", ";", "if", "(", "!", "id", ")", "return", "id", ";", "$"] 
+    # ,["id", "=", "id", "+", "id", "+", "id","+", "id", ";", "$"] 
+    # ,["id", "=", "id", "<", "id", ";", "$"] 
+    # ,["let", "int", "id", ";", "if", "(", "!", "id", ")", "return", "id", "+", "id", ";", "$"]
+    # ,["if", "(", "true", ")", "return", "true", ";", "$"]
+    # ,["function", "id", "void", "(","int" ,"id", ")", "{", "}", "$"] # el estado 13 estaba mal hecho en el excel
+    # ,["get","id", ";","get","id", ";", "put","id", ";", "$"]
+    # ,["get","id", ";","get","id", ";","id","=","id", ";","put","id", ";", "$"]
+    # ,["id","=", "!", "id", ";", "$"]
 
-    ,["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "$"]
-    ,["let", "int", "id", ";", "$"]
-    ,["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "id", "=", "id", ";", "$"], # le faltaba ; al final
-    ["for", "(", "id", "=", "entero", ";", "true", ";", "--", "id", ")", "{", "}", "$"]
+    # ,["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "$"]
+    # ,["let", "int", "id", ";", "$"]
+    # ,["let", "int", "id", ";","let", "string", "id", ";", "let", "boolean", "id", ";", "id", "=", "id", ";", "$"], # le faltaba ; al final
+    # ["for", "(", "id", "=", "entero", ";", "true", ";", "--", "id", ")", "{", "}", "$"]
+    # ]
+
+    lista_tokens = [
+        ['for', 'parentesisabierto', 'id', 'asignacion', 'entero', 'puntoycoma', 'id', 'menor', 'entero', 'puntoycoma', 'id', 'asignacion', 'id', 'suma', 'entero', 'parentesiscerrado', 'llaaveabierta', 'llavecerrada', 'EOF']
     ]
     
     cadenas_que_no_funcionan = []

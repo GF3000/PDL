@@ -4,15 +4,6 @@ a = 2;
 if (true)
     a = 1;
 
-let int b; 
-
-for (i = 10; i < 10; --i){
+for (i = 10; i < 10; i = i + 1){
     a = a + 1;
-    b = a + b; // No se si deberia dar error, b declarada pero no inicializada
 }
-
-// Si se descomenta lo del afuncion saltan errores. Ahora mismo tenemos un error y es qeu cuando se está en una funcion no se puede acceder a variables declaradas fuera de ella.
-// function aumentar void (int a){
-//    a = a + 1; }
-
-b = a + b;

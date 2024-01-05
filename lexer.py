@@ -74,24 +74,26 @@ class Lexer:
                 match = regex.match(source_code, position)
                 if match: #Si se ha encontrado un token
                     value = match.group(0) #Tipo de token
-                    if token_type == 'entero': #Si es un entero, lo convertimos a int
-                        attribute = int(value)
-                    elif token_type == 'id': #Si es un identificador, lo añadimos a la tabla de simbolos
-                        # comprobar si esta ya en la TS, si no esta, lo añadimos
-                        if (self.symbol_table.getEntradasTS(value) == None):
-                            self.symbol_table.addEntrada(value) # el lexer solo tiene que añadir los lexemas, el an. sem, añade el resto de atributos
-                        attribute = 0 #Habrá que cambiarlo cuando sepamos el desplazamiento de la TS
-                    elif token_type == 'cadena': #Si es una cadena, el atributo es el valor de la cadena
-                        attribute = value
-                    self.token_list.append(Token(token_type, attribute, value)) #Añadimos el token a la lista de tokens
+                    if token_type != 'comentario': #Si es un comentario, no hacemos nada
 
-                    if (token_type == 'paretesisabierto' and (self.tablaActual != 0)):
-                        self.entrada = self.symbol_table.getEntradasTS(self.nombreUltFuncion)
-                        self.entrada.setTipoRetorno(self.token_list[-2].atr())
+                        if token_type == 'entero': #Si es un entero, lo convertimos a int
+                            attribute = int(value)
+                        elif token_type == 'id': #Si es un identificador, lo añadimos a la tabla de simbolos
+                            # comprobar si esta ya en la TS, si no esta, lo añadimos
+                            if (self.symbol_table.getEntradasTS(value) == None):
+                                self.symbol_table.addEntrada(value) # el lexer solo tiene que añadir los lexemas, el an. sem, añade el resto de atributos
+                            attribute = 0 #Habrá que cambiarlo cuando sepamos el desplazamiento de la TS
+                        elif token_type == 'cadena': #Si es una cadena, el atributo es el valor de la cadena
+                            attribute = value
 
-                    if (token_type == 'parentesiscerrado' and (self.tablaActual != 0)):
-                        self.tablaActual = 0
+                        if (token_type == 'paretesisabierto' and (self.tablaActual != 0)):
+                            self.entrada = self.symbol_table.getEntradasTS(self.nombreUltFuncion)
+                            self.entrada.setTipoRetorno(self.token_list[-2].atr())
 
+                        if (token_type == 'parentesiscerrado' and (self.tablaActual != 0)):
+                            self.tablaActual = 0
+
+                        self.token_list.append(Token(token_type, attribute, value)) #Añadimos el token a la lista de tokens
 
 
                     position = match.end() #Actualizamos la posición actual al final de la coincidencia
@@ -113,7 +115,7 @@ class Lexer:
 
 if __name__ == "__main__":
     #Archivo a analizar
-    file = "casosPruebaTxt/casoPrueba1.txt"
+    file = "casosPruebaTxt/casoPrueba2.txt"
     #Abrimos el archivo
     f = open(file, "r")
     source_code = f.read()

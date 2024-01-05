@@ -1,0 +1,45 @@
+< let, >
+< int, >
+< id, 0>
+< puntoycoma, >
+< let, >
+< string, >
+< id, 0>
+< puntoycoma, >
+< id, 0>
+< asignacion, >
+< cadena, 'This is a simple program.'>
+< puntoycoma, >
+< id, 0>
+< parentesisabierto, >
+< id, 0>
+< parentesiscerrado, >
+< puntoycoma, >
+< id, 0>
+< parentesisabierto, >
+< cadena, 'This is a comment and will be ignored by the lexer.'>
+< parentesiscerrado, >
+< puntoycoma, >
+< for, >
+< parentesisabierto, >
+< id, 0>
+< asignacion, >
+< entero, 1>
+< puntoycoma, >
+< id, 0>
+< menor, >
+< entero, 8>
+< puntoycoma, >
+< autodecremento, >
+< id, 0>
+< parentesiscerrado, >
+< llaveabierta, >
+< id, 0>
+< parentesisabierto, >
+< cadena, 'Iteration #'>
+< suma, >
+< id, 0>
+< parentesiscerrado, >
+< puntoycoma, >
+< llavecerrada, >
+< EOF, >

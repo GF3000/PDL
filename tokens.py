@@ -50,7 +50,11 @@ class Tokens:
     # Con atributos
     ('entero', None, r'[+-]?\d+'), #Lee entero con y sin signo
     ('id', None, r'[a-zA-Z_]\w*'), #Lee identificadores
-    ('cadena', None, r'(\'[^\']*\'|\"[^\"]*\")') #Lee cadenas con comillas simples o dobles
+    ('cadena', None, r'\'[^\']*\''), #Lee cadenas con comillas simples o dobles
+
+    # Conentarios
+    ('comentario', None, r'//.*\n'),
+
     ]
     def get_tokens():
         return Tokens.tokens

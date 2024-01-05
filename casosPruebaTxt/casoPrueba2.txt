@@ -1,8 +1,8 @@
-let int counter;
+let int counter; //declara counter
 let string sentence;
-sentence = "This is a simple program.";
+sentence = 'This is a simple program.';
 print(sentence);
-comment("This is a comment and will be ignored by the lexer.");
+comment('This is a comment and will be ignored by the lexer.');
 for (counter = 1; counter < 8; --counter) {
-  print("Iteration #" + counter);
+  print('Iteration #' + counter);
 }

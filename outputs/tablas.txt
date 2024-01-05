@@ -1,18 +1,5 @@
-Tabla #0:
-* LEXEMA: 'counter'
-+ tipo: 'None'
-+ despl: 0
-
-* LEXEMA: 'sentence'
-+ tipo: 'None'
-+ despl: 0
-
-* LEXEMA: 'print'
-+ tipo: 'None'
-+ despl: 0
-
-* LEXEMA: 'comment'
-+ tipo: 'None'
-+ despl: 0
-
+Tabla #1:
+* LEXEMA : 'a'
+	+ tipo : 'entero'
+	+ desplazamiento : 0
 

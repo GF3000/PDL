@@ -1,5 +1,7 @@
 # from Analizador_Sintactico import tablas
 import tablas
+import mi_token
+import semantic
 
 #Constantes
 REDUCE = tablas.Constantes.REDUCE
@@ -12,7 +14,7 @@ FILE = "outputs/parse.txt"
 class Syntax:
     """Clase correspondiente al analizador sintactico ascendente"""
 
-    def __init__(self, tabla_GOTO, tabla_ACCION, reglas, impresion = True):
+    def __init__(self, tabla_GOTO, tabla_ACCION, reglas, gestor_TS = None,  impresion = True):
         """Inicializa el analizador sintactico con la tabla GOTO, la tabla ACCION y las reglas de produccion. El parametro impresion indica si se imprimen los pasos del analisis sintactico"""
 
         # Constantes
@@ -28,6 +30,7 @@ class Syntax:
         self.position = 0
         self.cadena = ""
         self.impresion = impresion
+        self.gestor_TS = gestor_TS
 
     def GOTO(self, estado, simbolo):
         """Calcula el estado al que se llega desde el estado actual con el simbolo dado"""
@@ -70,10 +73,10 @@ class Syntax:
         print("Pila: ", self.pila)
         print("Cadena por leer: ", self.cadena[self.position:])
        
-    def analizar(self, cadena):
+    def analizar(self, listado_tokens):
         """Analiza la cadena dada.
         Devuelve True si la cadena es aceptada, False en caso contrario"""
-        self.cadena = cadena
+        self.cadena = listado_tokens
         self.pila = [0]
         self.position = 0
         # print(f"\nAnalizando cadena: {cadena}\n")
@@ -84,10 +87,14 @@ class Syntax:
         while self.position < len(self.cadena):
             # Obtenemos el etsado actual
             nuevo_estado = self.pila[-1]
-            # Obtenemos el token actual 
+            if isinstance(nuevo_estado, mi_token.Token):
+                nuevo_estado = nuevo_estado.tipo
+            if isinstance(nuevo_estado, mi_token.Estado):
+                nuevo_estado = nuevo_estado.estado
+            # Obtemso el token actual
             token = self.cadena[self.position]
             # Obtenemos la accion a tomar y su argumento
-            accion, argumento = self.ACCION(nuevo_estado, token)
+            accion, argumento = self.ACCION(nuevo_estado, token.tipo)
 
             #Evalua la accion a tomar
             match accion:
@@ -97,13 +104,15 @@ class Syntax:
                     texto_archivo += str(argumento) + " "
                     # Eliminamos de la pila el doble de simbolos como elementos tenga la parte derecha de la regla
                     # print("Pila pre-reduccion: ", self.pila)
+                    regla_izquierda = mi_token.Estado(estado = regla.izquierda)
+                    semantic.semantic.analizar(gestor_TS=self.gestor_TS, numero_regla=argumento, regla_izquierda= regla_izquierda, pila = self.pila)
                     for _ in range(2*len(regla.derecha)):
                         self.pila.pop()
                     # Apilamos simbolo a la pila
-                    self.pila.append(regla.izquierda)
+                    self.pila.append(regla_izquierda)
                     # print("Pila post-reduccion: ", self.pila)
                     # Apilamos devolucion de llamada a GOTO con estado actual y nuevo simbolo (regla.izquierda)
-                    self.pila.append(self.GOTO(self.pila[-2], self.pila[-1]))
+                    self.pila.append(self.GOTO(self.pila[-2], regla_izquierda.estado))
                     # if nulo == None: self.pila.append(self.GOTO(self.pila[-4], self.pila[-1]))
 
                 case self.DESPLAZA:

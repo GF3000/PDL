@@ -223,3 +223,109 @@ class Reglas:
     
     def get_reglas():
         return Reglas.reglas
+
+class AccionesSemanticas:
+    def inicio(gestorTS, pila):
+        pass
+
+    def vacio(gestorTS, pila, regla_izquierda):
+        pass
+        
+    def fin(gestorTS, pila, regla_izquierda):
+        f = open("outputs/tablas.txt", "w")
+        f.write(str(gestorTS))
+        print(gestorTS)
+        f.close()
+    
+    def asignacion(gestorTS, pila, regla_izquierda):
+        regla_izquierda.tipo = pila[-2].tipo
+        #
+    
+    def asignacion_entera(gestorTS, pila, regla_izquierda):
+        regla_izquierda.tipo = "entero"
+    
+    def let(gestorTS, pila, regla_izquierda):
+        tabla = gestorTS.getActual()
+        token = pila[-4]
+        try:
+        
+            tabla.get(token.valor)[0].tipo = pila[-6].tipo
+            regla_izquierda.tipo = "ok"
+        except:
+            raise Exception("Error semantico: el identificador " + token.lexema + " ya estaba declarada")
+        
+    def dar_valor_variable_con_puntoycoma(gestorTS, pila, regla_izquierda):
+        tabla = gestorTS.getActual()
+        E = pila[-4]
+        try:
+            if tabla.get(pila[-8].valor)[0].tipo == E.tipo: #Cambio de valor
+            
+                regla_izquierda.tipo = "ok"
+            elif tabla.get(pila[-8].valor)[0].tipo == None and E.tipo in ["entero", "cadena", "boolean"]: #Primera declaracion
+                tabla.get(pila[-8].valor)[0].tipo = E.tipo
+                regla_izquierda.tipo = "ok"
+            else:
+                raise Exception("Error semantico: no coinciden los tipos de la asignacion")
+
+        except:
+            raise Exception("Error semantico: el identificador " + "Variable no estaba declarada")
+    
+    def asignacion_id(gestorTS, pila, regla_izquierda):
+        tabla = gestorTS.getActual()
+        id = pila[-2]
+        try:
+            regla_izquierda.tipo = tabla.get(id.valor)[0].tipo
+        except:
+            raise Exception("Error semantico: el identificador " + id.lexema + " no estaba declarada")
+    
+    def bloque_if(gestorTS, pila, regla_izquierda):
+        E = pila[-6]
+        S = pila[-2]
+
+        if E.tipo == "boolean":
+            regla_izquierda.tipo = S.tipo
+        else:
+            raise Exception("Error semantico: la expresion del if no es booleana")
+    
+    def asignacion_booleana(gestorTS, pila, regla_izquierda):
+        regla_izquierda.tipo = "boolean"
+
+     
+                
+
+
+    
+    
+    #Por Hacer : 5 
+    
+    diccionario_acciones_semanticas = {
+        0: inicio,
+        1: vacio,
+        2: vacio,
+        3: fin,
+        4: bloque_if,
+        5: asignacion,
+        6: let,
+
+        10: asignacion_entera,
+
+        13: dar_valor_variable_con_puntoycoma,
+
+        20: asignacion,
+
+        23: asignacion,
+
+        25: asignacion,
+
+        27: asignacion_id,
+
+        30: asignacion_entera,
+
+        32: asignacion_booleana,
+        33: asignacion_booleana,
+    }
+    def get_accion(accion):
+        return AccionesSemanticas.diccionario_acciones_semanticas[accion]
+
+if __name__ == "__main__":
+    AccionesSemanticas.diccionario_acciones_semanticas[1]()

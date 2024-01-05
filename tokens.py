@@ -42,8 +42,8 @@ class Tokens:
     ('suma', None, r'\+'),
     ('negacion', None, r'\!'),
     ('menor', None, r'\<'),
-    ('false', None, r'\false\b'),
-    ('true', None, r'\true\b'),
+    ('false', None, r'\bfalse\b'),
+    ('true', None, r'\btrue\b'),
     ('EOF', None, r'\$'), #Token de fin de fichero
 
     

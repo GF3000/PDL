@@ -1,56 +1,117 @@
-import entradaTS
-# clase que representa una tabla de simbolos
-
-class tabla_de_simbolos:
-    numero_tablas = 0
-
-    def __init__(self):
-        self.id = tabla_de_simbolos.numero_tablas
-        tabla_de_simbolos.numero_tablas += 1
-
-        self.entradasTS = {} # lista de entradas de la tabla de simbolos
-        self.desplazamiento = -1
-
-    def getID(self):
-        return self.id
-
-    def getUltimoDesp(self):
-        return self.desplazamiento
-
-    def setUltimoDesp(self, ultimo_desp):
-        self.desplazamiento = ultimo_desp
-
-    def addEntrada(self, nombre, tipo = None, desplazamiento = 0, numero_parametros = 0, tipo_parametros = [], modo_parametros = [], tipo_retorno = None ):
-            self.entradasTS[nombre] = entradaTS.entradaTS(nombre, tipo, desplazamiento, tipo_retorno, numero_parametros, tipo_parametros, modo_parametros)
-            self.ultimo_elemento = nombre
+class entradaTS:
+    def __init__(self, lexema, tipo = None, desplazamiento = 0,
+                  numParam = None, tipoParam = None,
+                    tipoRetorno = None):
+        self.lexema = lexema
+        self.tipo = tipo
+        self.desplazamiento = desplazamiento
+        self.numParam = numParam
+        self.tipoParam = tipoParam if tipoParam else []
+        self.tipoRetorno = tipoRetorno
+    def __str__(self):
+        devolucion = ""
+        devolucion += f"* LEXEMA : \'{self.lexema}\'\n"
+        devolucion += f"\t+ tipo : \'{self.tipo}\'\n"
+        if self.tipo != "function":
+            devolucion += f"\t+ desplazamiento : {self.desplazamiento}\n"
+        if self.numParam:
+            devolucion += f"\t+ numParam : {self.numParam}\n"
+        if self.tipoParam:
+            for i in range(len(self.tipoParam)):
+                devolucion += f"\t+ tipoParam{i} : \'{self.tipoParam[i]}\'\n"
+        if self.tipoRetorno:
+            devolucion += f"\t+ tipoRetorno : \'{self.tipoRetorno}\'\n"
+        return devolucion
     
-    def getEntradasTS(self, nombre):
-        for entrada in self.entradasTS.values():
-            if entrada.nombre == nombre:
-                return entrada  
-        return None 
+        
+        
+        
+        
 
-    def buscarTablaPorID(self, id):
-        return self.entradas.get(id)
-
-    # revisar como lo especifican en la pract instrucciones
+class tabladesimbolos:
+    def __init__(self, numero,  entradas = None) -> None:
+        self.numero = numero
+        self.entradas = entradas if entradas else []
     def __str__(self) -> str:
-        ret = f"Tabla #{self.id}:\n"
-        for entrada in self.entradasTS.values():
-            ret += str(entrada) + "\n"
-        return ret
+        devolucion = ""
+        devolucion += f"Tabla #{self.numero}:\n"
+        for entrada in self.entradas:
+            devolucion += str(entrada)
+        return devolucion
     
-# Ejemplo de uso, no funciona
-# if __name__ == "__main__":
-#     symbol_table = tabla_de_simbolos()
-#     symbol_table.addSubEntrada("x", "int", 0)  # Variable
-#     symbol_table.addEntrada('x', 'INTEGER', 0, 0, [], [])
-#     symbol_table.add_identifier('x', 'INTEGER', 0, 0, [], [])  # Variable
-#     symbol_table.add_identifier('suma', 'function', 0, 2, ['INTEGER', 'INTEGER'], ['IN', 'IN'], 'INTEGER')  # Función
-#     symbol_table.add_identifier('y', 'INTEGER', 1, 0, [], [])  # Parámetro
-#     symbol_table.add_identifier('z', 'INTEGER', 2, 0, [], [])  # Parámetro
-#     symbol_table.add_identifier('w', 'INTEGER', 3, 0, [], [])  # Variable
-#     symbol_table.add_identifier('resta', 'function', 0, 2, ['INTEGER', 'INTEGER'], ['IN', 'IN'], 'INTEGER')  # Función
+    def add(self, entrada):
+        entrada.desplazamiento = self.getHueco()
+        self.entradas.append(entrada)
+        return self.entradas.index(entrada)
 
-#     print(symbol_table)
-#     print(symbol_table.get_desplazamiento())
+    def get(self, lexema):
+        for entrada in self.entradas:
+            if entrada.lexema == lexema:
+                return entrada, self.entradas.index(entrada)
+        return None
+    def getHueco(self):
+        if not self.entradas:
+            return 0
+        tipo = self.entradas[-1].tipo
+        if tipo == "entero":
+            return self.entradas[-1].desplazamiento + 1
+        elif tipo == "cadena":
+            return self.entradas[-1].desplazamiento + 64
+        elif tipo == "boolean":
+            return self.entradas[-1].desplazamiento + 1
+        elif tipo == "function":
+            return self.entradas[-1].desplazamiento + 0
+        else:
+            return self.entradas[-1].desplazamiento + 0
+
+class gestorTablas:
+    def __init__(self) -> None:
+        self.tablas = []
+        self.tablas.append(tabladesimbolos(1))
+        self.tablaActual = 1
+    def __str__(self) -> str:
+        devolucion = ""
+        for tabla in self.tablas:
+            devolucion += str(tabla)
+            devolucion += "\n"
+        return devolucion
+    
+    def add(self):
+        tabla = tabladesimbolos(len(self.tablas) + 1)
+        self.tablas.append(tabla)
+        self.tablaActual = len(self.tablas)
+        return tabla
+
+    def getActual(self):
+        return self.tablas[self.tablaActual - 1]
+    
+    def getGlobal(self):
+        return self.tablas[0]
+    
+    def cambiarGlobal(self):
+        self.tablaActual = 1
+
+    
+
+def main():
+
+    entradas = []
+    entradas.append(entradaTS("a", tipo = "entero"))
+    entradas.append(entradaTS("b", tipo = "entero"))
+    entradas.append(entradaTS("suma", tipo = "function", numParam=2, tipoParam=["entero", "entero"], tipoRetorno="entero"))
+    entradas.append(entradaTS("resta", tipo = "function", numParam=2, tipoParam=["entero", "entero"], tipoRetorno="entero"))
+    entradas.append(entradaTS("c", tipo = "entero"))
+    mi_gestorTablas = gestorTablas()
+    tablaGlobal = mi_gestorTablas.getActual()
+    for entrada in entradas:
+        tablaGlobal.add(entrada)
+    tablaLocal = mi_gestorTablas.add()
+    tablaLocal.add(entradaTS("d", tipo = "entero"))
+    tablaLocal.add(entradaTS("e", tipo = "entero"))
+    tablaLocal.add(entradaTS("f", tipo = "entero"))
+    tablaLocal.add(entradaTS("g", tipo = "entero"))
+    tablaLocal.add(entradaTS("multiplicacion", tipo = "function", numParam=2, tipoParam=["entero", "entero"], tipoRetorno="entero"))
+    print(mi_gestorTablas)
+
+if __name__ == "__main__":
+    main()

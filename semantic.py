@@ -1,14 +1,20 @@
 import tablas
 
 class semantic:
-    def __init__(self, tabla_de_simbolos, gramatica_atributos) -> None:
-        
-        self.tabla_de_simbolos = tabla_de_simbolos
-        self.gramatica_atributos = gramatica_atributos
 
-    def analizar (self, parse):
-        for i in parse:
-            print(self.gramatica_atributos[i])
+    def analizar (gestor_TS =  None, numero_regla = None, regla_izquierda = None, pila = None):
+        if gestor_TS == None or numero_regla == None or regla_izquierda == None or pila == None:
+            return False
+        pila_naranja = []
+        print("Analizando regla: ", numero_regla)
+        print("Pila: ", pila)
+        print("Regla izquierda: ", regla_izquierda)
+            
+        tablas.AccionesSemanticas.get_accion(numero_regla)(gestor_TS, pila, regla_izquierda)
+        
+    
+        
+    
 
 if __name__ == "__main__":
     tabla_de_simbolos = None

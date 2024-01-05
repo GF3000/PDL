@@ -174,22 +174,14 @@ class Reglas:
     1: REGLA( 'P', ['B', 'P']),
     2: REGLA( 'P', ['F', 'P']),
     3: REGLA( 'P', []),
-<<<<<<< HEAD
     4: REGLA( 'B', ['if', 'parentesisabierto', 'E', 'parentesiscerrado', 'S']),
     5: REGLA( 'B', ['S']),
     6: REGLA( 'B', ['let', 'T', 'id', 'puntoycoma']),
     7: REGLA( 'B', ['for', 'parentesisabierto', 'Y', 'puntoycoma', 'E', 'puntoycoma', 'D', 'parentesiscerrado', '{', 'C', '}']),
-=======
-    4: REGLA( 'B', ['if', '(', 'E', ')', 'S']),
-    5: REGLA( 'B', ['S']),
-    6: REGLA( 'B', ['let', 'T', 'id', ';']),
-    7: REGLA( 'B', ['for', '(', 'Y', ';', 'E', ';', 'D', ')', '{', 'C', '}']),
->>>>>>> 76ec601047be36a08c6060d6f11b4b4ce7b7d26d
     8: REGLA( 'Y', ['id', '=', 'E']),
     10: REGLA( 'T', ['int']),
     11: REGLA( 'T', ['boolean']),
     12: REGLA( 'T', ['string']),
-<<<<<<< HEAD
     13: REGLA( 'S', ['id', '=', 'E', 'puntoycoma']),
     14: REGLA( 'S', ['id', 'parentesisabierto', 'L', 'parentesiscerrado', 'puntoycoma']),
     15: REGLA( 'S', ['put', 'E', 'puntoycoma']),
@@ -207,53 +199,23 @@ class Reglas:
     27: REGLA( 'V', ['id']),
     28: REGLA( 'V', ['parentesisabierto', 'E', 'parentesiscerrado']),
     29: REGLA( 'V', ['id', 'parentesisabierto', 'L', 'parentesiscerrado']),
-=======
-    13: REGLA( 'S', ['id', '=', 'E', ';']),
-    14: REGLA( 'S', ['id', '(', 'L', ')', ';']),
-    15: REGLA( 'S', ['put', 'E', ';']),
-    16: REGLA( 'S', ['get', 'E', ';']),
-    17: REGLA( 'S', ['return', 'X', ';']),
-    18: REGLA( 'X', ['E']),
-    19: REGLA( 'X', []),
-    20: REGLA( 'E', ['R']),
-    21: REGLA( 'R', ['R', '<', 'U']),
-    22: REGLA( 'U', ['!', 'V']),
-    23: REGLA( 'R', ['U']),
-    24: REGLA( 'U', ['U', '+', 'V']),
-    25: REGLA( 'U', ['V']),
-    26: REGLA( 'U', ['D']),
-    27: REGLA( 'V', ['id']),
-    28: REGLA( 'V', ['(', 'E', ')']),
-    29: REGLA( 'V', ['id', '(', 'L', ')']),
->>>>>>> 76ec601047be36a08c6060d6f11b4b4ce7b7d26d
     30: REGLA( 'V', ['entero']),
     31: REGLA( 'V', ['cadena']),
     32: REGLA( 'V', ['true']),
     33: REGLA( 'V', ['false']),
     34: REGLA( 'D', ['--', 'id']),
     35: REGLA( 'L', ['E', 'Q']),
-<<<<<<< HEAD
     36: REGLA( 'Q', ['coma', 'E', 'Q']),
     37: REGLA( 'Q', []),
     38: REGLA( 'F', ['F1', '{', 'C', '}']),
     39: REGLA( 'F1', ['F2', 'parentesisabierto', 'A', 'parentesiscerrado']),
-=======
-    36: REGLA( 'Q', [',', 'E', 'Q']),
-    37: REGLA( 'Q', []),
-    38: REGLA( 'F', ['F1', '{', 'C', '}']),
-    39: REGLA( 'F1', ['F2', '(', 'A', ')']),
->>>>>>> 76ec601047be36a08c6060d6f11b4b4ce7b7d26d
     40: REGLA( 'F2', ['function', 'id', 'H']),
     41: REGLA( 'H', ['T']),
     42: REGLA( 'H', ['void']),
     43: REGLA( 'H', []),
     44: REGLA( 'A', ['T', 'id', 'K']),
     45: REGLA( 'A', []),
-<<<<<<< HEAD
     46: REGLA( 'K', ['coma', 'T', 'id', 'K']),
-=======
-    46: REGLA( 'K', [',', 'T', 'id', 'K']),
->>>>>>> 76ec601047be36a08c6060d6f11b4b4ce7b7d26d
     47: REGLA( 'K', []),
     48: REGLA( 'C', ['B', 'C']),
     49: REGLA( 'C', [])

@@ -239,25 +239,26 @@ class AccionesSemanticas:
     
     def asignacion(gestorTS, pila, regla_izquierda):
         regla_izquierda.tipo = pila[-2].tipo
-        #
+        
     
     def asignacion_entera(gestorTS, pila, regla_izquierda):
         regla_izquierda.tipo = "entero"
     
     def let(gestorTS, pila, regla_izquierda):
-        tabla = gestorTS.getActual()
-        token = pila[-4]
         try:
+            tabla = gestorTS.getActual()
+            token = pila[-4]
         
             tabla.get(token.valor)[0].tipo = pila[-6].tipo
             regla_izquierda.tipo = "ok"
         except:
+            regla_izquierda.tipo = "error"
             raise Exception("Error semantico: el identificador " + token.lexema + " ya estaba declarada")
         
     def dar_valor_variable_con_puntoycoma(gestorTS, pila, regla_izquierda):
-        tabla = gestorTS.getActual()
-        E = pila[-4]
         try:
+            tabla = gestorTS.getActual()
+            E = pila[-4]
             if tabla.get(pila[-8].valor)[0].tipo == E.tipo: #Cambio de valor
             
                 regla_izquierda.tipo = "ok"
@@ -265,31 +266,119 @@ class AccionesSemanticas:
                 tabla.get(pila[-8].valor)[0].tipo = E.tipo
                 regla_izquierda.tipo = "ok"
             else:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: no coinciden los tipos de la asignacion")
+        except:
+            regla_izquierda.tipo = "error"
+            raise Exception("Error semantico desconocido")
+        
+    def dar_valor_variable_sin_puntoycoma(gestorTS, pila, regla_izquierda):
+        try:
+            tabla = gestorTS.getActual()
+            E = pila[-2]
+            if tabla.get(pila[-6].valor)[0].tipo == E.tipo: #Cambio de valor
+            
+                regla_izquierda.tipo = "ok"
+            elif tabla.get(pila[-6].valor)[0].tipo == None and E.tipo in ["entero", "cadena", "boolean"]: #Primera declaracion
+                tabla.get(pila[-6].valor)[0].tipo = E.tipo
+                regla_izquierda.tipo = "ok"
+            else:
+                regla_izquierda.tipo = "error"
                 raise Exception("Error semantico: no coinciden los tipos de la asignacion")
 
         except:
-            raise Exception("Error semantico: el identificador " + "Variable no estaba declarada")
+            regla_izquierda.tipo = "error"
+            raise Exception("Error semantico desconocido")
     
     def asignacion_id(gestorTS, pila, regla_izquierda):
-        tabla = gestorTS.getActual()
-        id = pila[-2]
         try:
+            tabla = gestorTS.getActual()
+            id = pila[-2]
             regla_izquierda.tipo = tabla.get(id.valor)[0].tipo
         except:
+            regla_izquierda.tipo = "error"
             raise Exception("Error semantico: el identificador " + id.lexema + " no estaba declarada")
     
     def bloque_if(gestorTS, pila, regla_izquierda):
-        E = pila[-6]
-        S = pila[-2]
-
-        if E.tipo == "boolean":
-            regla_izquierda.tipo = S.tipo
-        else:
-            raise Exception("Error semantico: la expresion del if no es booleana")
+        try:
+            E = pila[-6]
+            S = pila[-2]
+            if E.tipo == "boolean":
+                regla_izquierda.tipo = S.tipo
+            else:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: la expresion del if no es booleana")
+        except:
+            regla_izquierda.tipo = "error"
+            raise Exception("Error semantico desconocido")
     
     def asignacion_booleana(gestorTS, pila, regla_izquierda):
         regla_izquierda.tipo = "boolean"
 
+    def menor_que(gestorTS, pila, regla_izquierda):
+        try:
+            U = pila[-2]
+            R1 = pila[-6]
+            if U.tipo == R1.tipo and U.tipo == "entero":
+                regla_izquierda.tipo = "boolean"
+            else:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: no coinciden los tipos de la comparacion")
+        except:
+            regla_izquierda.tipo = "error"
+            raise Exception("Error semantico desconocido")
+    
+    def autodecremento(gestorTS, pila, regla_izquierda):
+        try:
+            tabla = gestorTS.getActual()
+            id = pila[-2]
+            if tabla.get(id.valor)[0].tipo == "entero":
+                regla_izquierda.tipo = "entero"
+            else:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: el tipo de la variable no es entero")
+        except:
+            regla_izquierda.tipo = "error"
+            raise Exception("Error semantico desconocido")
+    def suma(gestorTS, pila, regla_izquierda):
+        try:
+            V = pila[-2]
+            U = pila[-6]
+            if U.tipo == V.tipo and U.tipo == "entero":
+                regla_izquierda.tipo = "entero"
+            else:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: se deben sumar enteros")
+        except:
+            regla_izquierda.tipo = "error"
+            raise Exception("Error semantico desconocido")
+
+    def comprobar_error_dos_simbolos(gestorTS, pila, regla_izquierda):
+        try:
+            C = pila[-2]
+            B = pila[-4]
+            if C.tipo == "error" or B.tipo == "error":
+                regla_izquierda.tipo = "error"
+            else:
+                regla_izquierda.tipo = "ok"
+        except:
+            regla_izquierda.tipo = "error"
+            raise Exception("Error semantico desconocido")
+    def bloque_for(gestorTS, pila, regla_izquierda):
+        try:
+            C = pila [-4]
+            D = pila[-10]
+            E = pila[-14]
+            Y = pila[-18]
+            if Y.tipo != "error" and E.tipo == "boolean" and D.tipo != "error" and C.tipo == "ok":
+                regla_izquierda.tipo = "ok"
+            else:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: el for tiene errores")
+        except:
+            regla_izquierda.tipo = "error"
+            raise Exception("Error semantico desconocido")
+        
      
                 
 
@@ -306,15 +395,18 @@ class AccionesSemanticas:
         4: bloque_if,
         5: asignacion,
         6: let,
+        7: bloque_for,
+        8: dar_valor_variable_sin_puntoycoma,
 
         10: asignacion_entera,
 
         13: dar_valor_variable_con_puntoycoma,
 
         20: asignacion,
+        21: menor_que,
 
         23: asignacion,
-
+        24: suma,
         25: asignacion,
 
         27: asignacion_id,
@@ -323,6 +415,10 @@ class AccionesSemanticas:
 
         32: asignacion_booleana,
         33: asignacion_booleana,
+        34: autodecremento,
+
+        48: comprobar_error_dos_simbolos,
+        49: asignacion,
     }
     def get_accion(accion):
         return AccionesSemanticas.diccionario_acciones_semanticas[accion]

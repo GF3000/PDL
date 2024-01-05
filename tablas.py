@@ -429,7 +429,7 @@ class AccionesSemanticas:
         6: let,
         7: bloque_for,
         8: dar_valor_variable_sin_puntoycoma,
-
+        9: asignacion,
         10: asignacion_entera,
 
         13: dar_valor_variable_con_puntoycoma,

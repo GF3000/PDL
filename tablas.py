@@ -10,9 +10,9 @@ class Constantes:
 
 class Tabla_GOTO:
     tabla_GOTO = {
-    0: {'P': 1,'B': 2,'S': 4,'F': 3,'F1': 12,'F2': 13},
-2: {'P': 15,'B': 2,'S': 4,'F': 3,'F1': 12,'F2': 13},
-3: {'P': 93,'B': 2,'S': 4,'F': 3,'F1': 12,'F2': 13},
+    0: {'P': 1,'B': 2,'S': 4,'F': 3,'F1': 12,'F2': 13, 'D1': 105},
+2: {'P': 15,'B': 2,'S': 4,'F': 3,'F1': 12,'F2': 13, 'D1': 105},
+3: {'P': 93,'B': 2,'S': 4,'F': 3,'F1': 12,'F2': 13, 'D1': 105},
 6: {'T': 46},
 9: {'E': 71,'R': 18,'U': 20,'V': 21,'D': 22,'Y': 101},
 10: {'E': 72,'R': 18,'U': 20,'V': 21,'D': 22,'Y': 101},
@@ -20,7 +20,7 @@ class Tabla_GOTO:
 16: {'E': 17,'R': 18,'U': 20,'V': 21,'D': 22,'Y': 101},
 19: {'V': 35},
 24: {'E': 95,'R': 18,'U': 20,'V': 21,'D': 22,'Y': 101},
-30: {'S': 94},
+30: {'S': 94, 'D1': 105},
 33: {'U': 34,'V': 21,'D': 22,'Y': 101},
 36: {'V': 37},
 38: {'E': 43,'R': 18,'U': 20,'V': 21,'D': 22,'L': 41,'Y': 101},
@@ -31,11 +31,11 @@ class Tabla_GOTO:
 54: {'E': 56,'R': 18,'U': 20,'V': 21,'D': 22,'Y': 101},
 57: {'E': 58,'R': 18,'U': 20,'V': 21,'D': 22,'Y': 101},
 59: {'D': 60,'Y': 101},
-62: {'B': 65,'S': 4,'C': 63},
-65: {'B': 65,'S': 4,'C': 78},
+62: {'B': 65,'S': 4,'C': 63, 'D1': 105},
+65: {'B': 65,'S': 4,'C': 78, 'D1': 105},
 66: {'E': 97,'R': 18,'U': 20,'V': 21,'D': 22,'Y': 101},
 67: {'E': 43,'R': 18,'U': 20,'V': 21,'D': 22,'L': 68,'Y': 101},
-75: {'B': 65,'C': 76},
+75: {'B': 65,'C': 76, 'D1': 105},
 79: {'T': 83,'A': 81},
 80: {'T': 87,'H': 85},
 84: {'K': 88},
@@ -52,10 +52,10 @@ class Tabla_ACCION:
     EXITO = Constantes.EXITO
 
     tabla_ACCION = {
-        0: {'if': [DESPLAZA, 5], 'let': [DESPLAZA, 47], 'for': [DESPLAZA, 7], 'id': [DESPLAZA, 8], 'put': [DESPLAZA, 9], 'get': [DESPLAZA, 10], 'return': [DESPLAZA, 11], 'function': [DESPLAZA, 14], 'EOF': [REDUCE, 3]},
+        0: {'autodecremento': [DESPLAZA, 102],'if': [DESPLAZA, 5], 'let': [DESPLAZA, 47], 'for': [DESPLAZA, 7], 'id': [DESPLAZA, 8], 'put': [DESPLAZA, 9], 'get': [DESPLAZA, 10], 'return': [DESPLAZA, 11], 'function': [DESPLAZA, 14], 'EOF': [REDUCE, 3]},
 1: {'EOF': [EXITO, None]},
-2: {'if': [DESPLAZA, 5], 'let': [DESPLAZA, 47], 'for': [DESPLAZA, 7], 'id': [DESPLAZA, 8], 'put': [DESPLAZA, 9], 'get': [DESPLAZA, 10], 'return': [DESPLAZA, 11], 'function': [DESPLAZA, 14], 'EOF': [REDUCE, 3]},
-3: {'if': [DESPLAZA, 5], 'let': [DESPLAZA, 47], 'for': [DESPLAZA, 7], 'id': [DESPLAZA, 8], 'put': [DESPLAZA, 9], 'get': [DESPLAZA, 10], 'return': [DESPLAZA, 11], 'function': [DESPLAZA, 14], 'EOF': [REDUCE, 3]},
+2: {'autodecremento': [DESPLAZA, 102],'if': [DESPLAZA, 5], 'let': [DESPLAZA, 47], 'for': [DESPLAZA, 7], 'id': [DESPLAZA, 8], 'put': [DESPLAZA, 9], 'get': [DESPLAZA, 10], 'return': [DESPLAZA, 11], 'function': [DESPLAZA, 14], 'EOF': [REDUCE, 3]},
+3: {'autodecremento': [DESPLAZA, 102],'if': [DESPLAZA, 5], 'let': [DESPLAZA, 47], 'for': [DESPLAZA, 7], 'id': [DESPLAZA, 8], 'put': [DESPLAZA, 9], 'get': [DESPLAZA, 10], 'return': [DESPLAZA, 11], 'function': [DESPLAZA, 14], 'EOF': [REDUCE, 3]},
 4: {'if': [REDUCE, 5], 'let': [REDUCE, 5], 'for': [REDUCE, 5], 'id': [REDUCE, 5], 'put': [REDUCE, 5], 'get': [REDUCE, 5], 'return': [REDUCE, 5], 'llavecerrada': [REDUCE, 5], 'function': [REDUCE, 5], 'EOF': [REDUCE, 5]},
 5: {'parentesisabierto': [DESPLAZA, 16]},
 6: {'int': [DESPLAZA, 49], 'boolean': [DESPLAZA, 51], 'string': [DESPLAZA, 50]},
@@ -82,7 +82,7 @@ class Tabla_ACCION:
 27: {'menor': [REDUCE, 31], 'suma': [REDUCE, 31], 'coma': [REDUCE, 31], 'puntoycoma': [REDUCE, 31], 'parentesiscerrado': [REDUCE, 31], 'EOF': [REDUCE, 31]},
 28: {'menor': [REDUCE, 32], 'suma': [REDUCE, 32], 'coma': [REDUCE, 32], 'puntoycoma': [REDUCE, 32], 'parentesiscerrado': [REDUCE, 32], 'EOF': [REDUCE, 32]},
 29: {'menor': [REDUCE, 33], 'suma': [REDUCE, 33], 'coma': [REDUCE, 33], 'puntoycoma': [REDUCE, 33], 'parentesiscerrado': [REDUCE, 33], 'EOF': [REDUCE, 33]},
-30: {'id': [DESPLAZA, 8], 'put': [DESPLAZA, 9], 'get': [DESPLAZA, 10], 'return': [DESPLAZA, 11]},
+30: {'id': [DESPLAZA, 8], 'put': [DESPLAZA, 9], 'get': [DESPLAZA, 10], 'autodecremento': [DESPLAZA, 102],'return': [DESPLAZA, 11]},
 31: {'menor': [REDUCE, 34], 'suma': [REDUCE, 34], 'coma': [REDUCE, 34], 'puntoycoma': [REDUCE, 34], 'parentesiscerrado': [REDUCE, 34], 'EOF': [REDUCE, 34]},
 32: {'if': [REDUCE, 17], 'let': [REDUCE, 17], 'for': [REDUCE, 17], 'id': [REDUCE, 17], 'put': [REDUCE, 17], 'get': [REDUCE, 17], 'return': [REDUCE, 17], 'parentesiscerrado': [REDUCE, 17], 'function': [REDUCE, 17], 'EOF': [REDUCE, 17]},
 33: {'id': [DESPLAZA, 23], 'entero': [DESPLAZA, 26], 'cadena': [DESPLAZA, 27], 'true': [DESPLAZA, 28], 'false': [DESPLAZA, 29], 'autodecremento': [DESPLAZA, 25], 'parentesisabierto': [DESPLAZA, 24]},
@@ -114,10 +114,10 @@ class Tabla_ACCION:
 59: {'id': [DESPLAZA, 52],'autodecremento': [DESPLAZA, 25]},
 60: {'parentesiscerrado': [DESPLAZA, 61]},
 61: {'llaveabierta': [DESPLAZA, 62]},
-62: {'if': [DESPLAZA, 5], 'let': [DESPLAZA, 47], 'for': [DESPLAZA, 7], 'id': [DESPLAZA, 8], 'put': [DESPLAZA, 9], 'get': [DESPLAZA, 10], 'return': [DESPLAZA, 11], 'llavecerrada': [REDUCE, 49]},
+62: {'autodecremento': [DESPLAZA, 102],'if': [DESPLAZA, 5], 'let': [DESPLAZA, 47], 'for': [DESPLAZA, 7], 'id': [DESPLAZA, 8], 'put': [DESPLAZA, 9], 'get': [DESPLAZA, 10], 'return': [DESPLAZA, 11], 'llavecerrada': [REDUCE, 49]},
 63: {'llavecerrada': [DESPLAZA, 64]},
 64: {'if': [REDUCE, 7], 'let': [REDUCE, 7], 'for': [REDUCE, 7], 'id': [REDUCE, 7], 'put': [REDUCE, 7], 'get': [REDUCE, 7], 'return': [REDUCE, 7], 'llavecerrada': [REDUCE, 7], 'function': [REDUCE, 7], 'EOF': [REDUCE, 7]},
-65: {'if': [DESPLAZA, 5], 'let': [DESPLAZA, 47], 'for': [DESPLAZA, 7], 'id': [DESPLAZA, 8], 'put': [DESPLAZA, 9], 'get': [DESPLAZA, 10], 'return': [DESPLAZA, 11], 'llavecerrada': [REDUCE, 49]},
+65: {'autodecremento': [DESPLAZA, 102],'if': [DESPLAZA, 5], 'let': [DESPLAZA, 47], 'for': [DESPLAZA, 7], 'id': [DESPLAZA, 8], 'put': [DESPLAZA, 9], 'get': [DESPLAZA, 10], 'return': [DESPLAZA, 11], 'llavecerrada': [REDUCE, 49]},
 66: {'id': [DESPLAZA, 23], 'negacion': [DESPLAZA, 19], 'entero': [DESPLAZA, 26], 'cadena': [DESPLAZA, 27], 'true': [DESPLAZA, 28], 'false': [DESPLAZA, 29], 'autodecremento': [DESPLAZA, 25], 'parentesisabierto': [DESPLAZA, 24]},
 67: {'id': [DESPLAZA, 23], 'negacion': [DESPLAZA, 19], 'entero': [DESPLAZA, 26], 'cadena': [DESPLAZA, 27], 'true': [DESPLAZA, 28], 'false': [DESPLAZA, 29], 'autodecremento': [DESPLAZA, 25], 'parentesisabierto': [DESPLAZA, 24]},
 68: {'parentesiscerrado': [DESPLAZA, 69]},
@@ -127,7 +127,7 @@ class Tabla_ACCION:
 72: {'puntoycoma': [DESPLAZA, 100]},
 73: {'puntoycoma': [DESPLAZA, 32]},
 74: {'puntoycoma': [REDUCE, 18]},
-75: {'if': [DESPLAZA, 5], 'let': [DESPLAZA, 47], 'for': [DESPLAZA, 7], 'id': [DESPLAZA, 8], 'put': [DESPLAZA, 9], 'get': [DESPLAZA, 10], 'return': [DESPLAZA, 11], 'llavecerrada': [REDUCE, 49]},
+75: {'if': [DESPLAZA, 5],'autodecremento': [DESPLAZA, 102], 'let': [DESPLAZA, 47], 'for': [DESPLAZA, 7], 'id': [DESPLAZA, 8], 'put': [DESPLAZA, 9], 'get': [DESPLAZA, 10], 'return': [DESPLAZA, 11], 'llavecerrada': [REDUCE, 49]},
 76: {'llavecerrada': [DESPLAZA, 77]},
 77: {'if': [REDUCE, 38], 'let': [REDUCE, 38], 'for': [REDUCE, 38], 'id': [REDUCE, 38], 'put': [REDUCE, 38], 'get': [REDUCE, 38], 'return': [REDUCE, 38], 'function': [REDUCE, 38], 'EOF': [REDUCE, 38]},
 78: {'llavecerrada': [REDUCE, 48]},
@@ -153,7 +153,11 @@ class Tabla_ACCION:
 98: {'if': [REDUCE, 15], 'let': [REDUCE, 15], 'for': [REDUCE, 15], 'id': [REDUCE, 15], 'put': [REDUCE, 15], 'get': [REDUCE, 15], 'return': [REDUCE, 15], 'llavecerrada': [REDUCE, 15], 'function': [REDUCE, 15], 'EOF': [REDUCE, 15]},
 99: {'if': [REDUCE, 13], 'let': [REDUCE, 13], 'for': [REDUCE, 13], 'id': [REDUCE, 13], 'put': [REDUCE, 13], 'get': [REDUCE, 13], 'return': [REDUCE, 13], 'llavecerrada': [REDUCE, 13], 'function': [REDUCE, 13], 'EOF': [REDUCE, 13]},
 100: {'if': [REDUCE, 16], 'let': [REDUCE, 16], 'for': [REDUCE, 16], 'id': [REDUCE, 16], 'put': [REDUCE, 16], 'get': [REDUCE, 16], 'return': [REDUCE, 16], 'llavecerrada': [REDUCE, 16], 'function': [REDUCE, 16], 'EOF': [REDUCE, 16]},
-101: {'menor': [REDUCE, 9], 'suma': [REDUCE, 9], 'coma': [REDUCE, 9], 'puntoycoma': [REDUCE, 9], 'parentesiscerrado': [REDUCE, 9], 'EOF': [REDUCE, 9]}
+101: {'menor': [REDUCE, 9], 'suma': [REDUCE, 9], 'coma': [REDUCE, 9], 'puntoycoma': [REDUCE, 9], 'parentesiscerrado': [REDUCE, 9], 'EOF': [REDUCE, 9]},
+102: {'id': [DESPLAZA, 103]},
+103: {'puntoycoma': [DESPLAZA, 104]},
+104: {'if': [REDUCE, 50], 'let': [REDUCE, 50], 'for': [REDUCE, 50], 'id': [REDUCE, 50], 'put': [REDUCE, 50], 'get': [REDUCE, 50], 'return': [REDUCE, 50], 'llavecerrada': [REDUCE, 50], 'function': [REDUCE, 50], 'EOF': [REDUCE, 50]},
+105: {'if': [REDUCE, 51], 'let': [REDUCE, 51], 'for': [REDUCE, 51], 'id': [REDUCE, 51], 'put': [REDUCE, 51], 'get': [REDUCE, 51], 'return': [REDUCE, 51], 'llavecerrada': [REDUCE, 51], 'function': [REDUCE, 51], 'EOF': [REDUCE, 51]}
     }
     def get_tabla_ACCION():
         return Tabla_ACCION.tabla_ACCION
@@ -222,7 +226,9 @@ class Reglas:
     46: REGLA( 'K', ['coma', 'T', 'id', 'K']),
     47: REGLA( 'K', []),
     48: REGLA( 'C', ['B', 'C']),
-    49: REGLA( 'C', [])
+    49: REGLA( 'C', []),
+    50: REGLA( 'D1', ['autodecremento', 'id', 'puntoycoma']),
+    51: REGLA( 'S', ['D1'])
     }
     
     def get_reglas():

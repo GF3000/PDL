@@ -1,4 +1,6 @@
 let a int;
+
+//if(a < 0) --a;
 a = 2;
 
 if (true)

@@ -1,2 +1,1 @@
-let int a;
-let boolean b;
+let a int;

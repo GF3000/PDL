@@ -251,10 +251,12 @@ class AccionesSemanticas:
     def let(gestorTS, pila, regla_izquierda):
         try:
             tabla = gestorTS.getActual()
-            token = pila[-4]
-        
-            tabla.get(token.valor)[0].tipo = pila[-6].tipo
+            token = pila[-6]
+
+            tabla.get(token.valor)[0].tipo = pila[-4].tipo
+
             regla_izquierda.tipo = "ok"
+            print (pila)
         except:
             regla_izquierda.tipo = "error"
             raise Exception("Error semantico: el identificador " + token.lexema + " ya estaba declarada")

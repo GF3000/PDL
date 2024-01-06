@@ -1,13 +1,13 @@
-let int x = 0;
-let int y = 0;
+let x int = 0;
+let y int = 0;
 put(x)
 print ( 'Introduce el primer operando' );
-let int res;
+let res int;
 print ('Introduce el segundo operando'); 
 get(y);
 function suma int(int num_1, int num_2) {
     return num_1 + num_2;
 }
 res = suma(x,y);
-let int w = 0;
+let w int = 0;
 print(res);

@@ -1,5 +1,5 @@
-let int counter; //declara counter
-let string sentence;
+let counter int; //declara counter
+let sentence string;
 sentence = 'This is a simple program.';
 print(sentence);
 comment('This is a comment and will be ignored by the lexer.');

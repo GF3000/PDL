@@ -35,7 +35,7 @@ def analizar(nombre_archivo):
 
     try:
         reglas = tablas.Reglas.get_reglas()
-        mi_syntax = syntax.Syntax(tabla_GOTO, tabla_ACCION, reglas, imprimir =True, gestor_TS=tabladesimbolos.gestorTablas())
+        mi_syntax = syntax.Syntax(tabla_GOTO, tabla_ACCION, reglas, imprimir =False, gestor_TS=tabladesimbolos.gestorTablas())
         exito = mi_syntax.analizar(tokens_analizados)
     except Exception as e:
         print(e)
@@ -48,7 +48,7 @@ def analizar(nombre_archivo):
 
 def main():
 
-    exito = analizar("casosPruebaTxt/in.txt")
+    exito = analizar("casosPruebaTxt/testPruebas.txt")
     print("[+] El analisis ha finalizado con exito" if  exito else "[-] El analisis ha finalizado con errores")
 
 if __name__ == "__main__":

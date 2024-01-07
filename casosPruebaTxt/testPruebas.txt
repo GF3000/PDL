@@ -1,0 +1,6 @@
+let a int;
+let b  int;
+
+function prueba int (void) {
+    return a;
+}

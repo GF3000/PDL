@@ -390,6 +390,8 @@ class AccionesSemanticas:
             B = pila[-4]
             if C.tipo == "error" or B.tipo == "error":
                 regla_izquierda.tipo = "error"
+            # elif C.tipo == B.tipo:
+            #     regla_izquierda.tipo = C.tipo
             elif C.tipo == "ok" and B.tipo == "ok":
                 regla_izquierda.tipo = "ok" #Entendemos por ok si no hay return (void)
             elif C.tipo in ["entero", "cadena", "boolean"] and B.tipo in ["entero", "cadena", "boolean"]:
@@ -398,6 +400,7 @@ class AccionesSemanticas:
                 regla_izquierda.tipo = B.tipo
             elif C.tipo in ["entero", "cadena", "boolean"] and B.tipo == "ok":
                 regla_izquierda.tipo = C.tipo
+            
     
 
         except Exception as e:
@@ -470,13 +473,25 @@ class AccionesSemanticas:
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
-    
+    def tipo_void(gestor_TS,pila, regla_izquierda):
+        try:
+            id = pila[-2]
+            if id.tipo == "void":
+                regla_izquierda.tipo = "ok"
+            else:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: la funcion tiene errores")
+        except Exception as e:
+            regla_izquierda.tipo = "error"
+            raise e
+
     def fin_funcion(gestorTS, pila, regla_izquierda):
         try:
             C = pila[-4]
             F1 = pila[-8]
             nombre_funcion = gestorTS.getActual().nombre
             tipo_retorno = gestorTS.getGlobal().get(nombre_funcion)[0].tipoRetorno
+            print(tipo_retorno)
             tipo_retorno = "ok" if C.tipo == "void" else tipo_retorno
             if  F1.tipo == "ok":
                 if tipo_retorno == C.tipo:
@@ -571,7 +586,30 @@ class AccionesSemanticas:
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
+    def return_val(gestorTS, pila, regla_izquierda):
+        try:
+            X = pila[-4]
+            if (X.tipo in ["entero", "cadena", "boolean"]):
+                regla_izquierda.tipo = X.tipo
+            else:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: el valor del return no coincide con el tipo de la funcion")
+        except Exception as e:
+            regla_izquierda.tipo = "error"
+            raise e
+    def fin_cuerpo_funcion(gestorTS, pila, regla_izquierda):
+       regla_izquierda.tipo = "ok"
         
+        # try:
+        #     C = pila[-4]
+        #     if C.tipo == "ok":
+        #         regla_izquierda.tipo = "ok"
+        #     else:
+        #         regla_izquierda.tipo = "error"
+        #         raise Exception("Error semantico: la funcion tiene errores")
+        # except Exception as e:
+        #     regla_izquierda.tipo = "error"
+        #     raise e
     
     diccionario_acciones_semanticas = {
         0: inicio,
@@ -590,6 +628,7 @@ class AccionesSemanticas:
         13: dar_valor_variable_con_puntoycoma,
         14: fin_llamada_funcion,
 
+        17: return_val,
         18: asignacion,
 
         20: asignacion,
@@ -616,11 +655,11 @@ class AccionesSemanticas:
         42: asignacion_void,
 
         44:argumento_funcion,
-
+        45:tipo_void,
         46: siguiente_argumento,
         47: vacio,
         48: comprobar_error_dos_simbolos,
-        49: asignacion,
+        49: fin_cuerpo_funcion,
     }
     def get_accion(accion):
         try:

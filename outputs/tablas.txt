@@ -2,10 +2,17 @@ Tabla Global #1:
 * LEXEMA : 'a'
 	+ tipo : 'entero'
 	+ desplazamiento : 0
+* LEXEMA : 'b'
+	+ tipo : 'boolean'
+	+ desplazamiento : 1
 * LEXEMA : 'prueba'
 	+ tipo : 'function'
-	+ numParam : 0
-	+ tipoRetorno : 'entero'
+	+ numParam : 1
+	+ tipoParam0 : 'entero'
+	+ tipoRetorno : 'void'
 
 Tabla prueba #2:
+* LEXEMA : 'y'
+	+ tipo : 'entero'
+	+ desplazamiento : 0
 

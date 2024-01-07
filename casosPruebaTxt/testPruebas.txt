@@ -1,6 +1,7 @@
 let a int;
-let b  int;
+let b  string;
 
-function prueba void (void) {
-    return a;
+function prueba void (int y) {
 }
+
+prueba(a,b);

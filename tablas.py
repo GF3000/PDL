@@ -85,13 +85,13 @@ class Tabla_ACCION:
 29: {'menor': [REDUCE, 33], 'suma': [REDUCE, 33], 'coma': [REDUCE, 33], 'puntoycoma': [REDUCE, 33], 'parentesiscerrado': [REDUCE, 33], 'EOF': [REDUCE, 33]},
 30: {'id': [DESPLAZA, 8], 'put': [DESPLAZA, 9], 'get': [DESPLAZA, 10], 'autodecremento': [DESPLAZA, 102],'return': [DESPLAZA, 11]},
 31: {'menor': [REDUCE, 34], 'suma': [REDUCE, 34], 'coma': [REDUCE, 34], 'puntoycoma': [REDUCE, 34], 'parentesiscerrado': [REDUCE, 34], 'EOF': [REDUCE, 34]},
-32: {'if': [REDUCE, 17], 'let': [REDUCE, 17], 'for': [REDUCE, 17], 'id': [REDUCE, 17], 'put': [REDUCE, 17], 'get': [REDUCE, 17], 'return': [REDUCE, 17], 'parentesiscerrado': [REDUCE, 17], 'function': [REDUCE, 17], 'EOF': [REDUCE, 17]},
+32: {'llavecerrada': [REDUCE, 17],'if': [REDUCE, 17], 'let': [REDUCE, 17], 'for': [REDUCE, 17], 'id': [REDUCE, 17], 'put': [REDUCE, 17], 'get': [REDUCE, 17], 'return': [REDUCE, 17], 'parentesiscerrado': [REDUCE, 17], 'function': [REDUCE, 17], 'EOF': [REDUCE, 17]},
 33: {'id': [DESPLAZA, 23], 'entero': [DESPLAZA, 26], 'cadena': [DESPLAZA, 27], 'true': [DESPLAZA, 28], 'false': [DESPLAZA, 29], 'autodecremento': [DESPLAZA, 25], 'parentesisabierto': [DESPLAZA, 24]},
 34: {'menor': [REDUCE, 21], 'suma': [DESPLAZA, 36], 'coma': [REDUCE, 21], 'puntoycoma': [REDUCE, 21], 'parentesiscerrado': [REDUCE, 21], 'EOF': [REDUCE, 21]},
 35: {'menor': [REDUCE, 22], 'suma': [REDUCE, 22], 'coma': [REDUCE, 22], 'puntoycoma': [REDUCE, 22], 'parentesiscerrado': [REDUCE, 22], 'EOF': [REDUCE, 22]},
 36: {'id': [DESPLAZA, 23], 'entero': [DESPLAZA, 26], 'cadena': [DESPLAZA, 27], 'true': [DESPLAZA, 28], 'false': [DESPLAZA, 29], 'parentesisabierto': [DESPLAZA, 24]},
 37: {'menor': [REDUCE, 24], 'suma': [REDUCE, 24], 'coma': [REDUCE, 24], 'puntoycoma': [REDUCE, 24], 'parentesiscerrado': [REDUCE, 24], 'EOF': [REDUCE, 24]},
-38: {'id': [DESPLAZA, 23], 'negacion': [DESPLAZA, 19], 'entero': [DESPLAZA, 26], 'cadena': [DESPLAZA, 27], 'true': [DESPLAZA, 28], 'false': [DESPLAZA, 29], 'autodecremento': [DESPLAZA, 25], 'parentesisabierto': [DESPLAZA, 24]},
+38: {'id': [DESPLAZA, 23], 'negacion': [DESPLAZA, 19], 'entero': [DESPLAZA, 26], 'cadena': [DESPLAZA, 27], 'true': [DESPLAZA, 28], 'false': [DESPLAZA, 29], 'autodecremento': [DESPLAZA, 25], 'parentesisabierto': [DESPLAZA, 24],'parentesiscerrado': [REDUCE, 52]},
 39: {'coma': [DESPLAZA, 45], 'parentesiscerrado': [REDUCE, 37]},
 40: {'parentesiscerrado': [REDUCE, 36]},
 41: {'parentesiscerrado': [DESPLAZA, 42]},
@@ -120,7 +120,7 @@ class Tabla_ACCION:
 64: {'if': [REDUCE, 7], 'let': [REDUCE, 7], 'for': [REDUCE, 7], 'id': [REDUCE, 7], 'put': [REDUCE, 7], 'get': [REDUCE, 7], 'return': [REDUCE, 7], 'llavecerrada': [REDUCE, 7], 'function': [REDUCE, 7], 'EOF': [REDUCE, 7]},
 65: {'autodecremento': [DESPLAZA, 102],'if': [DESPLAZA, 5], 'let': [DESPLAZA, 47], 'for': [DESPLAZA, 7], 'id': [DESPLAZA, 8], 'put': [DESPLAZA, 9], 'get': [DESPLAZA, 10], 'return': [DESPLAZA, 11], 'llavecerrada': [REDUCE, 49]},
 66: {'id': [DESPLAZA, 23], 'negacion': [DESPLAZA, 19], 'entero': [DESPLAZA, 26], 'cadena': [DESPLAZA, 27], 'true': [DESPLAZA, 28], 'false': [DESPLAZA, 29], 'autodecremento': [DESPLAZA, 25], 'parentesisabierto': [DESPLAZA, 24]},
-67: {'id': [DESPLAZA, 23], 'negacion': [DESPLAZA, 19], 'entero': [DESPLAZA, 26], 'cadena': [DESPLAZA, 27], 'true': [DESPLAZA, 28], 'false': [DESPLAZA, 29], 'autodecremento': [DESPLAZA, 25], 'parentesisabierto': [DESPLAZA, 24]},
+67: {'parentesiscerrado': [REDUCE, 52],'id': [DESPLAZA, 23], 'negacion': [DESPLAZA, 19], 'entero': [DESPLAZA, 26], 'cadena': [DESPLAZA, 27], 'true': [DESPLAZA, 28], 'false': [DESPLAZA, 29], 'autodecremento': [DESPLAZA, 25], 'parentesisabierto': [DESPLAZA, 24]},
 68: {'parentesiscerrado': [DESPLAZA, 69]},
 69: {'puntoycoma': [DESPLAZA, 70]},
 70: {'if': [REDUCE, 14], 'let': [REDUCE, 14], 'for': [REDUCE, 14], 'id': [REDUCE, 14], 'put': [REDUCE, 14], 'get': [REDUCE, 14], 'return': [REDUCE, 14], 'llavecerrada': [REDUCE, 14], 'function': [REDUCE, 14], 'EOF': [REDUCE, 14]},
@@ -132,7 +132,7 @@ class Tabla_ACCION:
 76: {'llavecerrada': [DESPLAZA, 77]},
 77: {'if': [REDUCE, 38], 'let': [REDUCE, 38], 'for': [REDUCE, 38], 'id': [REDUCE, 38], 'put': [REDUCE, 38], 'get': [REDUCE, 38], 'return': [REDUCE, 38], 'function': [REDUCE, 38], 'EOF': [REDUCE, 38]},
 78: {'llavecerrada': [REDUCE, 48]},
-79: {'int': [DESPLAZA, 49], 'boolean': [DESPLAZA, 50], 'string': [DESPLAZA, 51], 'parentesiscerrado': [REDUCE, 45]},
+79: {'int': [DESPLAZA, 49], 'boolean': [DESPLAZA, 50], 'string': [DESPLAZA, 51],'void': [DESPLAZA, 106]},
 80: {'int': [DESPLAZA, 49], 'boolean': [DESPLAZA, 50], 'string': [DESPLAZA, 51], 'void': [DESPLAZA, 86]},
 81: {'parentesiscerrado': [DESPLAZA, 82]},
 82: {'llaveabierta': [REDUCE, 39]},
@@ -158,7 +158,8 @@ class Tabla_ACCION:
 102: {'id': [DESPLAZA, 103]},
 103: {'puntoycoma': [DESPLAZA, 104]},
 104: {'if': [REDUCE, 50], 'let': [REDUCE, 50], 'for': [REDUCE, 50], 'id': [REDUCE, 50], 'put': [REDUCE, 50], 'get': [REDUCE, 50], 'return': [REDUCE, 50], 'llavecerrada': [REDUCE, 50], 'function': [REDUCE, 50], 'EOF': [REDUCE, 50]},
-105: {'if': [REDUCE, 51], 'let': [REDUCE, 51], 'for': [REDUCE, 51], 'id': [REDUCE, 51], 'put': [REDUCE, 51], 'get': [REDUCE, 51], 'return': [REDUCE, 51], 'llavecerrada': [REDUCE, 51], 'function': [REDUCE, 51], 'EOF': [REDUCE, 51]}
+105: {'if': [REDUCE, 51], 'let': [REDUCE, 51], 'for': [REDUCE, 51], 'id': [REDUCE, 51], 'put': [REDUCE, 51], 'get': [REDUCE, 51], 'return': [REDUCE, 51], 'llavecerrada': [REDUCE, 51], 'function': [REDUCE, 51], 'EOF': [REDUCE, 51]},
+106: {'parentesiscerrado': [REDUCE, 45]}
     }
     def get_tabla_ACCION():
         return Tabla_ACCION.tabla_ACCION
@@ -223,13 +224,14 @@ class Reglas:
     42: REGLA( 'H', ['void']),
     43: REGLA( 'H', []),
     44: REGLA( 'A', ['T', 'id', 'K']),
-    45: REGLA( 'A', []),
+    45: REGLA( 'A', ['void']),
     46: REGLA( 'K', ['coma', 'T', 'id', 'K']),
     47: REGLA( 'K', []),
     48: REGLA( 'C', ['B', 'C']),
     49: REGLA( 'C', []),
     50: REGLA( 'D1', ['autodecremento', 'id', 'puntoycoma']),
-    51: REGLA( 'S', ['D1'])
+    51: REGLA( 'S', ['D1']),
+    52: REGLA( 'L', [])
     }
     
     def get_reglas():

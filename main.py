@@ -6,7 +6,7 @@ import tablas
 import tabladesimbolos
 
 
-def analizar(nombre_archivo):
+def analizar_pruebas(nombre_archivo):
     archivo = open(nombre_archivo, "r")
     codigo = archivo.read()
     archivo.close()
@@ -35,9 +35,23 @@ def analizar(nombre_archivo):
     return exito
 
 
+def analizar_gui(nombre_archivo):
+    tabla_GOTO = tablas.Tabla_GOTO.get_tabla_GOTO()
+    tabla_ACCION = tablas.Tabla_ACCION.get_tabla_ACCION()
+    reglas = tablas.Reglas.get_reglas()
+    mi_syntax = syntax.Syntax(tabla_GOTO, tabla_ACCION, reglas, imprimir =False, gestor_TS=tabladesimbolos.gestorTablas())
+
+    try:
+        exito = mi_syntax.analizar(nombre_archivo)
+        return "[+] El analisis ha finalizado con exito", True if  exito else "[-] El analisis ha finalizado con errores", True
+    except Exception as e:
+        return (e), False
+        
+
+
 def main():
 
-    exito = analizar("anexo/OK_4.txt")
+    exito = analizar_pruebas("casosPruebaTxt/casoPrueba2.txt")
     print("[+] El analisis ha finalizado con exito" if  exito else "[-] El analisis ha finalizado con errores")
 
 if __name__ == "__main__":

@@ -2,7 +2,13 @@ Tabla Global #1:
 * LEXEMA : 'a'
 	+ tipo : 'entero'
 	+ desplazamiento : 0
-* LEXEMA : 'i'
+* LEXEMA : 'b'
 	+ tipo : 'entero'
 	+ desplazamiento : 1
+* LEXEMA : 'cad1'
+	+ tipo : 'cadena'
+	+ desplazamiento : 2
+* LEXEMA : 'cad2'
+	+ tipo : 'cadena'
+	+ desplazamiento : 66
 

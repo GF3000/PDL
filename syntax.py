@@ -10,7 +10,9 @@ REDUCE = tablas.Constantes.REDUCE
 DESPLAZA = tablas.Constantes.DESPLAZA
 EXITO = tablas.Constantes.EXITO
 DESCRIPTORES = tablas.Constantes.DESCRIPTORES
-FILE = "outputs/parse.txt"
+FILE_PARSE = "parse.txt"
+FILE_TABLES = "tablas.txt"
+FILE_TOKENS = "tokens.txt"
 
 
 class Syntax:
@@ -84,6 +86,8 @@ class Syntax:
         mi_lexer = lexer.Lexer(tokens=tokens_leguaje, source_code=source_code)
         token = mi_lexer.get_token()
         
+        with open(FILE_TOKENS, "w") as f:
+            f.write("")
         #Analiza la cadena de entrada y devuelve la lista de tokens
         while True:
             # Obtenemos el etsado actual
@@ -96,6 +100,10 @@ class Syntax:
             
             if self.imprimir:
                 print("Token actual: ", token)
+
+            
+            
+
             # Obtenemos la accion a tomar y su argumento
             accion, argumento = self.ACCION(nuevo_estado, token.tipo)
 
@@ -129,12 +137,16 @@ class Syntax:
                     # Apilamos el nuevo estado a la pila
                     self.pila.append(argumento)
                     token = mi_lexer.get_token()
+                    with open(FILE_TOKENS, "a") as f:
+                        f.write(str(token) + "\n")
 
                 case self.EXITO:
                     # Analisis sintactico correcto
                     print("[+] Cadena aceptada")
-                    with open(FILE, "w") as f:
+                    with open(FILE_PARSE, "w") as f:
                         f.write(texto_archivo + "\n")
+                    with open(FILE_TABLES, "w") as f:
+                        f.write(str(self.gestor_TS))
                     return True
                 
                 # Default
@@ -144,7 +156,7 @@ class Syntax:
                     if self.imprimir:
                         print("Pila: ", self.pila)
                         print("Cadena por leer: ", source_code[mi_lexer.position:])
-                    with open(FILE, "w") as f:
+                    with open(FILE_PARSE, "w") as f:
                        f.write(texto_archivo + "\n")
                     raise Exception(f"[-] Error Sintáctico en la linea {mi_lexer.get_linea()} de la cadena de entrada. No se esperaba \'{token.valor}\'")
 

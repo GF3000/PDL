@@ -1,6 +1,6 @@
 let a int;
 let b  int;
 
-function prueba int (void) {
+function prueba void (void) {
     return a;
 }

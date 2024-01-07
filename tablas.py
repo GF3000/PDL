@@ -491,7 +491,6 @@ class AccionesSemanticas:
             F1 = pila[-8]
             nombre_funcion = gestorTS.getActual().nombre
             tipo_retorno = gestorTS.getGlobal().get(nombre_funcion)[0].tipoRetorno
-            print(tipo_retorno)
             tipo_retorno = "ok" if C.tipo == "void" else tipo_retorno
             if  F1.tipo == "ok":
                 if tipo_retorno == C.tipo:
@@ -501,6 +500,9 @@ class AccionesSemanticas:
                 elif C.tipo == "ok":
                     regla_izquierda.tipo = "error"
                     raise Exception("Error semantico: la funcion requiere retorno y no hay retorno")
+                elif C.tipo in ["entero", "cadena","boolean"]:
+                    regla_izquierda.tipo = "error"
+                    raise Exception("Error semantico: la funcion no requiere retorno y hay retorno")
                 else:
                     regla_izquierda.tipo = "error"
                     raise Exception("Error semantico: la funcion tiene errores")

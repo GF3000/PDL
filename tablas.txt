@@ -1,0 +1,8 @@
+Tabla Global #1:
+* LEXEMA : 'a'
+	+ tipo : 'entero'
+	+ desplazamiento : 0
+* LEXEMA : 'i'
+	+ tipo : 'entero'
+	+ desplazamiento : 1
+

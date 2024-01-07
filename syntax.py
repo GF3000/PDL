@@ -34,6 +34,7 @@ class Syntax:
         self.imprimir = imprimir
         self.gestor_TS = gestor_TS
 
+
     def GOTO(self, estado, simbolo):
         """Calcula el estado al que se llega desde el estado actual con el simbolo dado"""
         try:
@@ -142,7 +143,7 @@ class Syntax:
                     # Imprimimos estado actual
                     if self.imprimir:
                         print("Pila: ", self.pila)
-                        # print("Cadena por leer: ", source_code[mi_lexer.position:])
+                        print("Cadena por leer: ", source_code[mi_lexer.position:])
                     with open(FILE, "w") as f:
                        f.write(texto_archivo + "\n")
                     raise Exception(f"[-] Error Sintáctico en la linea {mi_lexer.get_linea()} de la cadena de entrada. No se esperaba \'{token.valor}\'")

@@ -62,13 +62,15 @@ class Lexer:
                         #         atributo = self.gestor_tabla_simbolos.getGlobal().get(valor)[1]
                         elif tipo == 'cadena': #Si es una cadena, el atributo es el valor de la cadena
                             atributo = valor
-
-
-
-
-                    position = match.end() #Actualizamos la posición actual al final de la coincidencia
-                    self.position = position
-                    return(mi_token.Token(tipo, atributo, valor)) #Añadimos el token a la lista de tokens
+                        
+                        position = match.end() #Actualizamos la posición actual al final de la coincidencia
+                        self.position = position
+                        return(mi_token.Token(tipo, atributo, valor)) #Devolvemos el token
+                    else:
+                        #Si es un comeentario, pasamos el siguiente token
+                        position = match.end() #Actualizamos la posición actual al final de la coincidencia
+                        self.position = position
+                        return self.get_token() #Añadimos el token a la lista de tokens
                 else:
                     #Nos aseguramos de que no sea un espacio en blanco
                     if source_code[position] == ' ' or source_code[position] == '\n' or source_code[position] == '\t':

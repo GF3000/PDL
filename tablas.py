@@ -575,6 +575,9 @@ class AccionesSemanticas:
         try:
             id = pila[-10]
             L = pila[-6]
+            if gestorTS.buscar(id.valor) == None:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: la funcion no existe")
             entrada_funcion = gestorTS.buscar(id.valor)[0]
             if  entrada_funcion.tipo == "function":
                 #1 La funcion no requiere argumentos
@@ -706,6 +709,9 @@ class AccionesSemanticas:
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
+    
+    def asignacion_parentesis(gestorTS, pila, regla_izquierda):
+        regla_izquierda.tipo = pila[-4].tipo
         
     
     diccionario_acciones_semanticas = {
@@ -737,6 +743,7 @@ class AccionesSemanticas:
         25: asignacion,
         26: asignacion,
         27: asignacion_id,
+        28: asignacion_parentesis,
         29:fin_llamada_funcion_sin_puntoycoma,
         30: asignacion_entera,
         31: asignacion_cadena,

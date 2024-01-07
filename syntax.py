@@ -1,5 +1,7 @@
 # from Analizador_Sintactico import tablas
 import tablas
+import lexer
+import tokens
 import mi_token
 import semantic
 
@@ -67,24 +69,22 @@ class Syntax:
             if self.imprimir:
                 print(f"[-] Calculando REGLA({num}): None")
             return None
-    
-    def print_estado(self):
-        """Imprime el estado actual del analizador"""
-        print("Pila: ", self.pila)
-        print("Cadena por leer: ", self.cadena[self.position:])
+
        
-    def analizar(self, listado_tokens):
+    def analizar(self, file):
         """Analiza la cadena dada.
         Devuelve True si la cadena es aceptada, False en caso contrario"""
-        self.cadena = listado_tokens
+        f = open(file, "r")
+        source_code = f.read()
         self.pila = [0]
-        self.position = 0
         # print(f"\nAnalizando cadena: {cadena}\n")
         texto_archivo = "ascendente "
-        
+        tokens_leguaje = tokens.Tokens.tokens
+        mi_lexer = lexer.Lexer(tokens=tokens_leguaje, source_code=source_code)
+        token = mi_lexer.get_token()
         
         #Analiza la cadena de entrada y devuelve la lista de tokens
-        while self.position < len(self.cadena):
+        while True:
             # Obtenemos el etsado actual
             nuevo_estado = self.pila[-1]
             if isinstance(nuevo_estado, mi_token.Token):
@@ -92,7 +92,9 @@ class Syntax:
             if isinstance(nuevo_estado, mi_token.Estado):
                 nuevo_estado = nuevo_estado.estado
             # Obtemso el token actual
-            token = self.cadena[self.position]
+            
+            if self.imprimir:
+                print("Token actual: ", token)
             # Obtenemos la accion a tomar y su argumento
             accion, argumento = self.ACCION(nuevo_estado, token.tipo)
 
@@ -109,7 +111,7 @@ class Syntax:
                         semantic.semantic.analizar(gestor_TS=self.gestor_TS, numero_regla=argumento, regla_izquierda= regla_izquierda, pila = self.pila, imprimir = self.imprimir)
                     except Exception as e:
                         
-                        raise Exception(str(e) + "\n" + "Error en el caracter: " + str(self.position) + ". Token erroneo: " + str(token.valor))
+                        raise Exception(str(e) + "\n" + "[-] Error en la linea " +  str(mi_lexer.get_linea())) # Imprimir linea
 
                     for _ in range(2*len(regla.derecha)):
                         self.pila.pop()
@@ -125,8 +127,7 @@ class Syntax:
                     self.pila.append(token)
                     # Apilamos el nuevo estado a la pila
                     self.pila.append(argumento)
-                    # Avanzamos en la cadena de entrada
-                    self.position += 1
+                    token = mi_lexer.get_token()
 
                 case self.EXITO:
                     # Analisis sintactico correcto
@@ -140,13 +141,12 @@ class Syntax:
                     # Estado inválido
                     # Imprimimos estado actual
                     if self.imprimir:
-                        self.print_estado()
+                        print("Pila: ", self.pila)
+                        # print("Cadena por leer: ", source_code[mi_lexer.position:])
                     with open(FILE, "w") as f:
                        f.write(texto_archivo + "\n")
-                    raise Exception(f"[-] Error en la posición {self.position} de la cadena de entrada. Token erroneo: {self.cadena[self.position]}")
-        if self.imprimir:
-            self.print_estado()
-            raise(Exception("[-] Error desconocido"))
+                    raise Exception(f"[-] Error Sintáctico en la linea {mi_lexer.get_linea()} de la cadena de entrada. No se esperaba \'{token.valor}\'")
+
    
                 
 

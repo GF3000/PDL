@@ -19,24 +19,13 @@ def analizar(nombre_archivo):
 
     print("\nANALISIS\n----------\n")
 
-    #Se crea el objeto lexer
-    tokens_lenguaje = tokens.Tokens.get_tokens()
-    mi_lexer = lexer.Lexer(tokens_lenguaje)
-    #Se analiza el código fuente
-    try:
-        tokens_analizados, gestor_TS = mi_lexer.analizar(codigo)
-    except Exception as e:
-        print(e)
-        return False
-  
-    #Se crea el objeto syntax
+   
     tabla_GOTO = tablas.Tabla_GOTO.get_tabla_GOTO()
     tabla_ACCION = tablas.Tabla_ACCION.get_tabla_ACCION()
-
+    reglas = tablas.Reglas.get_reglas()
+    mi_syntax = syntax.Syntax(tabla_GOTO, tabla_ACCION, reglas, imprimir =True, gestor_TS=tabladesimbolos.gestorTablas())
     try:
-        reglas = tablas.Reglas.get_reglas()
-        mi_syntax = syntax.Syntax(tabla_GOTO, tabla_ACCION, reglas, imprimir =True, gestor_TS=tabladesimbolos.gestorTablas())
-        exito = mi_syntax.analizar(tokens_analizados)
+        exito = mi_syntax.analizar(nombre_archivo)
     except Exception as e:
         print(e)
         exito = False

@@ -57,7 +57,7 @@ class Tabla_ACCION:
 1: {'EOF': [EXITO, None]},
 2: {'autodecremento': [DESPLAZA, 102],'if': [DESPLAZA, 5], 'let': [DESPLAZA, 47], 'for': [DESPLAZA, 7], 'id': [DESPLAZA, 8], 'put': [DESPLAZA, 9], 'get': [DESPLAZA, 10], 'return': [DESPLAZA, 11], 'function': [DESPLAZA, 14], 'EOF': [REDUCE, 3]},
 3: {'autodecremento': [DESPLAZA, 102],'if': [DESPLAZA, 5], 'let': [DESPLAZA, 47], 'for': [DESPLAZA, 7], 'id': [DESPLAZA, 8], 'put': [DESPLAZA, 9], 'get': [DESPLAZA, 10], 'return': [DESPLAZA, 11], 'function': [DESPLAZA, 14], 'EOF': [REDUCE, 3]},
-4: {'if': [REDUCE, 5], 'let': [REDUCE, 5], 'for': [REDUCE, 5], 'id': [REDUCE, 5], 'put': [REDUCE, 5], 'get': [REDUCE, 5], 'return': [REDUCE, 5], 'llavecerrada': [REDUCE, 5], 'function': [REDUCE, 5], 'EOF': [REDUCE, 5]},
+4: {'if': [REDUCE, 5], 'let': [REDUCE, 5], 'for': [REDUCE, 5], 'id': [REDUCE, 5], 'put': [REDUCE, 5], 'get': [REDUCE, 5], 'return': [REDUCE, 5], 'llavecerrada': [REDUCE, 5], 'function': [REDUCE, 5], 'EOF': [REDUCE, 5], "autodecremento": [REDUCE, 5]},
 5: {'parentesisabierto': [DESPLAZA, 16]},
 6: {'int': [DESPLAZA, 49], 'boolean': [DESPLAZA, 51], 'string': [DESPLAZA, 50]},
 7: {'parentesisabierto': [DESPLAZA, 53]},
@@ -101,7 +101,7 @@ class Tabla_ACCION:
 45: {'id': [DESPLAZA, 23], 'negacion': [DESPLAZA, 19], 'entero': [DESPLAZA, 26], 'cadena': [DESPLAZA, 27], 'true': [DESPLAZA, 28], 'false': [DESPLAZA, 29], 'autodecremento': [DESPLAZA, 25], 'parentesisabierto': [DESPLAZA, 24]},
 46: {'puntoycoma': [DESPLAZA, 48]},
 47: {'id': [DESPLAZA, 6]},
-48: {'if': [REDUCE, 6], 'let': [REDUCE, 6], 'for': [REDUCE, 6], 'id': [REDUCE, 6], 'put': [REDUCE, 6], 'get': [REDUCE, 6], 'return': [REDUCE, 6], 'llavecerrada': [REDUCE, 6], 'function': [REDUCE, 6], 'EOF': [REDUCE, 6]},
+48: {'if': [REDUCE, 6], 'let': [REDUCE, 6], 'for': [REDUCE, 6], 'id': [REDUCE, 6], 'put': [REDUCE, 6], 'get': [REDUCE, 6], 'return': [REDUCE, 6], 'llavecerrada': [REDUCE, 6], 'function': [REDUCE, 6], 'EOF': [REDUCE, 6], "autodecremento": [REDUCE, 6]},
 49: {'id': [REDUCE , 10], 'puntoycoma': [REDUCE, 10], 'parentesisabierto': [REDUCE, 10], 'EOF': [REDUCE, 10]},
 50: {'id': [REDUCE , 12], 'puntoycoma': [REDUCE, 12], 'parentesisabierto': [REDUCE, 12], 'EOF': [REDUCE, 12]},
 51: {'id': [REDUCE , 11], 'puntoycoma': [REDUCE, 11], 'parentesisabierto': [REDUCE, 11], 'EOF': [REDUCE, 11]},
@@ -132,8 +132,8 @@ class Tabla_ACCION:
 76: {'llavecerrada': [DESPLAZA, 77]},
 77: {'if': [REDUCE, 38], 'let': [REDUCE, 38], 'for': [REDUCE, 38], 'id': [REDUCE, 38], 'put': [REDUCE, 38], 'get': [REDUCE, 38], 'return': [REDUCE, 38], 'function': [REDUCE, 38], 'EOF': [REDUCE, 38]},
 78: {'llavecerrada': [REDUCE, 48]},
-79: {'int': [DESPLAZA, 49], 'boolean': [DESPLAZA, 50], 'string': [DESPLAZA, 51],'void': [DESPLAZA, 106]},
-80: {'int': [DESPLAZA, 49], 'boolean': [DESPLAZA, 50], 'string': [DESPLAZA, 51], 'void': [DESPLAZA, 86]},
+79: {'int': [DESPLAZA, 49], 'boolean': [DESPLAZA, 51], 'string': [DESPLAZA, 50],'void': [DESPLAZA, 106]},
+80: {'int': [DESPLAZA, 49], 'boolean': [DESPLAZA, 51], 'string': [DESPLAZA, 50], 'void': [DESPLAZA, 86]},
 81: {'parentesiscerrado': [DESPLAZA, 82]},
 82: {'llaveabierta': [REDUCE, 39]},
 83: {'id': [DESPLAZA, 84]},
@@ -142,7 +142,7 @@ class Tabla_ACCION:
 86: {'parentesisabierto': [REDUCE, 42]},
 87: {'parentesisabierto': [REDUCE, 41]},
 88: {'parentesiscerrado': [REDUCE, 44]},
-89: {'int': [DESPLAZA, 49], 'boolean': [DESPLAZA, 50], 'string': [DESPLAZA, 51]},
+89: {'int': [DESPLAZA, 49], 'boolean': [DESPLAZA, 51], 'string': [DESPLAZA, 50]},
 90: {'id': [DESPLAZA, 91]},
 91: {'coma': [DESPLAZA, 89], 'parentesiscerrado': [REDUCE, 47]},
 92: {'parentesiscerrado': [REDUCE, 46]},
@@ -151,9 +151,9 @@ class Tabla_ACCION:
 95: {'parentesiscerrado': [DESPLAZA, 96]},
 96: {'menor': [REDUCE, 28], 'suma': [REDUCE, 28], 'coma': [REDUCE, 28], 'puntoycoma': [REDUCE, 28], 'parentesiscerrado': [REDUCE, 28], 'EOF': [REDUCE, 28]},
 97: {'puntoycoma': [DESPLAZA, 99]},
-98: {'if': [REDUCE, 15], 'let': [REDUCE, 15], 'for': [REDUCE, 15], 'id': [REDUCE, 15], 'put': [REDUCE, 15], 'get': [REDUCE, 15], 'return': [REDUCE, 15], 'llavecerrada': [REDUCE, 15], 'function': [REDUCE, 15], 'EOF': [REDUCE, 15]},
-99: {'if': [REDUCE, 13], 'let': [REDUCE, 13], 'for': [REDUCE, 13], 'id': [REDUCE, 13], 'put': [REDUCE, 13], 'get': [REDUCE, 13], 'return': [REDUCE, 13], 'llavecerrada': [REDUCE, 13], 'function': [REDUCE, 13], 'EOF': [REDUCE, 13]},
-100: {'if': [REDUCE, 16], 'let': [REDUCE, 16], 'for': [REDUCE, 16], 'id': [REDUCE, 16], 'put': [REDUCE, 16], 'get': [REDUCE, 16], 'return': [REDUCE, 16], 'llavecerrada': [REDUCE, 16], 'function': [REDUCE, 16], 'EOF': [REDUCE, 16]},
+98: {'if': [REDUCE, 15], 'let': [REDUCE, 15], 'for': [REDUCE, 15], 'id': [REDUCE, 15], 'put': [REDUCE, 15], 'get': [REDUCE, 15], 'return': [REDUCE, 15], 'llavecerrada': [REDUCE, 15], 'function': [REDUCE, 15], 'EOF': [REDUCE, 15], "autodecremento": [REDUCE, 15]},
+99: {'if': [REDUCE, 13], 'let': [REDUCE, 13], 'for': [REDUCE, 13], 'id': [REDUCE, 13], 'put': [REDUCE, 13], 'get': [REDUCE, 13], 'return': [REDUCE, 13], 'llavecerrada': [REDUCE, 13], 'function': [REDUCE, 13], 'EOF': [REDUCE, 13], "autodecremento": [REDUCE, 13]},
+100: {'if': [REDUCE, 16], 'let': [REDUCE, 16], 'for': [REDUCE, 16], 'id': [REDUCE, 16], 'put': [REDUCE, 16], 'get': [REDUCE, 16], 'return': [REDUCE, 16], 'llavecerrada': [REDUCE, 16], 'function': [REDUCE, 16], 'EOF': [REDUCE, 16], "autodecremento": [REDUCE, 16]},
 101: {'menor': [REDUCE, 9], 'suma': [REDUCE, 9], 'coma': [REDUCE, 9], 'puntoycoma': [REDUCE, 9], 'parentesiscerrado': [REDUCE, 9], 'EOF': [REDUCE, 9]},
 102: {'id': [DESPLAZA, 103]},
 103: {'puntoycoma': [DESPLAZA, 104]},
@@ -190,8 +190,8 @@ class Reglas:
     8: REGLA( 'Y', ['id', 'asignacion', 'E']),
     9: REGLA( 'D', ['Y']),
     10: REGLA( 'T', ['int']),
-    11: REGLA( 'T', ['string']),
-    12: REGLA( 'T', ['boolean']),
+    11: REGLA( 'T', ['boolean']),
+    12: REGLA( 'T', ['string']),
     13: REGLA( 'S', ['id', 'asignacion', 'E', 'puntoycoma']),
     14: REGLA( 'S', ['id', 'parentesisabierto', 'L', 'parentesiscerrado', 'puntoycoma']),
     15: REGLA( 'S', ['put', 'E', 'puntoycoma']),
@@ -222,7 +222,7 @@ class Reglas:
     40: REGLA( 'F2', ['function', 'id', 'H']),
     41: REGLA( 'H', ['T']),
     42: REGLA( 'H', ['void']),
-    43: REGLA( 'H', []),
+    # Elimnamos regla 43
     44: REGLA( 'A', ['T', 'id', 'K']),
     45: REGLA( 'A', ['void']),
     46: REGLA( 'K', ['coma', 'T', 'id', 'K']),
@@ -340,7 +340,7 @@ class AccionesSemanticas:
     def asignacion_booleana(gestorTS, pila, regla_izquierda):
         regla_izquierda.tipo = "boolean"
     
-    def asignacion_cadema(gestorTS, pila, regla_izquierda):
+    def asignacion_cadena(gestorTS, pila, regla_izquierda):
         regla_izquierda.tipo = "cadena"
 
     def menor_que(gestorTS, pila, regla_izquierda):
@@ -351,7 +351,7 @@ class AccionesSemanticas:
                 regla_izquierda.tipo = "boolean"
             else:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: no coinciden los tipos de la comparacion")
+                raise Exception("Error semantico: los elementos de la comparacion deben ser enteros")
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
@@ -549,7 +549,7 @@ class AccionesSemanticas:
             tabla = gestorTS.getActual()
             E = pila[-4]
             Q = pila[-2]
-            if (E.tipo in ["entero", "cadena", "boolean"]) and (Q.tipo == None or Q.tipo == "ok"):
+            if (E.tipo in ["entero", "cadena", "boolean"]):
                 if Q.tipo == None:
                     regla_izquierda.tipo = [E.tipo]
                 else:
@@ -575,14 +575,28 @@ class AccionesSemanticas:
         try:
             id = pila[-10]
             L = pila[-6]
-            if (L.tipo == "ok") and gestorTS.buscar(id.valor)[0].tipo == "function":
-                regla_izquierda.tipo = gestorTS.buscar(id.valor)[0].tipoRetorno
-                # regla_izquierda.tipo = "ok"
-
-            
-
-            elif (L.tipo == None) and gestorTS.buscar(id.valor)[0].numParam == 0:
-                regla_izquierda.tipo = "ok"
+            entrada_funcion = gestorTS.buscar(id.valor)[0]
+            if  entrada_funcion.tipo == "function":
+                #1 La funcion no requiere argumentos
+                if entrada_funcion.numParam == 0 and L.tipo == None:
+                    regla_izquierda.tipo = "ok"
+                #2 La funcion no requiere argumentos y se los pasan
+                elif entrada_funcion.numParam == 0 and L.tipo != None:
+                    regla_izquierda.tipo = "error"
+                    raise Exception("Error semantico: la funcion no requiere argumentos")
+                #3 La funcion requiere argumentos y se los pasan
+                elif entrada_funcion.numParam != 0 and L.tipo != None:
+                    #Miramos si los tipos de L coinciden con los de la funcion
+                    if entrada_funcion.tipoParam == L.tipo:
+                        regla_izquierda.tipo = "ok"
+                    else:
+                        regla_izquierda.tipo = "error"
+                        raise Exception("Error semantico: los tipos de los argumentos no coinciden con los de la funcion")
+                #4 La funcion requiere argumentos y no se los pasan
+                else:
+                    regla_izquierda.tipo = "error"
+                    raise Exception("Error semantico: la funcion requiere argumentos")
+        
             else:
                 regla_izquierda.tipo = "error"
                 raise Exception("Error semantico: la funcion no existe")
@@ -626,6 +640,51 @@ class AccionesSemanticas:
         #     regla_izquierda.tipo = "error"
         #     raise e
     
+    def put(gestorTS, pila, regla_izquierda):
+        E = pila[-4]
+        if E.tipo == "cadena" or E.tipo == "entero":
+            regla_izquierda.tipo = "ok"
+        else:
+            regla_izquierda.tipo = "error"
+            raise Exception("Error semantico: el put es diferente a cadena o entero")
+
+    def get(gestorTS, pila, regla_izquierda):
+        E = pila[-4]
+        if E.tipo == "cadena" or E.tipo == "entero":
+            regla_izquierda.tipo = "ok"
+        else:
+            regla_izquierda.tipo = "error"
+            raise Exception("Error semantico: el get es diferente a cadena o entero")
+    
+    def negacion(gestorTS, pila, regla_izquierda):
+        try:
+            V = pila[-2]
+            if V.tipo == "boolean":
+                regla_izquierda.tipo = "boolean"
+            else:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: la negacion no es booleana")
+        except Exception as e:
+            regla_izquierda.tipo = "error"
+            raise e
+    def autodecremento_solitario(gestorTS, pila, regla_izquierda):
+        try:
+            id = pila[-4]
+            #1 Comprobar que id existe
+            if gestorTS.buscar(id.valor) == None:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: la variable no existe")
+            #2 Comprobar que id es entero
+            if gestorTS.buscar(id.valor)[0].tipo == "entero":
+                regla_izquierda.tipo = "ok"
+            else:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: Se está intentando autodecrementar una variable no entera")
+        except Exception as e:
+            regla_izquierda.tipo = "error"
+            raise e
+        
+    
     diccionario_acciones_semanticas = {
         0: inicio,
         1: vacio,
@@ -638,25 +697,26 @@ class AccionesSemanticas:
         8: dar_valor_variable_sin_puntoycoma,
         9: asignacion,
         10: asignacion_entera,
-        11: asignacion_cadema,
-        12: asignacion_booleana,
+        11: asignacion_booleana,
+        12: asignacion_cadena,
         13: dar_valor_variable_con_puntoycoma,
         14: fin_llamada_funcion,
-
+        15: put,
+        16: get,   
         17: return_val,
         18: asignacion,
         19: vacio,
         20: asignacion,
         21: menor_que,
-
+        22: negacion,
         23: asignacion,
         24: suma,
         25: asignacion,
-
+        26: asignacion,
         27: asignacion_id,
         29:fin_llamada_funcion_sin_puntoycoma,
         30: asignacion_entera,
-        31: asignacion_cadema,
+        31: asignacion_cadena,
         32: asignacion_booleana,
         33: asignacion_booleana,
         34: autodecremento,
@@ -668,14 +728,15 @@ class AccionesSemanticas:
         40: declaracion_funcion,
         41: asignacion,
         42: asignacion_void,
-
-        44:argumento_funcion,
-        45:tipo_void,
+        # No hay regla 43
+        44: argumento_funcion,
+        45: tipo_void,
         46: siguiente_argumento,
         47: vacio,
         48: comprobar_error_dos_simbolos,
         49: fin_cuerpo_funcion,
-
+        50: autodecremento_solitario,
+        51: asignacion,
         52: vacio
     }
     def get_accion(accion):

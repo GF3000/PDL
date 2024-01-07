@@ -1,47 +1,185 @@
-< id, >
+< let, >
+< id, 0 >
 < int, >
 < puntoycoma, >
-< let, >
-< id, >
+< function, >
+< id, 1 >
 < int, >
+< parentesisabierto, >
+< void, >
+< parentesiscerrado, >
+< llaveabierta, >
+< return, >
+< entero, >
 < puntoycoma, >
-< let, >
-< id, >
-< string, >
-< puntoycoma, >
-< let, >
-< id, >
-< string, >
-< puntoycoma, >
-< id, >
-< asignacion, >
-< entero, 4 >
-< puntoycoma, >
-< id, >
-< asignacion, >
-< entero, 2 >
-< puntoycoma, >
+< llavecerrada, >
 < autodecremento, >
-< id, >
+< id, 0 >
 < puntoycoma, >
-< id, >
-< asignacion, >
-< cadena, 'hola' >
-< puntoycoma, >
-< id, >
-< asignacion, >
-< cadena, 'dos' >
+< id, 1 >
+< parentesisabierto, >
+< parentesiscerrado, >
 < puntoycoma, >
 < if, >
 < parentesisabierto, >
-< id, >
+< id, 0 >
 < menor, >
-< id, >
+< entero, >
 < parentesiscerrado, >
-< put, >
-< id, >
+< autodecremento, >
+< id, 0 >
+< puntoycoma, >
+< id, 0 >
+< asignacion, >
+< entero, >
+< puntoycoma, >
+< if, >
+< parentesisabierto, >
+< true, >
+< parentesiscerrado, >
+< id, 0 >
+< asignacion, >
+< entero, >
+< puntoycoma, >
+< for, >
+< parentesisabierto, >
+< id, 1 >
+< asignacion, >
+< entero, >
+< puntoycoma, >
+< id, 1 >
+< menor, >
+< entero, >
+< puntoycoma, >
+< id, 1 >
+< asignacion, >
+< id, 1 >
+< suma, >
+< entero, >
+< parentesiscerrado, >
+< llaveabierta, >
+< id, 0 >
+< asignacion, >
+< id, 0 >
+< suma, >
+< entero, >
+< puntoycoma, >
+< llavecerrada, >
+< autodecremento, >
+< id, 0 >
+< puntoycoma, >
+< function, >
+< id, 2 >
+< int, >
+< parentesisabierto, >
+< int, >
+< id, 65 >
+< coma, >
+< int, >
+< id, 64 >
+< coma, >
+< string, >
+< id, 0 >
+< parentesiscerrado, >
+< llaveabierta, >
+< id, 0 >
+< asignacion, >
+< id, 65 >
+< suma, >
+< entero, >
+< puntoycoma, >
+< if, >
+< parentesisabierto, >
+< id, 0 >
+< menor, >
+< entero, >
+< parentesiscerrado, >
+< id, 0 >
+< asignacion, >
+< id, 0 >
+< suma, >
+< entero, >
+< puntoycoma, >
+< for, >
+< parentesisabierto, >
+< id, 1 >
+< asignacion, >
+< entero, >
+< puntoycoma, >
+< id, 1 >
+< menor, >
+< entero, >
+< puntoycoma, >
+< id, 1 >
+< asignacion, >
+< id, 1 >
+< suma, >
+< entero, >
+< parentesiscerrado, >
+< llaveabierta, >
+< id, 64 >
+< asignacion, >
+< id, 2 >
+< parentesisabierto, >
+< id, 0 >
+< coma, >
+< id, 0 >
+< coma, >
+< id, 0 >
+< parentesiscerrado, >
+< puntoycoma, >
+< llavecerrada, >
+< return, >
+< id, 64 >
+< puntoycoma, >
+< llavecerrada, >
+< let, >
+< id, 2 >
+< int, >
+< puntoycoma, >
+< let, >
+< id, 3 >
+< int, >
+< puntoycoma, >
+< let, >
+< id, 4 >
+< string, >
+< puntoycoma, >
+< id, 2 >
+< parentesisabierto, >
+< id, 2 >
+< coma, >
+< id, 3 >
+< coma, >
+< id, 4 >
+< parentesiscerrado, >
 < puntoycoma, >
 < autodecremento, >
-< id, >
+< id, 2 >
 < puntoycoma, >
+< if, >
+< parentesisabierto, >
+< true, >
+< parentesiscerrado, >
+< autodecremento, >
+< id, 0 >
+< puntoycoma, >
+< for, >
+< parentesisabierto, >
+< id, 1 >
+< asignacion, >
+< entero, >
+< puntoycoma, >
+< id, 1 >
+< menor, >
+< entero, >
+< puntoycoma, >
+< autodecremento, >
+< id, 1 >
+< parentesiscerrado, >
+< llaveabierta, >
+< autodecremento, >
+< id, 0 >
+< puntoycoma, >
+< llavecerrada, >
 < EOF, >

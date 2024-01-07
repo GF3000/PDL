@@ -246,10 +246,11 @@ class AccionesSemanticas:
         pass
         
     def fin(gestorTS, pila, regla_izquierda):
-        f = open("outputs/tablas.txt", "w")
+        f = open("tablas.txt", "w")
         f.write(str(gestorTS))
         print(gestorTS)
         f.close()
+        
     
     def asignacion(gestorTS, pila, regla_izquierda):
         regla_izquierda.tipo = pila[-2].tipo

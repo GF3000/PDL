@@ -2,13 +2,40 @@ Tabla Global #1:
 * LEXEMA : 'a'
 	+ tipo : 'entero'
 	+ desplazamiento : 0
-* LEXEMA : 'b'
+* LEXEMA : 'prueba'
+	+ tipo : 'function'
+	+ numParam : 0
+	+ tipoRetorno : 'entero'
+* LEXEMA : 'i'
 	+ tipo : 'entero'
 	+ desplazamiento : 1
-* LEXEMA : 'cad1'
-	+ tipo : 'cadena'
+* LEXEMA : 'incrementar'
+	+ tipo : 'function'
+	+ numParam : 3
+	+ tipoParam0 : 'entero'
+	+ tipoParam1 : 'entero'
+	+ tipoParam2 : 'cadena'
+	+ tipoRetorno : 'entero'
+* LEXEMA : 'a1'
+	+ tipo : 'entero'
 	+ desplazamiento : 2
-* LEXEMA : 'cad2'
+* LEXEMA : 'a2'
+	+ tipo : 'entero'
+	+ desplazamiento : 3
+* LEXEMA : 'a3'
 	+ tipo : 'cadena'
-	+ desplazamiento : 66
+	+ desplazamiento : 4
+
+Tabla prueba #2:
+
+Tabla incrementar #3:
+* LEXEMA : 'nombre'
+	+ tipo : 'cadena'
+	+ desplazamiento : 0
+* LEXEMA : 'retorno'
+	+ tipo : 'entero'
+	+ desplazamiento : 64
+* LEXEMA : 'recepcion'
+	+ tipo : 'entero'
+	+ desplazamiento : 65
 

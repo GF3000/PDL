@@ -51,7 +51,7 @@ def analizar_gui(nombre_archivo):
 
 def main():
 
-    exito = analizar_pruebas("casosPruebaTxt/casoPrueba2.txt")
+    exito = analizar_pruebas("anexo/OK_3.txt")
     print("[+] El analisis ha finalizado con exito" if  exito else "[-] El analisis ha finalizado con errores")
 
 if __name__ == "__main__":

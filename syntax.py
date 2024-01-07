@@ -35,6 +35,7 @@ class Syntax:
         self.cadena = ""
         self.imprimir = imprimir
         self.gestor_TS = gestor_TS
+        self.lista_tokens = []
 
 
     def GOTO(self, estado, simbolo):
@@ -136,17 +137,29 @@ class Syntax:
                     self.pila.append(token)
                     # Apilamos el nuevo estado a la pila
                     self.pila.append(argumento)
+                    token.atributo = self.gestor_TS.buscar(token.valor)
+                    self.lista_tokens.append(token)
                     token = mi_lexer.get_token()
-                    with open(FILE_TOKENS, "a") as f:
-                        f.write(str(token) + "\n")
 
                 case self.EXITO:
                     # Analisis sintactico correcto
-                    print("[+] Cadena aceptada")
+                    if self.imprimir:
+                        print("[+] Cadena aceptada")
+                    
+                    #Añadimos el último token a la lista de tokens
+                    self.lista_tokens.append(token)
                     with open(FILE_PARSE, "w") as f:
                         f.write(texto_archivo + "\n")
                     with open(FILE_TABLES, "w") as f:
                         f.write(str(self.gestor_TS))
+                    for token in self.lista_tokens:
+                        if token.tipo == "id":
+                            token.atributo = self.gestor_TS.buscar_en_todas(token.valor)[0].desplazamiento
+                    with open(FILE_TOKENS, "w") as f:
+                        for token in self.lista_tokens:
+                            f.write(str(token) + "\n")
+                        
+
                     return True
                 
                 # Default

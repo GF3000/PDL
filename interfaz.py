@@ -74,7 +74,7 @@ def abrir_archivo(ruta):
 
 # Crear la ventana principal
 ventana = tk.Tk()
-ventana.title("Analizador de Archivos")
+ventana.title("Analizador Sintáctico Ascendente LR(1)")
 
 # Fila 1: Seleccionar Archivo y Analizar
 label_archivo = ttk.Label(ventana, text="Archivo:")

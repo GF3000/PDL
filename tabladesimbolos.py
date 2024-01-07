@@ -95,6 +95,7 @@ class gestorTablas:
         self.tablaActual = 1
     
     def buscar(self, lexema):
+        # Busca primero en la tabla actual, si no lo encuentra, busca en la global
         if self.tablaActual == 1:
             return self.tablas[0].get(lexema)
         else:
@@ -102,6 +103,14 @@ class gestorTablas:
                 return self.tablas[self.tablaActual - 1].get(lexema)
             else:
                 return self.tablas[0].get(lexema)
+        
+    def buscar_en_todas(self, lexema):
+        # Busca en todas las tablas
+        # Se usa para encontrar el desplazamiento de un token en la TS
+        for tabla in self.tablas:
+            if tabla.get(lexema):
+                return tabla.get(lexema)
+        return None
 
 
     

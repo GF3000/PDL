@@ -246,10 +246,11 @@ class AccionesSemanticas:
         pass
         
     def fin(gestorTS, pila, regla_izquierda):
-        f = open("tablas.txt", "w")
-        f.write(str(gestorTS))
-        print(gestorTS)
-        f.close()
+        # f = open("tablas.txt", "w")
+        # f.write(str(gestorTS))
+        # print(gestorTS)
+        # f.close()
+        pass
         
     
     def asignacion(gestorTS, pila, regla_izquierda):

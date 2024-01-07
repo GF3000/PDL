@@ -1,0 +1,17 @@
+let a int       ;
+let              b int;
+
+let cad1            string ;
+
+let
+        cad2
+        string ;
+a = 4;
+b = 2;
+--b;
+cad1 = 'hola';
+cad2 = 'dos';
+//esto es un comentario
+
+if (a < b) put cad1;
+--a;

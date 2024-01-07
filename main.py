@@ -48,7 +48,7 @@ def analizar(nombre_archivo):
 
 def main():
 
-    exito = analizar("casosPruebaTxt/testPruebas.txt")
+    exito = analizar("anexo/OK_2.txt")
     print("[+] El analisis ha finalizado con exito" if  exito else "[-] El analisis ha finalizado con errores")
 
 if __name__ == "__main__":

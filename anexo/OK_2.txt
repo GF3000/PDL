@@ -1,0 +1,26 @@
+let var1 boolean ;
+let a  int ;
+let b int ;
+a = 0;
+b = 3;
+var1 = true;
+var2 = false;
+if (var1) var1 = var2;
+for( t = 0; true; --t) {}
+--b;
+
+function suma int(int a, int b) {
+	a = a + b;
+    return a;
+}
+function reduceVar int(int a)
+{
+	--a;
+    return a;
+}
+
+--b;
+
+
+function negacion void (boolean var) { 
+     }

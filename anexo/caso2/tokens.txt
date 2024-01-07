@@ -1,0 +1,28 @@
+[< let, >, < id, 0 >, < int, >, < asignacion, >, < entero, 0 >, < puntoycoma, >, < let, >, < id, 1 >, < int, >, < asignacion, >, < entero, 0 >, < puntoycoma, >, < put, >, < parentesisabierto, >, < id, 0 >, < parentesiscerrado, >, < id, 2 >, < parentesisabierto, >, < cadena, 'Introduce el primer operando' >, < parentesiscerrado, >, < puntoycoma, >, < let, >, < id, 3 >, < int, >, < puntoycoma, >, < id, 2 >, < parentesisabierto, >, < cadena, 'Introduce el segundo operando' >, < parentesiscerrado, >, < puntoycoma, >, < get, >, < parentesisabierto, >, < id, 1 >, < parentesiscerrado, >, < puntoycoma, >, < function, >, < id, 4 >, < int, >, < parentesisabierto, >, < int, >, < id, 5 >, < coma, >, < int, >, < id, 6 >, < parentesiscerrado, >, < llaveabierta, >, < return, >, < id, 5 >, < suma, >, < id, 6 >, < puntoycoma, >, < llavecerrada, >, < id, 3 >, < asignacion, >, < id, 4 >, < parentesisabierto, >, < id, 0 >, < coma, >, < id, 1 >, < parentesiscerrado, >, < puntoycoma, >, < let, >, < id, 7 >, < int, >, < asignacion, >, < entero, 0 >, < puntoycoma, >, < id, 2 >, < parentesisabierto, >, < id, 3 >, < parentesiscerrado, >, < puntoycoma, >, < EOF, >]
+Tabla #1:
+* LEXEMA : 'x'
+	+ tipo : 'None'
+	+ desplazamiento : 0
+* LEXEMA : 'y'
+	+ tipo : 'None'
+	+ desplazamiento : 0
+* LEXEMA : 'print'
+	+ tipo : 'None'
+	+ desplazamiento : 0
+* LEXEMA : 'res'
+	+ tipo : 'None'
+	+ desplazamiento : 0
+* LEXEMA : 'suma'
+	+ tipo : 'None'
+	+ desplazamiento : 0
+* LEXEMA : 'num_1'
+	+ tipo : 'None'
+	+ desplazamiento : 0
+* LEXEMA : 'num_2'
+	+ tipo : 'None'
+	+ desplazamiento : 0
+* LEXEMA : 'w'
+	+ tipo : 'None'
+	+ desplazamiento : 0
+
+

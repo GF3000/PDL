@@ -1,5 +1,6 @@
 import tabladesimbolos
 
+
 #Constantes
 class Constantes:
     REDUCE = 0
@@ -35,7 +36,7 @@ class Tabla_GOTO:
 65: {'B': 65,'S': 4,'C': 78, 'D1': 105},
 66: {'E': 97,'R': 18,'U': 20,'V': 21,'D': 22,'Y': 101},
 67: {'E': 43,'R': 18,'U': 20,'V': 21,'D': 22,'L': 68,'Y': 101},
-75: {'B': 65,'C': 76, 'D1': 105},
+75: {'B': 65,'C': 76, 'D1': 105, 'S': 4},
 79: {'T': 83,'A': 81},
 80: {'T': 87,'H': 85},
 84: {'K': 88},
@@ -101,9 +102,9 @@ class Tabla_ACCION:
 46: {'puntoycoma': [DESPLAZA, 48]},
 47: {'id': [DESPLAZA, 6]},
 48: {'if': [REDUCE, 6], 'let': [REDUCE, 6], 'for': [REDUCE, 6], 'id': [REDUCE, 6], 'put': [REDUCE, 6], 'get': [REDUCE, 6], 'return': [REDUCE, 6], 'llavecerrada': [REDUCE, 6], 'function': [REDUCE, 6], 'EOF': [REDUCE, 6]},
-49: {'puntoycoma': [REDUCE, 10], 'parentesisabierto': [REDUCE, 10], 'EOF': [REDUCE, 10]},
-50: {'puntoycoma': [REDUCE, 12], 'parentesisabierto': [REDUCE, 12], 'EOF': [REDUCE, 12]},
-51: {'puntoycoma': [REDUCE, 11], 'parentesisabierto': [REDUCE, 11], 'EOF': [REDUCE, 11]},
+49: {'id': [REDUCE , 10], 'puntoycoma': [REDUCE, 10], 'parentesisabierto': [REDUCE, 10], 'EOF': [REDUCE, 10]},
+50: {'id': [REDUCE , 12], 'puntoycoma': [REDUCE, 12], 'parentesisabierto': [REDUCE, 12], 'EOF': [REDUCE, 12]},
+51: {'id': [REDUCE , 11], 'puntoycoma': [REDUCE, 11], 'parentesisabierto': [REDUCE, 11], 'EOF': [REDUCE, 11]},
 52: {'asignacion': [DESPLAZA, 54]},
 53: {'id': [DESPLAZA, 52]},
 54: {'id': [DESPLAZA, 23], 'negacion': [DESPLAZA, 19], 'entero': [DESPLAZA, 26], 'cadena': [DESPLAZA, 27], 'true': [DESPLAZA, 28], 'false': [DESPLAZA, 29], 'autodecremento': [DESPLAZA, 25], 'parentesisabierto': [DESPLAZA, 24]},
@@ -188,8 +189,8 @@ class Reglas:
     8: REGLA( 'Y', ['id', 'asignacion', 'E']),
     9: REGLA( 'D', ['Y']),
     10: REGLA( 'T', ['int']),
-    11: REGLA( 'T', ['boolean']),
-    12: REGLA( 'T', ['string']),
+    11: REGLA( 'T', ['string']),
+    12: REGLA( 'T', ['boolean']),
     13: REGLA( 'S', ['id', 'asignacion', 'E', 'puntoycoma']),
     14: REGLA( 'S', ['id', 'parentesisabierto', 'L', 'parentesiscerrado', 'puntoycoma']),
     15: REGLA( 'S', ['put', 'E', 'puntoycoma']),
@@ -235,6 +236,7 @@ class Reglas:
         return Reglas.reglas
 
 class AccionesSemanticas:
+
     def inicio(gestorTS, pila):
         pass
 
@@ -250,7 +252,6 @@ class AccionesSemanticas:
     def asignacion(gestorTS, pila, regla_izquierda):
         regla_izquierda.tipo = pila[-2].tipo
         
-    
     def asignacion_entera(gestorTS, pila, regla_izquierda):
         regla_izquierda.tipo = "entero"
     
@@ -259,10 +260,13 @@ class AccionesSemanticas:
             tabla = gestorTS.getActual()
             token = pila[-6]
 
+            if tabla.get(token.valor) == None:
+                tabla.add(tabladesimbolos.entradaTS(token.valor))
+
             tabla.get(token.valor)[0].tipo = pila[-4].tipo
 
             regla_izquierda.tipo = "ok"
-            print (pila)
+    
         except:
             regla_izquierda.tipo = "error"
             raise Exception("Error semantico: el identificador " + token.lexema + " ya estaba declarada")
@@ -273,11 +277,13 @@ class AccionesSemanticas:
             tabla = gestorTS.getActual()
             E = pila[-4]
             id = pila[-8]
-            if tabla.get(id.valor)[0].tipo == E.tipo: #Cambio de valor
+            if gestorTS.buscar(id.valor) == None:
+                tabla.add(tabladesimbolos.entradaTS(id.valor))
+            if gestorTS.buscar(id.valor)[0].tipo == E.tipo: #Cambio de valor
             
                 regla_izquierda.tipo = "ok"
-            elif tabla.get(id.valor)[0].tipo == None and E.tipo in ["entero", "cadena", "boolean"]: #Primera declaracion
-                tabla.get(id.valor)[0].tipo = E.tipo
+            elif gestorTS.buscar(id.valor)[0].tipo == None and E.tipo in ["entero", "cadena", "boolean"]: #Primera declaracion
+                gestorTS.buscar(id.valor)[0].tipo = E.tipo
                 regla_izquierda.tipo = "ok"
             else:
                 regla_izquierda.tipo = "error"
@@ -290,11 +296,15 @@ class AccionesSemanticas:
         try:
             tabla = gestorTS.getActual()
             E = pila[-2]
-            if tabla.get(pila[-6].valor)[0].tipo == E.tipo: #Cambio de valor
+            token = pila[-6]
+            if gestorTS.buscar(token.valor) == None:
+                tabla.add(tabladesimbolos.entradaTS(token.valor))
+
+            if gestorTS.buscar(token.valor)[0].tipo == E.tipo: #Cambio de valor
             
                 regla_izquierda.tipo = "ok"
-            elif tabla.get(pila[-6].valor)[0].tipo == None and E.tipo in ["entero", "cadena", "boolean"]: #Primera declaracion
-                tabla.get(pila[-6].valor)[0].tipo = E.tipo
+            elif gestorTS.buscar(token.valor)[0].tipo == None and E.tipo in ["entero", "cadena", "boolean"]: #Primera declaracion
+                gestorTS.buscar(token.valor)[0].tipo = E.tipo
                 regla_izquierda.tipo = "ok"
             else:
                 regla_izquierda.tipo = "error"
@@ -306,9 +316,8 @@ class AccionesSemanticas:
     
     def asignacion_id(gestorTS, pila, regla_izquierda):
         try:
-            tabla = gestorTS.getActual()
             id = pila[-2]
-            regla_izquierda.tipo = tabla.get(id.valor)[0].tipo
+            regla_izquierda.tipo = gestorTS.buscar(id.valor)[0].tipo
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
@@ -328,6 +337,9 @@ class AccionesSemanticas:
     
     def asignacion_booleana(gestorTS, pila, regla_izquierda):
         regla_izquierda.tipo = "boolean"
+    
+    def asignacion_cadema(gestorTS, pila, regla_izquierda):
+        regla_izquierda.tipo = "cadena"
 
     def menor_que(gestorTS, pila, regla_izquierda):
         try:
@@ -376,11 +388,20 @@ class AccionesSemanticas:
             B = pila[-4]
             if C.tipo == "error" or B.tipo == "error":
                 regla_izquierda.tipo = "error"
-            else:
-                regla_izquierda.tipo = "ok"
-        except:
+            elif C.tipo == "ok" and B.tipo == "ok":
+                regla_izquierda.tipo = "ok" #Entendemos por ok si no hay return (void)
+            elif C.tipo in ["entero", "cadena", "boolean"] and B.tipo in ["entero", "cadena", "boolean"]:
+                raise Exception("Error semantico: hay varios returns")
+            elif C.tipo == "ok" and B.tipo in ["entero", "cadena", "boolean"]:
+                regla_izquierda.tipo = B.tipo
+            elif C.tipo in ["entero", "cadena", "boolean"] and B.tipo == "ok":
+                regla_izquierda.tipo = C.tipo
+    
+
+        except Exception as e:
             regla_izquierda.tipo = "error"
-            raise Exception("Error semantico desconocido")
+            raise e
+            
     def bloque_for(gestorTS, pila, regla_izquierda):
         try:
             C = pila [-4]
@@ -402,22 +423,44 @@ class AccionesSemanticas:
     def declaracion_funcion(gestorTS, pila, regla_izquierda):
         try:
             # TODO: Asegurarse de que no este tb en la TS Global
-            tabla_local = gestorTS.add()
-            tabla_local.add(tabladesimbolos.entradaTS(pila[-4].valor, tipo =  pila[-6].tipo, tipoRetorno = pila[-2].tipo))
-
+            gestorTS.getGlobal().add(tabladesimbolos.entradaTS(pila[-4].valor, tipo =  pila[-6].tipo, tipoRetorno = pila[-2].tipo, numParam=0, tipoParam=[]))
+            gestorTS.add(pila[-4].valor)
+            regla_izquierda.tipo = pila[-2].tipo
+        except Exception as e:
+            regla_izquierda.tipo = "error"
+            raise e
+    def creacion_funcion(gestorTS, pila, regla_izquierda):
+        try:
+            A = pila[-4]
+            F2 = pila[-8]
+            if A.tipo == "ok" and F2.tipo in ["entero", "boolean", "cadena", "void"]:
+                regla_izquierda.tipo = "ok"
+            else:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: la funcion tiene errores")
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
         
-    def asignacion_id_triple(gestorTS, pila, regla_izquierda):
+
+        
+    def argumento_funcion(gestorTS, pila, regla_izquierda):
         try:
             tabla = gestorTS.getActual()
-            k = pila[-2]
+            K = pila[-2]
             T = pila[-6]
             id = pila[-4]
-            if tabla.get(id.valor)[0].tipo == None:
-                tabla.add(tabladesimbolos.entradaTS(id.valor, tipo = T.tipo))
 
+            if tabla.get(id.valor) == None:
+                tabla.add(tabladesimbolos.entradaTS(id.valor))
+            else:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: variable ya declarada")
+
+            if (tabla.get(id.valor)[0].tipo == None and T.tipo in ["entero", "cadena", "boolean"]):
+                tabla.get(id.valor)[0].tipo = T.tipo
+                gestorTS.getGlobal().getUltimaEntrada().numParam += 1
+                gestorTS.getGlobal().getUltimaEntrada().tipoParam.insert(0, T.tipo)
                 regla_izquierda.tipo = "ok"
             else:
                 regla_izquierda.tipo = "error"
@@ -425,7 +468,108 @@ class AccionesSemanticas:
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
+    
+    def fin_funcion(gestorTS, pila, regla_izquierda):
+        try:
+            C = pila[-4]
+            F1 = pila[-8]
+            nombre_funcion = gestorTS.getActual().nombre
+            tipo_retorno = gestorTS.getGlobal().get(nombre_funcion)[0].tipoRetorno
+            tipo_retorno = "ok" if C.tipo == "void" else tipo_retorno
+            if  F1.tipo == "ok":
+                if tipo_retorno == C.tipo:
+                    regla_izquierda.tipo = "ok"
+                    gestorTS.cambiarGlobal()
+                    tabla = gestorTS.getActual()
+                elif C.tipo == "ok":
+                    regla_izquierda.tipo = "error"
+                    raise Exception("Error semantico: la funcion requiere retorno y no hay retorno")
+                else:
+                    regla_izquierda.tipo = "error"
+                    raise Exception("Error semantico: la funcion tiene errores")
+                    
+            else:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: la funcion tiene errores en su cabecera")
+        except Exception as e:
+            regla_izquierda.tipo = "error"
+            raise e
+    def siguiente_argumento(gestorTS, pila, regla_izquierda):
+        try:
+            tabla = gestorTS.getActual()
+            K = pila[-2]
+            id = pila[-4]
+            T = pila[-6]
 
+            if tabla.get(id.valor) == None:
+                tabla.add(tabladesimbolos.entradaTS(id.valor))
+            else:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: variable ya declarada")
+            
+
+
+            if (tabla.get(id.valor)[0].tipo == None and T.tipo in ["entero", "cadena", "boolean"]):
+                tabla.get(id.valor)[0].tipo = T.tipo
+                gestorTS.getGlobal().getUltimaEntrada().numParam += 1
+                gestorTS.getGlobal().getUltimaEntrada().tipoParam.insert(0, T.tipo)
+                regla_izquierda.tipo = "ok"
+            else:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: variable ya declarada")
+        except Exception as e:
+            regla_izquierda.tipo = "error"
+            raise e
+        
+    def llamar_funcion_muchos_argumentos(gestorTS, pila, regla_izquierda):
+        try:
+            tabla = gestorTS.getActual()
+            E = pila[-4]
+            Q = pila[-2]
+            if (E.tipo in ["entero", "cadena", "boolean"]) and (Q.tipo == None or Q.tipo == "ok"):
+                regla_izquierda.tipo = "ok"
+        except Exception as e:
+            regla_izquierda.tipo = "error"
+            raise e
+    
+    def llamar_funcion_final_argumentos(gestorTS, pila, regla_izquierda):
+        try:
+            tabla = gestorTS.getActual()
+            E = pila[-4]
+            Q = pila[-2]
+            if E.tipo == "void" and Q.tipo == None:
+                regla_izquierda.tipo = "ok"
+            else:
+                AccionesSemanticas.llamar_funcion_muchos_argumentos(gestorTS, pila, regla_izquierda)
+        except Exception as e:
+            regla_izquierda.tipo = "error"
+            raise e
+    def fin_llamada_funcion(gestorTS, pila, regla_izquierda):
+        try:
+            id = pila[-10]
+            L = pila[-6]
+            if (L.tipo == "ok") and gestorTS.buscar(id.valor)[0].tipo == "function":
+                regla_izquierda.tipo = gestorTS.buscar(id.valor)[0].tipoRetorno
+                # regla_izquierda.tipo = "ok"
+            else:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: la funcion no existe")
+        except Exception as e:
+            regla_izquierda.tipo = "error"
+            raise e
+    def fin_llamada_funcion_sin_puntoycoma(gestorTS, pila, regla_izquierda):
+        try:
+            id = pila[-8]
+            L = pila[-4]
+            if (L.tipo == "ok") and gestorTS.buscar(id.valor)[0].tipo == "function":
+                regla_izquierda.tipo = gestorTS.buscar(id.valor)[0].tipoRetorno
+            else:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: la funcion no existe")
+        except Exception as e:
+            regla_izquierda.tipo = "error"
+            raise e
+        
     
     diccionario_acciones_semanticas = {
         0: inicio,
@@ -439,8 +583,12 @@ class AccionesSemanticas:
         8: dar_valor_variable_sin_puntoycoma,
         9: asignacion,
         10: asignacion_entera,
-
+        11: asignacion_cadema,
+        12: asignacion_booleana,
         13: dar_valor_variable_con_puntoycoma,
+        14: fin_llamada_funcion,
+
+        18: asignacion,
 
         20: asignacion,
         21: menor_que,
@@ -450,21 +598,25 @@ class AccionesSemanticas:
         25: asignacion,
 
         27: asignacion_id,
-
+        29:fin_llamada_funcion_sin_puntoycoma,
         30: asignacion_entera,
-
+        31: asignacion_cadema,
         32: asignacion_booleana,
         33: asignacion_booleana,
         34: autodecremento,
-
+        35: llamar_funcion_final_argumentos,
+        36: llamar_funcion_muchos_argumentos,
+        37: vacio,
+        38: fin_funcion,
+        39: creacion_funcion,
         40: declaracion_funcion,
-
+        41: asignacion,
         42: asignacion_void,
 
-        44:asignacion_id_triple,
+        44:argumento_funcion,
 
-
-        47: asignacion,
+        46: siguiente_argumento,
+        47: vacio,
         48: comprobar_error_dos_simbolos,
         49: asignacion,
     }

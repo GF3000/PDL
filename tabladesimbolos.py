@@ -14,9 +14,9 @@ class entradaTS:
         devolucion += f"\t+ tipo : \'{self.tipo}\'\n"
         if self.tipo != "function":
             devolucion += f"\t+ desplazamiento : {self.desplazamiento}\n"
-        if self.numParam:
+        if self.numParam != None:
             devolucion += f"\t+ numParam : {self.numParam}\n"
-        if self.tipoParam:
+        if self.tipoParam != None:
             for i in range(len(self.tipoParam)):
                 devolucion += f"\t+ tipoParam{i} : \'{self.tipoParam[i]}\'\n"
         if self.tipoRetorno:
@@ -29,12 +29,13 @@ class entradaTS:
         
 
 class tabladesimbolos:
-    def __init__(self, numero,  entradas = None) -> None:
+    def __init__(self, nombre, numero,  entradas = None) -> None:
+        self.nombre = nombre
         self.numero = numero
         self.entradas = entradas if entradas else []
     def __str__(self) -> str:
         devolucion = ""
-        devolucion += f"Tabla #{self.numero}:\n"
+        devolucion += f"Tabla {self.nombre} #{self.numero}:\n"
         for entrada in self.entradas:
             devolucion += str(entrada)
         return devolucion
@@ -50,7 +51,7 @@ class tabladesimbolos:
                 return entrada, self.entradas.index(entrada)
         return None
     def getHueco(self):
-        if not self.entradas:
+        if len(self.entradas) == 0:
             return 0
         tipo = self.entradas[-1].tipo
         if tipo == "entero":
@@ -63,11 +64,13 @@ class tabladesimbolos:
             return self.entradas[-1].desplazamiento + 0
         else:
             return self.entradas[-1].desplazamiento + 0
+    def getUltimaEntrada(self):
+        return self.entradas[-1]
 
 class gestorTablas:
     def __init__(self) -> None:
         self.tablas = []
-        self.tablas.append(tabladesimbolos(1))
+        self.tablas.append(tabladesimbolos("Global", 1))
         self.tablaActual = 1
     def __str__(self) -> str:
         devolucion = ""
@@ -76,8 +79,8 @@ class gestorTablas:
             devolucion += "\n"
         return devolucion
     
-    def add(self):
-        tabla = tabladesimbolos(len(self.tablas) + 1)
+    def add(self, nombre = None):
+        tabla = tabladesimbolos(nombre, len(self.tablas) + 1)
         self.tablas.append(tabla)
         self.tablaActual = len(self.tablas)
         return tabla
@@ -90,6 +93,16 @@ class gestorTablas:
     
     def cambiarGlobal(self):
         self.tablaActual = 1
+    
+    def buscar(self, lexema):
+        if self.tablaActual == 1:
+            return self.tablas[0].get(lexema)
+        else:
+            if self.tablas[self.tablaActual - 1].get(lexema):
+                return self.tablas[self.tablaActual - 1].get(lexema)
+            else:
+                return self.tablas[0].get(lexema)
+
 
     
 

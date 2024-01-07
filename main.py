@@ -3,6 +3,7 @@ import lexer
 import tokens
 import syntax
 import tablas
+import tabladesimbolos
 
 
 def analizar(nombre_archivo):
@@ -34,7 +35,7 @@ def analizar(nombre_archivo):
 
     try:
         reglas = tablas.Reglas.get_reglas()
-        mi_syntax = syntax.Syntax(tabla_GOTO, tabla_ACCION, reglas, imprimir =False, gestor_TS=gestor_TS)
+        mi_syntax = syntax.Syntax(tabla_GOTO, tabla_ACCION, reglas, imprimir =True, gestor_TS=tabladesimbolos.gestorTablas())
         exito = mi_syntax.analizar(tokens_analizados)
     except Exception as e:
         print(e)

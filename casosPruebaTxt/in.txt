@@ -9,3 +9,20 @@ if (true)
 for (i = 10; i < 10; i = i + 1){
     a = a + 1;
 }
+
+function incrementar int (int recepcion, int retorno, string nombre){
+    a = recepcion + 1;
+    if (a < 0)
+        a = a + 1;
+
+    for (i = 10; i < 10; i = i + 1){
+        retorno = incrementar(a, a, nombre);
+    }
+
+    return retorno;
+    
+}
+
+
+
+

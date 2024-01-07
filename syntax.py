@@ -108,7 +108,8 @@ class Syntax:
                     try:
                         semantic.semantic.analizar(gestor_TS=self.gestor_TS, numero_regla=argumento, regla_izquierda= regla_izquierda, pila = self.pila, imprimir = self.imprimir)
                     except Exception as e:
-                        raise(e)
+                        
+                        raise Exception(str(e) + "\n" + "Error en el caracter: " + str(self.position) + ". Token erroneo: " + str(token.valor))
 
                     for _ in range(2*len(regla.derecha)):
                         self.pila.pop()

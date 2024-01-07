@@ -1,8 +1,26 @@
-Tabla #1:
+Tabla Global #1:
 * LEXEMA : 'a'
 	+ tipo : 'entero'
 	+ desplazamiento : 0
 * LEXEMA : 'i'
 	+ tipo : 'entero'
+	+ desplazamiento : 1
+* LEXEMA : 'incrementar'
+	+ tipo : 'function'
+	+ numParam : 3
+	+ tipoParam0 : 'entero'
+	+ tipoParam1 : 'entero'
+	+ tipoParam2 : 'cadena'
+	+ tipoRetorno : 'entero'
+
+Tabla incrementar #2:
+* LEXEMA : 'nombre'
+	+ tipo : 'cadena'
 	+ desplazamiento : 0
+* LEXEMA : 'retorno'
+	+ tipo : 'entero'
+	+ desplazamiento : 64
+* LEXEMA : 'recepcion'
+	+ tipo : 'entero'
+	+ desplazamiento : 65
 

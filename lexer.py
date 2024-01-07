@@ -13,7 +13,7 @@ class Lexer:
         self.position = 0
         self.desplazamiento = -1
         self.token_list = []
-        self.gestor_tabla_simbolos = tabladesimbolos.gestorTablas()
+        # self.gestor_tabla_simbolos = tabladesimbolos.gestorTablas()
         self.totalNumTablas = 1
         self.tablaActual = 0
         self.nombreUltFuncion = "" 
@@ -53,13 +53,13 @@ class Lexer:
 
                         if tipo == 'entero': #Si es un entero, lo convertimos a int
                             atributo = int(valor)
-                        elif tipo == 'id': #Si es un identificador, lo añadimos a la tabla de simbolos
-                            # comprobar si esta ya en la TS, si no esta, lo añadimos
-                            if (self.gestor_tabla_simbolos.getGlobal().get(valor) == None):
-                                posicion = self.gestor_tabla_simbolos.getGlobal().add(tabladesimbolos.entradaTS(valor)) # el lexer solo tiene que añadir los lexemas, el an. sem, añade el resto de atributos
-                                atributo = posicion
-                            else:
-                                atributo = self.gestor_tabla_simbolos.getGlobal().get(valor)[1]
+                        # elif tipo == 'id': #Si es un identificador, lo añadimos a la tabla de simbolos
+                        #     # comprobar si esta ya en la TS, si no esta, lo añadimos
+                        #     if (self.gestor_tabla_simbolos.getGlobal().get(valor) == None):
+                        #         posicion = self.gestor_tabla_simbolos.getGlobal().add(tabladesimbolos.entradaTS(valor)) # el lexer solo tiene que añadir los lexemas, el an. sem, añade el resto de atributos
+                        #         atributo = posicion
+                        #     else:
+                        #         atributo = self.gestor_tabla_simbolos.getGlobal().get(valor)[1]
                         elif tipo == 'cadena': #Si es una cadena, el atributo es el valor de la cadena
                             atributo = valor
 

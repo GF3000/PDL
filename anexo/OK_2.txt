@@ -6,7 +6,7 @@ b = 3;
 var1 = true;
 var2 = false;
 if (var1) var1 = var2;
-for( t = 0; true; --t) {}
+for( t = 0; true; --t) {var1 = !var2; }
 --b;
 
 function suma int(int a, int b) {
@@ -23,4 +23,4 @@ function reduceVar int(int a)
 
 
 function negacion void (boolean var) { 
-     }
+    var1 = !var; }

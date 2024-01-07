@@ -1,0 +1,46 @@
+let a int;
+
+
+function prueba int (void) {
+    return 3;
+}
+--a;
+
+
+
+prueba();
+if(a < 0) --a;
+a = 2;
+
+if (true)
+    a = 1;
+
+for (i = 10; i < 10; i = i + 1){
+    a = a + 1;
+}
+--a;
+
+function incrementar int (int recepcion, int retorno, string nombre){
+    a = recepcion + 1;
+    if (a < 0)
+        a = a + 1;
+
+    for (i = 10; i < 10; i = i + 1)
+    {
+        retorno = incrementar(a, a, nombre);
+    }
+    return retorno;
+    
+}
+let a1 int;
+let a2 int;
+let a3 string;
+incrementar(a1, a2, a3);
+--a1;
+
+if (true)
+    --a;
+
+for (i = 0; i < 10; --i){
+    --a;
+}

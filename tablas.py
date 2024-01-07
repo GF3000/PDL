@@ -123,7 +123,7 @@ class Tabla_ACCION:
 67: {'parentesiscerrado': [REDUCE, 52],'id': [DESPLAZA, 23], 'negacion': [DESPLAZA, 19], 'entero': [DESPLAZA, 26], 'cadena': [DESPLAZA, 27], 'true': [DESPLAZA, 28], 'false': [DESPLAZA, 29], 'autodecremento': [DESPLAZA, 25], 'parentesisabierto': [DESPLAZA, 24]},
 68: {'parentesiscerrado': [DESPLAZA, 69]},
 69: {'puntoycoma': [DESPLAZA, 70]},
-70: {'if': [REDUCE, 14], 'let': [REDUCE, 14], 'for': [REDUCE, 14], 'id': [REDUCE, 14], 'put': [REDUCE, 14], 'get': [REDUCE, 14], 'return': [REDUCE, 14], 'llavecerrada': [REDUCE, 14], 'function': [REDUCE, 14], 'EOF': [REDUCE, 14]},
+70: {'autodecremento': [REDUCE, 14],'if': [REDUCE, 14], 'let': [REDUCE, 14], 'for': [REDUCE, 14], 'id': [REDUCE, 14], 'put': [REDUCE, 14], 'get': [REDUCE, 14], 'return': [REDUCE, 14], 'llavecerrada': [REDUCE, 14], 'function': [REDUCE, 14], 'EOF': [REDUCE, 14]},
 71: {'puntoycoma': [DESPLAZA, 98]},
 72: {'puntoycoma': [DESPLAZA, 100]},
 73: {'puntoycoma': [DESPLAZA, 32]},
@@ -607,11 +607,34 @@ class AccionesSemanticas:
         try:
             id = pila[-8]
             L = pila[-4]
-            if (L.tipo == "ok") and gestorTS.buscar(id.valor)[0].tipo == "function":
-                regla_izquierda.tipo = gestorTS.buscar(id.valor)[0].tipoRetorno
-            else:
-                regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: la funcion no existe")
+            # if (L.tipo == "ok") and gestorTS.buscar(id.valor)[0].tipo == "function":
+            #     regla_izquierda.tipo = gestorTS.buscar(id.valor)[0].tipoRetorno
+            # else:
+            #     regla_izquierda.tipo = "error"
+            #     raise Exception("Error semantico: la funcion no existe")
+            entrada_funcion = gestorTS.buscar(id.valor)[0]
+            if  entrada_funcion.tipo == "function":
+                #1 La funcion no requiere argumentos
+                if entrada_funcion.numParam == 0 and L.tipo == None:
+                    regla_izquierda.tipo = "ok"
+                #2 La funcion no requiere argumentos y se los pasan
+                elif entrada_funcion.numParam == 0 and L.tipo != None:
+                    regla_izquierda.tipo = "error"
+                    raise Exception("Error semantico: la funcion no requiere argumentos")
+                #3 La funcion requiere argumentos y se los pasan
+                elif entrada_funcion.numParam != 0 and L.tipo != None:
+                    #Miramos si los tipos de L coinciden con los de la funcion
+                    if entrada_funcion.tipoParam == L.tipo:
+                        # regla_izquierda.tipo = "ok"
+                        regla_izquierda.tipo = entrada_funcion.tipoRetorno
+                    else:
+                        regla_izquierda.tipo = "error"
+                        raise Exception("Error semantico: los tipos de los argumentos no coinciden con los de la funcion")
+                #4 La funcion requiere argumentos y no se los pasan
+                else:
+                    regla_izquierda.tipo = "error"
+                    raise Exception("Error semantico: la funcion requiere argumentos")
+        
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e

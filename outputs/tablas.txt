@@ -1,51 +1,41 @@
 Tabla Global #1:
-* LEXEMA : 'var1'
-	+ tipo : 'boolean'
-	+ desplazamiento : 0
 * LEXEMA : 'a'
 	+ tipo : 'entero'
-	+ desplazamiento : 1
-* LEXEMA : 'b'
-	+ tipo : 'entero'
-	+ desplazamiento : 2
-* LEXEMA : 'var2'
-	+ tipo : 'boolean'
-	+ desplazamiento : 3
-* LEXEMA : 't'
-	+ tipo : 'entero'
-	+ desplazamiento : 4
-* LEXEMA : 'suma'
+	+ desplazamiento : 0
+* LEXEMA : 'prueba'
 	+ tipo : 'function'
-	+ numParam : 2
+	+ numParam : 0
+	+ tipoRetorno : 'entero'
+* LEXEMA : 'i'
+	+ tipo : 'entero'
+	+ desplazamiento : 1
+* LEXEMA : 'incrementar'
+	+ tipo : 'function'
+	+ numParam : 3
 	+ tipoParam0 : 'entero'
 	+ tipoParam1 : 'entero'
+	+ tipoParam2 : 'cadena'
 	+ tipoRetorno : 'entero'
-* LEXEMA : 'reduceVar'
-	+ tipo : 'function'
-	+ numParam : 1
-	+ tipoParam0 : 'entero'
-	+ tipoRetorno : 'entero'
-* LEXEMA : 'negacion'
-	+ tipo : 'function'
-	+ numParam : 1
-	+ tipoParam0 : 'boolean'
-	+ tipoRetorno : 'void'
-
-Tabla suma #2:
-* LEXEMA : 'b'
+* LEXEMA : 'a1'
 	+ tipo : 'entero'
-	+ desplazamiento : 0
-* LEXEMA : 'a'
+	+ desplazamiento : 2
+* LEXEMA : 'a2'
 	+ tipo : 'entero'
-	+ desplazamiento : 1
+	+ desplazamiento : 3
+* LEXEMA : 'a3'
+	+ tipo : 'cadena'
+	+ desplazamiento : 4
 
-Tabla reduceVar #3:
-* LEXEMA : 'a'
+Tabla prueba #2:
+
+Tabla incrementar #3:
+* LEXEMA : 'nombre'
+	+ tipo : 'cadena'
+	+ desplazamiento : 0
+* LEXEMA : 'retorno'
 	+ tipo : 'entero'
-	+ desplazamiento : 0
-
-Tabla negacion #4:
-* LEXEMA : 'var'
-	+ tipo : 'boolean'
-	+ desplazamiento : 0
+	+ desplazamiento : 64
+* LEXEMA : 'recepcion'
+	+ tipo : 'entero'
+	+ desplazamiento : 65
 

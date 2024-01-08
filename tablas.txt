@@ -1,5 +1,5 @@
 Tabla Global #1:
-* LEXEMA : 'a'
+* LEXEMA : 't'
 	+ tipo : 'entero'
 	+ desplazamiento : 0
 

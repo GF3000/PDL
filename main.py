@@ -39,7 +39,7 @@ def analizar_gui(nombre_archivo):
     tabla_GOTO = tablas.Tabla_GOTO.get_tabla_GOTO()
     tabla_ACCION = tablas.Tabla_ACCION.get_tabla_ACCION()
     reglas = tablas.Reglas.get_reglas()
-    mi_syntax = syntax.Syntax(tabla_GOTO, tabla_ACCION, reglas, imprimir =False, gestor_TS=tabladesimbolos.gestorTablas())
+    mi_syntax = syntax.Syntax(tabla_GOTO, tabla_ACCION, reglas, imprimir =True, gestor_TS=tabladesimbolos.gestorTablas())
 
     try:
         exito = mi_syntax.analizar(nombre_archivo)

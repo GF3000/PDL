@@ -1,3 +1,43 @@
 let a int;
 --a;
 --a;
+//suma (a); //error de la funcion no existe
+var = false;
+
+//for( t = 0; 4 + 5  ; --t) 
+//{
+    put a;
+//}
+
+
+
+
+
+let b int;
+b = 17;
+if (var) var = !var;
+
+for( t = 0; t < 4  ; --t) 
+{
+    put 'hola ';
+    }
+--b;
+
+function suma int(int a, int b) {
+	a = a + b;
+    return a;
+}
+a = suma(b, 4);
+//b = suma(a);
+
+function hola void(int a, int b) {
+	a = a + b;
+    //return a;
+}
+function prueba void(int a, int b) {
+	a = a + b;
+}
+let  n boolean;
+n = 0;
+
+b = 3;

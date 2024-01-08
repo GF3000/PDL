@@ -88,7 +88,7 @@ ventana.title("Analizador Sintáctico Ascendente LR(1)")
 label_archivo = ttk.Label(ventana, text="Archivo:")
 label_archivo.grid(row=0, column=0, padx=5, pady=5)
 
-entry_archivo = ttk.Entry(ventana, width=40, state="readonly")
+entry_archivo = ttk.Entry(ventana, width=60, state="readonly")
 entry_archivo.grid(row=0, column=1, padx=5, pady=5)
 
 boton_seleccionar = ttk.Button(ventana, text="Abrir Archivo", command=seleccionar_archivo)
@@ -98,24 +98,21 @@ boton_analizar = ttk.Button(ventana, text="Analizar", command=analizar_archivo, 
 boton_analizar.grid(row=0, column=3, padx=5, pady=5)
 
 # Fila 2: Caja de Texto
-label_resultado = ttk.Label(ventana, text="Resultado:")
-label_resultado.grid(row=1, column=0, padx=5, pady=5)
-
 caja_texto = tk.Text(ventana, height=7, width=75, state="disabled")
-caja_texto.grid(row=1, column=1, columnspan=3, padx=5, pady=5)
+caja_texto.grid(row=1, column=0, columnspan=4, padx=5, pady=5)
 
 # Fila 3: Ver Árbol y Ver Tokens
 boton_ver_codigo = ttk.Button(ventana, text="Ver Código", command=ver_codigo, state="disabled")
-boton_ver_codigo.grid(row=2, column=0,columnspan=1,  padx=5, pady=5)
+boton_ver_codigo.grid(row=2, column=0,columnspan=1,  padx=10, pady=5, sticky="we")
 
 boton_ver_arbol = ttk.Button(ventana, text="Ver Árbol", command=ver_arbol, state="disabled")
-boton_ver_arbol.grid(row=2, column=1,columnspan=1,  padx=5, pady=5)
+boton_ver_arbol.grid(row=2, column=1,columnspan=1,  padx=5, pady=5, sticky="e")
 
 boton_ver_tokens = ttk.Button(ventana, text="Ver Tokens", command=ver_tokens, state="disabled")
-boton_ver_tokens.grid(row=2, column=2,columnspan=1,  padx=5, pady=5)
+boton_ver_tokens.grid(row=2, column=2,columnspan=1,  padx=5, pady=5, sticky="we")
 
 boton_ver_tablas = ttk.Button(ventana, text="Ver Tablas", command=ver_tablas, state="disabled")
-boton_ver_tablas.grid(row=2, column=3,columnspan=1,  padx=5, pady=5)
+boton_ver_tablas.grid(row=2, column=3,columnspan=1,  padx=5, pady=5, sticky="we")
 
 
 

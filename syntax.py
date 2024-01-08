@@ -13,6 +13,8 @@ DESCRIPTORES = tablas.Constantes.DESCRIPTORES
 FILE_PARSE = "parse.txt"
 FILE_TABLES = "tablas.txt"
 FILE_TOKENS = "tokens.txt"
+FILE_ERRORS = "errores.txt"
+CABECER_ARCHIVO = "ascendente "
 
 
 class Syntax:
@@ -81,14 +83,30 @@ class Syntax:
         f = open(file, "r")
         source_code = f.read()
         self.pila = [0]
-        # print(f"\nAnalizando cadena: {cadena}\n")
-        texto_archivo = "ascendente "
-        tokens_leguaje = tokens.Tokens.tokens
-        mi_lexer = lexer.Lexer(tokens=tokens_leguaje, source_code=source_code)
-        token = mi_lexer.get_token()
         
+        # Borramos los archivos de salida
         with open(FILE_TOKENS, "w") as f:
             f.write("")
+        with open(FILE_PARSE, "w") as f:
+            f.write("")
+        with open(FILE_TABLES, "w") as f:
+            f.write("")
+        with open(FILE_ERRORS, "w") as f:
+            f.write("")
+
+        hay_error = False
+        texto_archivo = CABECER_ARCHIVO + " "
+
+        
+        tokens_leguaje = tokens.Tokens.tokens
+        mi_lexer = lexer.Lexer(tokens=tokens_leguaje, source_code=source_code)
+        try:
+            token = mi_lexer.get_token()
+        except Exception as e:
+            hay_error = True
+            with open(FILE_ERRORS, "a") as f:
+                f.write(str(e) + "\n")
+            
         #Analiza la cadena de entrada y devuelve la lista de tokens
         while True:
             # Obtenemos el etsado actual
@@ -120,8 +138,9 @@ class Syntax:
                     try:
                         semantic.semantic.analizar(gestor_TS=self.gestor_TS, numero_regla=argumento, regla_izquierda= regla_izquierda, pila = self.pila, imprimir = self.imprimir)
                     except Exception as e:
-                        
-                        raise Exception(str(e) + "\n" + "[-] Error en la linea " +  str(mi_lexer.get_linea())) # Imprimir linea
+                        hay_error = True
+                        with open(FILE_ERRORS, "a") as f:
+                            f.write("[-] " + str(e) + ". Error en la linea " +  str(mi_lexer.get_linea()) + "\n") # Imprimir linea
 
                     for _ in range(2*len(regla.derecha)):
                         self.pila.pop()
@@ -139,7 +158,12 @@ class Syntax:
                     self.pila.append(argumento)
                     token.atributo = self.gestor_TS.buscar(token.valor)
                     self.lista_tokens.append(token)
-                    token = mi_lexer.get_token()
+                    try:
+                        token = mi_lexer.get_token()
+                    except Exception as e:
+                        hay_error = True
+                        with open(FILE_ERRORS, "a") as f:
+                            f.write(str(e) + "\n")
 
                 case self.EXITO:
                     # Analisis sintactico correcto
@@ -160,7 +184,7 @@ class Syntax:
                             f.write(str(token) + "\n")
                         
 
-                    return True
+                    return not hay_error
                 
                 # Default
                 case _: 
@@ -171,8 +195,14 @@ class Syntax:
                         print("Cadena por leer: ", source_code[mi_lexer.position:])
                     with open(FILE_PARSE, "w") as f:
                        f.write(texto_archivo + "\n")
-                    raise Exception(f"[-] Error Sintáctico en la linea {mi_lexer.get_linea()} de la cadena de entrada. No se esperaba \'{token.valor}\'")
-
+                    hay_error = True
+                    with open(FILE_ERRORS, "a") as f:
+                        f.write(f"[-] Error Sintactico en la linea {mi_lexer.get_linea()} de la cadena de entrada. No se esperaba \'{token.valor}\'\n")
+                    try:
+                        token = mi_lexer.get_token()
+                    except Exception as e:
+                        with open(FILE_ERRORS, "a") as f:
+                            f.write(str(e) + "\n")
    
                 
 

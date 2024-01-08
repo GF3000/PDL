@@ -78,15 +78,16 @@ class Lexer:
                         self.position = position
                         return self.get_token()
                         
-                    
-            raise Exception(f'[-] Error léxico: Caracter no reconocido: \'{source_code[position]}\' en la linea {self.get_linea()}')
+            
+            self.position = position +1
+            raise Exception(f'[-] Error Lexico: Caracter no reconocido: \'{source_code[position]}\' en la linea {self.get_linea()}')
      
                 
        
 if __name__ == "__main__":
     #Archivo a analizar
-    file = "casosPruebaTxt/casoPrueba2.txt"
-    #Abrimos el archivo
+    file = "in.txt"
+    #Abrimos el archivos
     f = open(file, "r")
     source_code = f.read()
 
@@ -108,7 +109,6 @@ if __name__ == "__main__":
         print("END TOKENS")
     except Exception as e:
         print(e)
-        exit(1)
     
 
     

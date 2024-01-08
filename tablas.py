@@ -361,7 +361,10 @@ class AccionesSemanticas:
         try:
             tabla = gestorTS.getActual()
             id = pila[-2]
-            if tabla.get(id.valor)[0].tipo == "entero":
+            if tabla.get(id.valor) == None:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: la variable no esta declarada")
+            elif tabla.get(id.valor)[0].tipo == "entero":
                 regla_izquierda.tipo = "entero"
             else:
                 regla_izquierda.tipo = "error"
@@ -414,14 +417,23 @@ class AccionesSemanticas:
             D = pila[-10]
             E = pila[-14]
             Y = pila[-18]
-            if Y.tipo != "error" and E.tipo == "boolean" and D.tipo != "error" and C.tipo == "ok":
+            if Y.tipo != "ok":
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: la inicializacion del for no es correcta")
+            elif E.tipo != "boolean":
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: la condicion del for no es booleana")
+            elif D.tipo != "entero" and D.tipo != "ok":
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: la actualizacion del for no es correcta")
+            elif Y.tipo != "error" and E.tipo == "boolean" and D.tipo != "error" and C.tipo == "ok":
                 regla_izquierda.tipo = "ok"
             else:
                 regla_izquierda.tipo = "error"
                 raise Exception("Error semantico: el for tiene errores")
-        except:
+        except Exception as e:
             regla_izquierda.tipo = "error"
-            raise Exception("Error semantico desconocido")
+            raise e
         
     def asignacion_void(gestorTS, pila, regla_izquierda):
         regla_izquierda.tipo = "void"
@@ -653,17 +665,6 @@ class AccionesSemanticas:
             raise e
     def fin_cuerpo_funcion(gestorTS, pila, regla_izquierda):
        regla_izquierda.tipo = "ok"
-    #TODO: implement
-        # try:
-        #     C = pila[-4]
-        #     if C.tipo == "ok":
-        #         regla_izquierda.tipo = "ok"
-        #     else:
-        #         regla_izquierda.tipo = "error"
-        #         raise Exception("Error semantico: la funcion tiene errores")
-        # except Exception as e:
-        #     regla_izquierda.tipo = "error"
-        #     raise e
     
     def put(gestorTS, pila, regla_izquierda):
         E = pila[-4]

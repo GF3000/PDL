@@ -764,7 +764,7 @@ class AccionesSemanticas:
         46: siguiente_argumento,
         47: vacio,
         48: comprobar_error_dos_simbolos,
-        49: vacio,
+        49: fin_cuerpo_funcion,
         50: autodecremento_solitario,
         51: asignacion,
         52: vacio

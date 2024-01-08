@@ -1,0 +1,23 @@
+let a int;
+a = 4;
+
+function valorA int (void) {
+    return a;
+}
+
+let b int;
+b = 6;
+
+if (b < a) a = b;
+
+a = a + b + 
+
+b +
+ a
+ ;
+
+let cad string;
+ get cad;
+
+ put a;
+ put cad;

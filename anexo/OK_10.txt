@@ -1,0 +1,18 @@
+var = false;
+
+let b int;
+b = 17;
+if (var) var = !var;
+
+for( t = 0; t < 4  ; --t) 
+{
+    put 'hola ';
+    }
+--b;
+
+function suma int(int a, int b) {
+	a = a + b;
+    return a;
+}
+a = suma(b, 4);
+b = suma(var);

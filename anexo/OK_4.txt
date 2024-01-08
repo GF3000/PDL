@@ -1,4 +1,24 @@
+let n int;
+let var boolean;
+var = true;
 
+for (i = 0; i < n; i = i + 1) {
+    c = --i;
+    if (!var) --c;
+    put 'hola';
+    get n;
+}
+
+function imprime void (int i, boolean v) {
+    if(v) return;
+    for (i = 0; i < n; --i) { put 'hello';}
+}
+function prueba2 void (void) {
+    let i int;
+    v = true;
+    imprime(i,v);
+    prueba2();
+}
 
 
 

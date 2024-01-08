@@ -1,0 +1,8 @@
+let a int;
+
+let              b
+                             int;
+
+a = a + 1;
+if (a < 0) put a;
+"

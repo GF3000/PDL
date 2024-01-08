@@ -1,0 +1,5 @@
+let a int;
+a = 5;
+b = true;
+cad = 'cad';
+a = cad;

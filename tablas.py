@@ -273,7 +273,7 @@ class AccionesSemanticas:
     
         except:
             regla_izquierda.tipo = "error"
-            raise Exception("Error semantico: el identificador " + token.lexema + " ya estaba declarada")
+            raise Exception("Error Semantico: el identificador " + str(token.lexema) + " ya estaba declarada")
         
     def dar_valor_variable_con_puntoycoma(gestorTS, pila, regla_izquierda):
         try:
@@ -290,7 +290,7 @@ class AccionesSemanticas:
                 regla_izquierda.tipo = "ok"
             else:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: no coinciden los tipos de la asignacion")
+                raise Exception("Error Semantico: no coinciden los tipos de la asignacion")
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
@@ -311,7 +311,7 @@ class AccionesSemanticas:
                 regla_izquierda.tipo = "ok"
             else:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: no coinciden los tipos de la asignacion")
+                raise Exception("Error Semantico: no coinciden los tipos de la asignacion")
 
         except Exception as e:
             regla_izquierda.tipo = "error"
@@ -322,7 +322,7 @@ class AccionesSemanticas:
             id = pila[-2]
             if gestorTS.buscar(id.valor) == None:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: la variable no esta declarada")
+                raise Exception("Error Semantico: la variable no esta declarada")
             else:
                 regla_izquierda.tipo = gestorTS.buscar(id.valor)[0].tipo
         except Exception as e:
@@ -337,7 +337,7 @@ class AccionesSemanticas:
                 regla_izquierda.tipo = S.tipo
             else:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: la expresion del if no es booleana")
+                raise Exception("Error Semantico: la expresion del if no es booleana")
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
@@ -356,7 +356,7 @@ class AccionesSemanticas:
                 regla_izquierda.tipo = "boolean"
             else:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: los elementos de la comparacion deben ser enteros")
+                raise Exception("Error Semantico: los elementos de la comparacion deben ser enteros")
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
@@ -367,12 +367,12 @@ class AccionesSemanticas:
             id = pila[-2]
             if tabla.get(id.valor) == None:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: la variable no esta declarada")
+                raise Exception("Error Semantico: la variable no esta declarada")
             elif tabla.get(id.valor)[0].tipo == "entero":
                 regla_izquierda.tipo = "entero"
             else:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: el tipo de la variable no es entero")
+                raise Exception("Error Semantico: el tipo de la variable no es entero")
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
@@ -384,10 +384,10 @@ class AccionesSemanticas:
                 regla_izquierda.tipo = "entero"
             elif U.tipo == None or V.tipo == None:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: variable no declarada")
+                raise Exception("Error Semantico: variable no declarada")
             else:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: se deben sumar enteros")
+                raise Exception("Error Semantico: se deben sumar enteros")
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
@@ -403,7 +403,7 @@ class AccionesSemanticas:
             elif C.tipo == "ok" and B.tipo == "ok":
                 regla_izquierda.tipo = "ok" #Entendemos por ok si no hay return (void)
             elif C.tipo in ["entero", "cadena", "boolean"] and B.tipo in ["entero", "cadena", "boolean"]:
-                raise Exception("Error semantico: hay varios returns")
+                raise Exception("Error Semantico: hay varios returns")
             elif C.tipo == "ok" and B.tipo in ["entero", "cadena", "boolean"]:
                 regla_izquierda.tipo = B.tipo
             elif C.tipo in ["entero", "cadena", "boolean"] and B.tipo == "ok":
@@ -423,18 +423,18 @@ class AccionesSemanticas:
             Y = pila[-18]
             if Y.tipo != "ok":
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: la inicializacion del for no es correcta")
+                raise Exception("Error Semantico: la inicializacion del for no es correcta")
             elif E.tipo != "boolean":
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: la condicion del for no es booleana")
+                raise Exception("Error Semantico: la condicion del for no es booleana")
             elif D.tipo != "entero" and D.tipo != "ok":
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: la actualizacion del for no es correcta")
+                raise Exception("Error Semantico: la actualizacion del for no es correcta")
             elif Y.tipo != "error" and E.tipo == "boolean" and D.tipo != "error" and C.tipo == "ok":
                 regla_izquierda.tipo = "ok"
             else:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: el for tiene errores")
+                raise Exception("Error Semantico: el for tiene errores")
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
@@ -458,7 +458,7 @@ class AccionesSemanticas:
                 regla_izquierda.tipo = "ok"
             else:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: la funcion tiene errores")
+                raise Exception("Error Semantico: la funcion tiene errores")
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
@@ -476,7 +476,7 @@ class AccionesSemanticas:
                 tabla.add(tabladesimbolos.entradaTS(id.valor))
             else:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: variable ya declarada")
+                raise Exception("Error Semantico: variable ya declarada")
 
             if (tabla.get(id.valor)[0].tipo == None and T.tipo in ["entero", "cadena", "boolean"]):
                 tabla.get(id.valor)[0].tipo = T.tipo
@@ -485,7 +485,7 @@ class AccionesSemanticas:
                 regla_izquierda.tipo = "ok"
             else:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: variable ya declarada")
+                raise Exception("Error Semantico: variable ya declarada")
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
@@ -496,7 +496,7 @@ class AccionesSemanticas:
                 regla_izquierda.tipo = "ok"
             else:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: la funcion tiene errores")
+                raise Exception("Error Semantico: la funcion tiene errores")
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
@@ -518,18 +518,18 @@ class AccionesSemanticas:
                         regla_izquierda.tipo = "ok"
                     else:
                         regla_izquierda.tipo = "error"
-                        raise Exception("Error semantico: la funcion requiere retorno y no hay retorno")
+                        raise Exception("Error Semantico: la funcion requiere retorno y no hay retorno")
                 
                 elif C.tipo in ["entero", "cadena","boolean"]:
                     regla_izquierda.tipo = "error"
-                    raise Exception("Error semantico: la funcion no requiere retorno y hay retorno")
+                    raise Exception("Error Semantico: la funcion no requiere retorno y hay retorno")
                 else:
                     regla_izquierda.tipo = "error"
-                    raise Exception("Error semantico: la funcion tiene errores")
+                    raise Exception("Error Semantico: la funcion tiene errores")
                     
             else:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: la funcion tiene errores en su cabecera")
+                raise Exception("Error Semantico: la funcion tiene errores en su cabecera")
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
@@ -544,7 +544,7 @@ class AccionesSemanticas:
                 tabla.add(tabladesimbolos.entradaTS(id.valor))
             else:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: variable ya declarada")
+                raise Exception("Error Semantico: variable ya declarada")
 
             if (tabla.get(id.valor)[0].tipo == None and T.tipo in ["entero", "cadena", "boolean"]):
                 tabla.get(id.valor)[0].tipo = T.tipo
@@ -553,7 +553,7 @@ class AccionesSemanticas:
                 regla_izquierda.tipo = "ok"
             else:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: variable ya declarada")
+                raise Exception("Error Semantico: variable ya declarada")
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
@@ -571,7 +571,7 @@ class AccionesSemanticas:
                     regla_izquierda.tipo.insert(0,E.tipo)
             else:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: tipo de argumento no valido")
+                raise Exception("Error Semantico: tipo de argumento no valido")
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
@@ -594,7 +594,7 @@ class AccionesSemanticas:
             L = pila[-6]
             if gestorTS.buscar(id.valor) == None:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: la funcion no existe")
+                raise Exception("Error Semantico: la funcion no existe")
             entrada_funcion = gestorTS.buscar(id.valor)[0]
             if  entrada_funcion.tipo == "function":
                 #1 La funcion no requiere argumentos
@@ -603,7 +603,7 @@ class AccionesSemanticas:
                 #2 La funcion no requiere argumentos y se los pasan
                 elif entrada_funcion.numParam == 0 and L.tipo != None:
                     regla_izquierda.tipo = "error"
-                    raise Exception("Error semantico: la funcion no requiere argumentos")
+                    raise Exception("Error Semantico: la funcion no requiere argumentos")
                 #3 La funcion requiere argumentos y se los pasan
                 elif entrada_funcion.numParam != 0 and L.tipo != None:
                     #Miramos si los tipos de L coinciden con los de la funcion
@@ -611,15 +611,15 @@ class AccionesSemanticas:
                         regla_izquierda.tipo = "ok"
                     else:
                         regla_izquierda.tipo = "error"
-                        raise Exception("Error semantico: los tipos de los argumentos no coinciden con los de la funcion")
+                        raise Exception("Error Semantico: los tipos de los argumentos no coinciden con los de la funcion")
                 #4 La funcion requiere argumentos y no se los pasan
                 else:
                     regla_izquierda.tipo = "error"
-                    raise Exception("Error semantico: la funcion requiere argumentos")
+                    raise Exception("Error Semantico: la funcion requiere argumentos")
         
             else:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: la funcion no existe")
+                raise Exception("Error Semantico: la funcion no existe")
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
@@ -629,7 +629,7 @@ class AccionesSemanticas:
             L = pila[-4]
             if gestorTS.buscar(id.valor) == None:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: la funcion no existe")
+                raise Exception("Error Semantico: la funcion no existe")
             entrada_funcion = gestorTS.buscar(id.valor)[0]
             if  entrada_funcion.tipo == "function":
                 #1 La funcion no requiere argumentos
@@ -638,7 +638,7 @@ class AccionesSemanticas:
                 #2 La funcion no requiere argumentos y se los pasan
                 elif entrada_funcion.numParam == 0 and L.tipo != None:
                     regla_izquierda.tipo = "error"
-                    raise Exception("Error semantico: la funcion no requiere argumentos")
+                    raise Exception("Error Semantico: la funcion no requiere argumentos")
                 #3 La funcion requiere argumentos y se los pasan
                 elif entrada_funcion.numParam != 0 and L.tipo != None:
                     #Miramos si los tipos de L coinciden con los de la funcion
@@ -647,11 +647,11 @@ class AccionesSemanticas:
                         regla_izquierda.tipo = entrada_funcion.tipoRetorno
                     else:
                         regla_izquierda.tipo = "error"
-                        raise Exception("Error semantico: los tipos de los argumentos no coinciden con los de la funcion")
+                        raise Exception("Error Semantico: los tipos de los argumentos no coinciden con los de la funcion")
                 #4 La funcion requiere argumentos y no se los pasan
                 else:
                     regla_izquierda.tipo = "error"
-                    raise Exception("Error semantico: la funcion requiere argumentos")
+                    raise Exception("Error Semantico: la funcion requiere argumentos")
         
         except Exception as e:
             regla_izquierda.tipo = "error"
@@ -663,7 +663,7 @@ class AccionesSemanticas:
             regla_izquierda.tipo = X.tipo
             # else:
             #     regla_izquierda.tipo = "error"
-            #     raise Exception("Error semantico: el valor del return no coincide con el tipo de la funcion")
+            #     raise Exception("Error Semantico: el valor del return no coincide con el tipo de la funcion")
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
@@ -676,7 +676,7 @@ class AccionesSemanticas:
             regla_izquierda.tipo = "ok"
         else:
             regla_izquierda.tipo = "error"
-            raise Exception("Error semantico: el put es diferente a cadena o entero")
+            raise Exception("Error Semantico: el put es diferente a cadena o entero")
 
     def get(gestorTS, pila, regla_izquierda):
         E = pila[-4]
@@ -684,7 +684,7 @@ class AccionesSemanticas:
             regla_izquierda.tipo = "ok"
         else:
             regla_izquierda.tipo = "error"
-            raise Exception("Error semantico: el get es diferente a cadena o entero")
+            raise Exception("Error Semantico: el get es diferente a cadena o entero")
     
     def negacion(gestorTS, pila, regla_izquierda):
         try:
@@ -693,7 +693,7 @@ class AccionesSemanticas:
                 regla_izquierda.tipo = "boolean"
             else:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: la negacion no es booleana")
+                raise Exception("Error Semantico: la negacion no es booleana")
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
@@ -703,13 +703,13 @@ class AccionesSemanticas:
             #1 Comprobar que id existe
             if gestorTS.buscar(id.valor) == None:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: la variable no existe")
+                raise Exception("Error Semantico: la variable no existe")
             #2 Comprobar que id es entero
             if gestorTS.buscar(id.valor)[0].tipo == "entero":
                 regla_izquierda.tipo = "ok"
             else:
                 regla_izquierda.tipo = "error"
-                raise Exception("Error semantico: Se está intentando autodecrementar una variable no entera")
+                raise Exception("Error Semantico: Se está intentando autodecrementar una variable no entera")
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e

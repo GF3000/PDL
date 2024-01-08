@@ -1,28 +1,111 @@
-[< let, >, < id, 0 >, < int, >, < asignacion, >, < entero, 0 >, < puntoycoma, >, < let, >, < id, 1 >, < int, >, < asignacion, >, < entero, 0 >, < puntoycoma, >, < put, >, < parentesisabierto, >, < id, 0 >, < parentesiscerrado, >, < id, 2 >, < parentesisabierto, >, < cadena, 'Introduce el primer operando' >, < parentesiscerrado, >, < puntoycoma, >, < let, >, < id, 3 >, < int, >, < puntoycoma, >, < id, 2 >, < parentesisabierto, >, < cadena, 'Introduce el segundo operando' >, < parentesiscerrado, >, < puntoycoma, >, < get, >, < parentesisabierto, >, < id, 1 >, < parentesiscerrado, >, < puntoycoma, >, < function, >, < id, 4 >, < int, >, < parentesisabierto, >, < int, >, < id, 5 >, < coma, >, < int, >, < id, 6 >, < parentesiscerrado, >, < llaveabierta, >, < return, >, < id, 5 >, < suma, >, < id, 6 >, < puntoycoma, >, < llavecerrada, >, < id, 3 >, < asignacion, >, < id, 4 >, < parentesisabierto, >, < id, 0 >, < coma, >, < id, 1 >, < parentesiscerrado, >, < puntoycoma, >, < let, >, < id, 7 >, < int, >, < asignacion, >, < entero, 0 >, < puntoycoma, >, < id, 2 >, < parentesisabierto, >, < id, 3 >, < parentesiscerrado, >, < puntoycoma, >, < EOF, >]
-Tabla #1:
-* LEXEMA : 'x'
-	+ tipo : 'None'
-	+ desplazamiento : 0
-* LEXEMA : 'y'
-	+ tipo : 'None'
-	+ desplazamiento : 0
-* LEXEMA : 'print'
-	+ tipo : 'None'
-	+ desplazamiento : 0
-* LEXEMA : 'res'
-	+ tipo : 'None'
-	+ desplazamiento : 0
-* LEXEMA : 'suma'
-	+ tipo : 'None'
-	+ desplazamiento : 0
-* LEXEMA : 'num_1'
-	+ tipo : 'None'
-	+ desplazamiento : 0
-* LEXEMA : 'num_2'
-	+ tipo : 'None'
-	+ desplazamiento : 0
-* LEXEMA : 'w'
-	+ tipo : 'None'
-	+ desplazamiento : 0
-
-
+< let, >
+< id, 0 >
+< boolean, >
+< puntoycoma, >
+< let, >
+< id, 1 >
+< int, >
+< puntoycoma, >
+< let, >
+< id, 2 >
+< int, >
+< puntoycoma, >
+< id, 1 >
+< asignacion, >
+< entero, >
+< puntoycoma, >
+< id, 2 >
+< asignacion, >
+< entero, >
+< puntoycoma, >
+< id, 0 >
+< asignacion, >
+< true, >
+< puntoycoma, >
+< id, 3 >
+< asignacion, >
+< false, >
+< puntoycoma, >
+< if, >
+< parentesisabierto, >
+< id, 0 >
+< parentesiscerrado, >
+< id, 0 >
+< asignacion, >
+< id, 3 >
+< puntoycoma, >
+< for, >
+< parentesisabierto, >
+< id, 4 >
+< asignacion, >
+< entero, >
+< puntoycoma, >
+< true, >
+< puntoycoma, >
+< autodecremento, >
+< id, 4 >
+< parentesiscerrado, >
+< llaveabierta, >
+< id, 0 >
+< asignacion, >
+< negacion, >
+< id, 3 >
+< puntoycoma, >
+< llavecerrada, >
+< autodecremento, >
+< id, 2 >
+< puntoycoma, >
+< function, >
+< id, 5 >
+< int, >
+< parentesisabierto, >
+< int, >
+< id, 1 >
+< coma, >
+< int, >
+< id, 2 >
+< parentesiscerrado, >
+< llaveabierta, >
+< id, 1 >
+< asignacion, >
+< id, 1 >
+< suma, >
+< id, 2 >
+< puntoycoma, >
+< return, >
+< id, 1 >
+< puntoycoma, >
+< llavecerrada, >
+< function, >
+< id, 5 >
+< int, >
+< parentesisabierto, >
+< int, >
+< id, 1 >
+< parentesiscerrado, >
+< llaveabierta, >
+< autodecremento, >
+< id, 1 >
+< puntoycoma, >
+< return, >
+< id, 1 >
+< puntoycoma, >
+< llavecerrada, >
+< autodecremento, >
+< id, 2 >
+< puntoycoma, >
+< function, >
+< id, 5 >
+< void, >
+< parentesisabierto, >
+< boolean, >
+< id, 0 >
+< parentesiscerrado, >
+< llaveabierta, >
+< id, 0 >
+< asignacion, >
+< negacion, >
+< id, 0 >
+< puntoycoma, >
+< llavecerrada, >
+< EOF, >

@@ -1,0 +1,113 @@
+< let, >
+< id, 0 >
+< int, >
+< puntoycoma, >
+< let, >
+< id, 1 >
+< boolean, >
+< puntoycoma, >
+< id, 1 >
+< asignacion, >
+< true, >
+< puntoycoma, >
+< for, >
+< parentesisabierto, >
+< id, 2 >
+< asignacion, >
+< entero, >
+< puntoycoma, >
+< id, 2 >
+< menor, >
+< id, 0 >
+< puntoycoma, >
+< id, 2 >
+< asignacion, >
+< id, 2 >
+< suma, >
+< entero, >
+< parentesiscerrado, >
+< llaveabierta, >
+< id, 3 >
+< asignacion, >
+< autodecremento, >
+< id, 2 >
+< puntoycoma, >
+< if, >
+< parentesisabierto, >
+< negacion, >
+< id, 1 >
+< parentesiscerrado, >
+< autodecremento, >
+< id, 3 >
+< puntoycoma, >
+< put, >
+< cadena, >
+< puntoycoma, >
+< get, >
+< id, 0 >
+< puntoycoma, >
+< llavecerrada, >
+< function, >
+< id, 4 >
+< void, >
+< parentesisabierto, >
+< int, >
+< id, 2 >
+< coma, >
+< boolean, >
+< id, 0 >
+< parentesiscerrado, >
+< llaveabierta, >
+< if, >
+< parentesisabierto, >
+< id, 0 >
+< parentesiscerrado, >
+< return, >
+< puntoycoma, >
+< for, >
+< parentesisabierto, >
+< id, 2 >
+< asignacion, >
+< entero, >
+< puntoycoma, >
+< id, 2 >
+< menor, >
+< id, 0 >
+< puntoycoma, >
+< autodecremento, >
+< id, 2 >
+< parentesiscerrado, >
+< llaveabierta, >
+< put, >
+< cadena, >
+< puntoycoma, >
+< llavecerrada, >
+< llavecerrada, >
+< function, >
+< id, 4 >
+< void, >
+< parentesisabierto, >
+< void, >
+< parentesiscerrado, >
+< llaveabierta, >
+< let, >
+< id, 2 >
+< int, >
+< puntoycoma, >
+< id, 0 >
+< asignacion, >
+< true, >
+< puntoycoma, >
+< id, 4 >
+< parentesisabierto, >
+< id, 2 >
+< coma, >
+< id, 0 >
+< parentesiscerrado, >
+< puntoycoma, >
+< id, 4 >
+< parentesisabierto, >
+< parentesiscerrado, >
+< puntoycoma, >
+< llavecerrada, >
+< EOF, >

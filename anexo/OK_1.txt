@@ -11,6 +11,7 @@ b = 2;
 --b;
 cad1 = 'hola';
 cad2 = 'dos';
+//Esto es un comentario
 
 
 if (a < b) put cad1;

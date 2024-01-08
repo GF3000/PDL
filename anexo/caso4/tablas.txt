@@ -1,0 +1,40 @@
+Tabla Global #1:
+* LEXEMA : 'n'
+	+ tipo : 'entero'
+	+ desplazamiento : 0
+* LEXEMA : 'var'
+	+ tipo : 'boolean'
+	+ desplazamiento : 1
+* LEXEMA : 'i'
+	+ tipo : 'entero'
+	+ desplazamiento : 2
+* LEXEMA : 'c'
+	+ tipo : 'entero'
+	+ desplazamiento : 3
+* LEXEMA : 'imprime'
+	+ tipo : 'function'
+	+ numParam : 2
+	+ tipoParam0 : 'entero'
+	+ tipoParam1 : 'boolean'
+	+ tipoRetorno : 'void'
+* LEXEMA : 'prueba2'
+	+ tipo : 'function'
+	+ numParam : 0
+	+ tipoRetorno : 'void'
+
+Tabla imprime #2:
+* LEXEMA : 'v'
+	+ tipo : 'boolean'
+	+ desplazamiento : 0
+* LEXEMA : 'i'
+	+ tipo : 'entero'
+	+ desplazamiento : 1
+
+Tabla prueba2 #3:
+* LEXEMA : 'i'
+	+ tipo : 'entero'
+	+ desplazamiento : 0
+* LEXEMA : 'v'
+	+ tipo : 'boolean'
+	+ desplazamiento : 1
+

@@ -1,6 +1,11 @@
 import tabladesimbolos
 
 
+# En esta clase estan definidas las reglas de la gramatica
+# Tabla GOTO y ACCION
+# Reglas de la gramatica
+# Acciones Semánticas
+
 #Constantes
 class Constantes:
     REDUCE = 0

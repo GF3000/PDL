@@ -1,4 +1,4 @@
-import tablas
+import gramatica
 
 class semantic:
 
@@ -11,7 +11,7 @@ class semantic:
             print("Pila: ", pila)
             print("Regla izquierda: ", regla_izquierda)
             
-        tablas.AccionesSemanticas.get_accion(numero_regla)(gestor_TS, pila, regla_izquierda)
+        gramatica.AccionesSemanticas.get_accion(numero_regla)(gestor_TS, pila, regla_izquierda)
         
     
 

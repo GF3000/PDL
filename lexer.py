@@ -1,7 +1,7 @@
 import re
-import tokens
+import tokens_del_lenguaje
 import tabladesimbolos
-import mi_token
+import clases_auxiliares
 
 
 
@@ -47,8 +47,8 @@ class Lexer:
             for tipo, atributo, pattern in self.tokens_lenguaje: #Recorremos la lista de tokens de nuestro lenguaje
                 position = self.position #Posición actual en el código fuente
                 if position >= len(source_code):
-                    self.token_list.append(mi_token.Token('EOF', None, None)) #Añadimos el token de fin de fichero a la lista de tokens
-                    return mi_token.Token('EOF', None, None)
+                    self.token_list.append(clases_auxiliares.Token('EOF', None, None)) #Añadimos el token de fin de fichero a la lista de tokens
+                    return clases_auxiliares.Token('EOF', None, None)
                 else:
                     match = None #Si se ha llegado al final del código fuente, devolvemos el token de fin de fichero
                 regex = re.compile(fr'{pattern}(?![e])')
@@ -74,8 +74,8 @@ class Lexer:
                         self.lastPosition = position
                         position = match.end() #Actualizamos la posición actual al final de la coincidencia
                         self.position = position
-                        self.token_list.append(mi_token.Token(tipo, atributo, valor)) #Añadimos el token a la lista de tokens
-                        return(mi_token.Token(tipo, atributo, valor)) #Devolvemos el token
+                        self.token_list.append(clases_auxiliares.Token(tipo, atributo, valor)) #Añadimos el token a la lista de tokens
+                        return(clases_auxiliares.Token(tipo, atributo, valor)) #Devolvemos el token
                     else:
                         #Si es un comeentario, pasamos el siguiente token
                         self.lastPosition = position
@@ -103,7 +103,7 @@ if __name__ == "__main__":
     source_code = f.read()
 
     #Cargamos los tokens
-    tokens_leguaje = tokens.Tokens.tokens
+    tokens_leguaje = tokens_del_lenguaje.Tokens.tokens
     #Creamos el objeto mi_lexer
     mi_lexer = Lexer(tokens_leguaje, source_code)
 

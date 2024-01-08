@@ -1,3 +1,7 @@
+# Clase Token y Estado
+
+# Clase correspondiente a nuestra implentacion de token
+# Los tokens son leidos por el lexer 
 class Token:
     def __init__(self, token_type, attribute, value):
         #Inicializamos los atributos de cada token
@@ -20,6 +24,8 @@ class Token:
     def get_type(self):
         return self.tipo
 
+# Clase correspondiente a los estados de la pila
+# Se usan en el analizador sintactico y semantico
 class Estado:
     def __init__(self, estado = None, tipo = None):
         self.estado = estado

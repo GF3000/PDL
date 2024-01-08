@@ -1,25 +1,11 @@
+# Todos los tokens del lenguaje
+
 class Tokens:
     """Defincion de los Tokens usados en nuestra Prcatica"""
     tokens = [
     # Token, atributo, expresión regular
-
-# boolean 
-# for 
-# function 
-# get
-# if
-# int 
-# let 
-# put
-# return 
-# string 
-# void 
-
-
-
-
-    # Palabras reservadas
-    #Se añade el \b para asegurarse que las palabras están rodeadas de espacios
+            
+    # Sin atributos
     ('boolean', None, r'\bboolean\b'),
     ('for', None, r'\bfor\b'),
     ('function', None, r'\bfunction\b'),

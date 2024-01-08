@@ -1,9 +1,12 @@
 #Archivo correspondiente al main del proyecto
 import analizadorLR1
-import tablas
+import gramatica
 import tabladesimbolos
 import analizadorLR1
 
+
+# Funcion que analiza el archivo pasado como parametro
+# Se usa para hacer las pruebas por consola
 
 def analizar_pruebas(nombre_archivo):
     archivo = open(nombre_archivo, "r")
@@ -19,9 +22,9 @@ def analizar_pruebas(nombre_archivo):
     print("\nANALISIS\n----------\n")
 
    
-    tabla_GOTO = tablas.Tabla_GOTO.get_tabla_GOTO()
-    tabla_ACCION = tablas.Tabla_ACCION.get_tabla_ACCION()
-    reglas = tablas.Reglas.get_reglas()
+    tabla_GOTO = gramatica.Tabla_GOTO.get_tabla_GOTO()
+    tabla_ACCION = gramatica.Tabla_ACCION.get_tabla_ACCION()
+    reglas = gramatica.Reglas.get_reglas()
     mi_syntax = analizadorLR1.AnalizadorLR1(tabla_GOTO, tabla_ACCION, reglas, imprimir =True, gestor_TS=tabladesimbolos.gestorTablas())
     try:
         exito = mi_syntax.analizar(nombre_archivo)
@@ -34,10 +37,12 @@ def analizar_pruebas(nombre_archivo):
     return exito
 
 
+# Funcion que analiza el archivo pasado como parametro
+# Se usa para la interfaz grafica
 def analizar_gui(nombre_archivo):
-    tabla_GOTO = tablas.Tabla_GOTO.get_tabla_GOTO()
-    tabla_ACCION = tablas.Tabla_ACCION.get_tabla_ACCION()
-    reglas = tablas.Reglas.get_reglas()
+    tabla_GOTO = gramatica.Tabla_GOTO.get_tabla_GOTO()
+    tabla_ACCION = gramatica.Tabla_ACCION.get_tabla_ACCION()
+    reglas = gramatica.Reglas.get_reglas()
     mi_syntax = analizadorLR1.AnalizadorLR1(tabla_GOTO, tabla_ACCION, reglas, imprimir =False, gestor_TS=tabladesimbolos.gestorTablas())
 
     try:

@@ -1,3 +1,7 @@
+# Clases entradaTS, tabladesimbolos y gestorTablas
+
+
+# Representacion de cada una de las entradas de la tabla de simbolos
 class entradaTS:
     def __init__(self, lexema, tipo = None, desplazamiento = 0,
                   numParam = None, tipoParam = None,
@@ -27,7 +31,7 @@ class entradaTS:
         
         
         
-
+# Representacion de cada una de las tablas de simbolos
 class tabladesimbolos:
     def __init__(self, nombre, numero,  entradas = None) -> None:
         self.nombre = nombre
@@ -67,6 +71,9 @@ class tabladesimbolos:
     def getUltimaEntrada(self):
         return self.entradas[-1]
 
+# Representacion del gestor de tablas de simbolos
+# Hay un único gestor de tablas de simbolos por análisis
+# Gestiona el cambio entre tablas de simbolos y el buscador de entradas
 class gestorTablas:
     def __init__(self) -> None:
         self.tablas = []

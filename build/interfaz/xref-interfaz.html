@@ -1046,11 +1046,11 @@ imported by:
   <a target="code" href="///C:/Users/algog/Documents/Coding/Python/PdL/V2/PDL/analizadorLR1.py" type="text/plain"><tt>analizadorLR1</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
-    <a href="#lexer">lexer</a>
- &#8226;   <a href="#mi_token">mi_token</a>
+    <a href="#clases_auxiliares">clases_auxiliares</a>
+ &#8226;   <a href="#gramatica">gramatica</a>
+ &#8226;   <a href="#lexer">lexer</a>
  &#8226;   <a href="#semantic">semantic</a>
- &#8226;   <a href="#tablas">tablas</a>
- &#8226;   <a href="#tokens">tokens</a>
+ &#8226;   <a href="#tokens_del_lenguaje">tokens_del_lenguaje</a>
 
   </div>
   <div class="import">
@@ -1261,6 +1261,18 @@ imports:
 imported by:
     <a href="#_strptime">_strptime</a>
  &#8226;   <a href="#email._parseaddr">email._parseaddr</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="clases_auxiliares"></a>
+  <a target="code" href="///C:/Users/algog/Documents/Coding/Python/PdL/V2/PDL/clases_auxiliares.py" type="text/plain"><tt>clases_auxiliares</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imported by:
+    <a href="#analizadorLR1">analizadorLR1</a>
+ &#8226;   <a href="#lexer">lexer</a>
 
   </div>
 
@@ -4876,6 +4888,24 @@ imported by:
 </div>
 
 <div class="node">
+  <a name="gramatica"></a>
+  <a target="code" href="///C:/Users/algog/Documents/Coding/Python/PdL/V2/PDL/gramatica.py" type="text/plain"><tt>gramatica</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#tabladesimbolos">tabladesimbolos</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#analizadorLR1">analizadorLR1</a>
+ &#8226;   <a href="#main">main</a>
+ &#8226;   <a href="#semantic">semantic</a>
+
+  </div>
+
+</div>
+
+<div class="node">
   <a name="grp"></a>
   <a target="code" href="" type="text/plain"><tt>grp</tt></a>
 <span class="moduletype">MissingModule</span>  <div class="import">
@@ -5615,10 +5645,10 @@ imported by:
   <a target="code" href="///C:/Users/algog/Documents/Coding/Python/PdL/V2/PDL/lexer.py" type="text/plain"><tt>lexer</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
-    <a href="#mi_token">mi_token</a>
+    <a href="#clases_auxiliares">clases_auxiliares</a>
  &#8226;   <a href="#re">re</a>
  &#8226;   <a href="#tabladesimbolos">tabladesimbolos</a>
- &#8226;   <a href="#tokens">tokens</a>
+ &#8226;   <a href="#tokens_del_lenguaje">tokens_del_lenguaje</a>
 
   </div>
   <div class="import">
@@ -5740,8 +5770,8 @@ imported by:
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#analizadorLR1">analizadorLR1</a>
+ &#8226;   <a href="#gramatica">gramatica</a>
  &#8226;   <a href="#tabladesimbolos">tabladesimbolos</a>
- &#8226;   <a href="#tablas">tablas</a>
 
   </div>
   <div class="import">
@@ -5773,18 +5803,6 @@ imported by:
  &#8226;   <a href="#selectors">selectors</a>
  &#8226;   <a href="#statistics">statistics</a>
  &#8226;   <a href="#urllib.parse">urllib.parse</a>
-
-  </div>
-
-</div>
-
-<div class="node">
-  <a name="mi_token"></a>
-  <a target="code" href="///C:/Users/algog/Documents/Coding/Python/PdL/V2/PDL/mi_token.py" type="text/plain"><tt>mi_token</tt></a>
-<span class="moduletype">SourceModule</span>  <div class="import">
-imported by:
-    <a href="#analizadorLR1">analizadorLR1</a>
- &#8226;   <a href="#lexer">lexer</a>
 
   </div>
 
@@ -6431,7 +6449,7 @@ imported by:
   <a target="code" href="///C:/Users/algog/Documents/Coding/Python/PdL/V2/PDL/semantic.py" type="text/plain"><tt>semantic</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
-    <a href="#tablas">tablas</a>
+    <a href="#gramatica">gramatica</a>
 
   </div>
   <div class="import">
@@ -6793,27 +6811,9 @@ imported by:
   <a target="code" href="///C:/Users/algog/Documents/Coding/Python/PdL/V2/PDL/tabladesimbolos.py" type="text/plain"><tt>tabladesimbolos</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imported by:
-    <a href="#lexer">lexer</a>
+    <a href="#gramatica">gramatica</a>
+ &#8226;   <a href="#lexer">lexer</a>
  &#8226;   <a href="#main">main</a>
- &#8226;   <a href="#tablas">tablas</a>
-
-  </div>
-
-</div>
-
-<div class="node">
-  <a name="tablas"></a>
-  <a target="code" href="///C:/Users/algog/Documents/Coding/Python/PdL/V2/PDL/tablas.py" type="text/plain"><tt>tablas</tt></a>
-<span class="moduletype">SourceModule</span>  <div class="import">
-imports:
-    <a href="#tabladesimbolos">tabladesimbolos</a>
-
-  </div>
-  <div class="import">
-imported by:
-    <a href="#analizadorLR1">analizadorLR1</a>
- &#8226;   <a href="#main">main</a>
- &#8226;   <a href="#semantic">semantic</a>
 
   </div>
 
@@ -7158,8 +7158,8 @@ imported by:
 </div>
 
 <div class="node">
-  <a name="tokens"></a>
-  <a target="code" href="///C:/Users/algog/Documents/Coding/Python/PdL/V2/PDL/tokens.py" type="text/plain"><tt>tokens</tt></a>
+  <a name="tokens_del_lenguaje"></a>
+  <a target="code" href="///C:/Users/algog/Documents/Coding/Python/PdL/V2/PDL/tokens_del_lenguaje.py" type="text/plain"><tt>tokens_del_lenguaje</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imported by:
     <a href="#analizadorLR1">analizadorLR1</a>

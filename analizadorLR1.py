@@ -1,15 +1,14 @@
-# from Analizador_Sintactico import tablas
-import tablas
+import gramatica
 import lexer
-import tokens
-import mi_token
+import tokens_del_lenguaje
+import clases_auxiliares
 import semantic
 
 #Constantes
-REDUCE = tablas.Constantes.REDUCE
-DESPLAZA = tablas.Constantes.DESPLAZA
-EXITO = tablas.Constantes.EXITO
-DESCRIPTORES = tablas.Constantes.DESCRIPTORES
+REDUCE = gramatica.Constantes.REDUCE
+DESPLAZA = gramatica.Constantes.DESPLAZA
+EXITO = gramatica.Constantes.EXITO
+DESCRIPTORES = gramatica.Constantes.DESCRIPTORES
 FILE_PARSE = "parse.txt"
 FILE_TABLES = "tablas.txt"
 FILE_TOKENS = "tokens.txt"
@@ -98,7 +97,7 @@ class AnalizadorLR1:
         texto_archivo = CABECER_ARCHIVO + " "
 
         
-        tokens_leguaje = tokens.Tokens.tokens
+        tokens_leguaje = tokens_del_lenguaje.Tokens.tokens
         mi_lexer = lexer.Lexer(tokens=tokens_leguaje, source_code=source_code)
         try:
             token = mi_lexer.get_token()
@@ -112,9 +111,9 @@ class AnalizadorLR1:
         while True:
             # Obtenemos el etsado actual
             nuevo_estado = self.pila[-1]
-            if isinstance(nuevo_estado, mi_token.Token):
+            if isinstance(nuevo_estado, clases_auxiliares.Token):
                 nuevo_estado = nuevo_estado.tipo
-            if isinstance(nuevo_estado, mi_token.Estado):
+            if isinstance(nuevo_estado, clases_auxiliares.Estado):
                 nuevo_estado = nuevo_estado.estado
             # Obtemso el token actual
             
@@ -135,7 +134,7 @@ class AnalizadorLR1:
                     texto_archivo += str(argumento) + " "
                     # Eliminamos de la pila el doble de simbolos como elementos tenga la parte derecha de la regla
                     # print("Pila pre-reduccion: ", self.pila)
-                    regla_izquierda = mi_token.Estado(estado = regla.izquierda)
+                    regla_izquierda = clases_auxiliares.Estado(estado = regla.izquierda)
                     try:
                         semantic.semantic.analizar(gestor_TS=self.gestor_TS, numero_regla=argumento, regla_izquierda= regla_izquierda, pila = self.pila, imprimir = self.imprimir)
                     except Exception as e:
@@ -215,9 +214,9 @@ def nuestro_lenguaje(cadena):
 
     # Tabla GOTO
     # tabla_GOTO = {ESTADO1: {NO_TERMINAL1: estado_futuro, NO_TERMINAL2: estado_futuro, ...}, ESTADO2: {...}, ESTADO3: {...}, ...}
-    tabla_GOTO = tablas.Tabla_GOTO.get_tabla_GOTO()
-    tabla_ACCION = tablas.Tabla_ACCION.get_tabla_ACCION()
-    reglas = tablas.Reglas.get_reglas()
+    tabla_GOTO = gramatica.Tabla_GOTO.get_tabla_GOTO()
+    tabla_ACCION = gramatica.Tabla_ACCION.get_tabla_ACCION()
+    reglas = gramatica.Reglas.get_reglas()
     mi_analizador = Syntax(tabla_GOTO, tabla_ACCION, reglas)
     return mi_analizador.analizar(cadena)
 
@@ -250,13 +249,13 @@ if __name__ == "__main__":
     
     cadenas_que_no_funcionan = []
     cadenas_que_funcionan = []
-    mi_syntax = Syntax(tablas.Tabla_GOTO.get_tabla_GOTO(), tablas.Tabla_ACCION.get_tabla_ACCION(), tablas.Reglas.get_reglas())
-    for tokens in lista_tokens:
+    mi_syntax = Syntax(gramatica.Tabla_GOTO.get_tabla_GOTO(), gramatica.Tabla_ACCION.get_tabla_ACCION(), gramatica.Reglas.get_reglas())
+    for tokens_del_lenguaje in lista_tokens:
 
-        if(mi_syntax.analizar(tokens)):
-            cadenas_que_funcionan.append(tokens)
+        if(mi_syntax.analizar(tokens_del_lenguaje)):
+            cadenas_que_funcionan.append(tokens_del_lenguaje)
         else:
-            cadenas_que_no_funcionan.append(tokens)
+            cadenas_que_no_funcionan.append(tokens_del_lenguaje)
 
     print("Cadenas que funcionan: ")
     for cadena in cadenas_que_funcionan:

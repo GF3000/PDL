@@ -1,3 +1,5 @@
+# Interfaz gráfica para el analizador sintáctico ascendente LR(1)
+
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 import main

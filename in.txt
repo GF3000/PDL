@@ -1,4 +1,0 @@
-let x int;
-x = 3233232323;
-let b boolean;
-b = true;

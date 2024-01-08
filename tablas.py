@@ -320,7 +320,11 @@ class AccionesSemanticas:
     def asignacion_id(gestorTS, pila, regla_izquierda):
         try:
             id = pila[-2]
-            regla_izquierda.tipo = gestorTS.buscar(id.valor)[0].tipo
+            if gestorTS.buscar(id.valor) == None:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: la variable no esta declarada")
+            else:
+                regla_izquierda.tipo = gestorTS.buscar(id.valor)[0].tipo
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e

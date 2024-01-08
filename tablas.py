@@ -277,7 +277,6 @@ class AccionesSemanticas:
         
     def dar_valor_variable_con_puntoycoma(gestorTS, pila, regla_izquierda):
         try:
-            # TODO : ¿Se puede acceder desde una funcion a una variable global? ¿Cómo se hace?
             tabla = gestorTS.getActual()
             E = pila[-4]
             id = pila[-8]
@@ -429,7 +428,6 @@ class AccionesSemanticas:
 
     def declaracion_funcion(gestorTS, pila, regla_izquierda):
         try:
-            # TODO: Asegurarse de que no este tb en la TS Global
             gestorTS.getGlobal().add(tabladesimbolos.entradaTS(pila[-4].valor, tipo =  pila[-6].tipo, tipoRetorno = pila[-2].tipo, numParam=0, tipoParam=[]))
             gestorTS.add(pila[-4].valor)
             regla_izquierda.tipo = pila[-2].tipo
@@ -531,8 +529,6 @@ class AccionesSemanticas:
             else:
                 regla_izquierda.tipo = "error"
                 raise Exception("Error semantico: variable ya declarada")
-            
-
 
             if (tabla.get(id.valor)[0].tipo == None and T.tipo in ["entero", "cadena", "boolean"]):
                 tabla.get(id.valor)[0].tipo = T.tipo
@@ -557,6 +553,9 @@ class AccionesSemanticas:
                 else:
                     regla_izquierda.tipo = Q.tipo
                     regla_izquierda.tipo.insert(0,E.tipo)
+            else:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: tipo de argumento no valido")
         except Exception as e:
             regla_izquierda.tipo = "error"
             raise e
@@ -612,11 +611,9 @@ class AccionesSemanticas:
         try:
             id = pila[-8]
             L = pila[-4]
-            # if (L.tipo == "ok") and gestorTS.buscar(id.valor)[0].tipo == "function":
-            #     regla_izquierda.tipo = gestorTS.buscar(id.valor)[0].tipoRetorno
-            # else:
-            #     regla_izquierda.tipo = "error"
-            #     raise Exception("Error semantico: la funcion no existe")
+            if gestorTS.buscar(id.valor) == None:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: la funcion no existe")
             entrada_funcion = gestorTS.buscar(id.valor)[0]
             if  entrada_funcion.tipo == "function":
                 #1 La funcion no requiere argumentos

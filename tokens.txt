@@ -1,0 +1,61 @@
+< let, >
+< id, 0 >
+< int, >
+< puntoycoma, >
+< id, 0 >
+< asignacion, >
+< entero, >
+< puntoycoma, >
+< function, >
+< id, 1 >
+< int, >
+< parentesisabierto, >
+< void, >
+< parentesiscerrado, >
+< llaveabierta, >
+< return, >
+< id, 0 >
+< puntoycoma, >
+< llavecerrada, >
+< let, >
+< id, 1 >
+< int, >
+< puntoycoma, >
+< id, 1 >
+< asignacion, >
+< entero, >
+< puntoycoma, >
+< if, >
+< parentesisabierto, >
+< id, 1 >
+< menor, >
+< id, 0 >
+< parentesiscerrado, >
+< id, 0 >
+< asignacion, >
+< id, 1 >
+< puntoycoma, >
+< id, 0 >
+< asignacion, >
+< id, 0 >
+< suma, >
+< id, 1 >
+< suma, >
+< id, 1 >
+< suma, >
+< id, 0 >
+< puntoycoma, >
+< let, >
+< id, 2 >
+< string, >
+< puntoycoma, >
+< get, >
+< id, 2 >
+< puntoycoma, >
+< put, >
+< id, 0 >
+< puntoycoma, >
+< put, >
+< id, 2 >
+< puntoycoma, >
+< EOF, >

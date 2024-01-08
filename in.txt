@@ -1,3 +1,8 @@
+
+for( i = 0; 4 + 5  ; --t) 
+{
+    put a;
+}
 function suma int(int a, int b) {
 	a = a + b;
     let s boolean;
@@ -10,11 +15,6 @@ let a int;
 --a;
 //suma (a); //error de la funcion no existe
 var = false;
-
-//for( t = 0; 4 + 5  ; --t) 
-//{
-    put a;
-//}
 
 
 

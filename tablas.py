@@ -362,7 +362,10 @@ class AccionesSemanticas:
         try:
             tabla = gestorTS.getActual()
             id = pila[-2]
-            if tabla.get(id.valor)[0].tipo == "entero":
+            if tabla.get(id.valor) == None:
+                regla_izquierda.tipo = "error"
+                raise Exception("Error semantico: la variable no esta declarada")
+            elif tabla.get(id.valor)[0].tipo == "entero":
                 regla_izquierda.tipo = "entero"
             else:
                 regla_izquierda.tipo = "error"
@@ -421,7 +424,7 @@ class AccionesSemanticas:
             elif E.tipo != "boolean":
                 regla_izquierda.tipo = "error"
                 raise Exception("Error semantico: la condicion del for no es booleana")
-            elif D.tipo != "entero":
+            elif D.tipo != "entero" and D.tipo != "ok":
                 regla_izquierda.tipo = "error"
                 raise Exception("Error semantico: la actualizacion del for no es correcta")
             elif Y.tipo != "error" and E.tipo == "boolean" and D.tipo != "error" and C.tipo == "ok":

@@ -2,13 +2,16 @@ Tabla Global #1:
 * LEXEMA : 'a'
 	+ tipo : 'entero'
 	+ desplazamiento : 0
+* LEXEMA : 'valorA'
+	+ tipo : 'function'
+	+ numParam : 0
+	+ tipoRetorno : 'entero'
 * LEXEMA : 'b'
 	+ tipo : 'entero'
 	+ desplazamiento : 1
-* LEXEMA : 'cad1'
+* LEXEMA : 'cad'
 	+ tipo : 'cadena'
 	+ desplazamiento : 2
-* LEXEMA : 'cad2'
-	+ tipo : 'cadena'
-	+ desplazamiento : 66
+
+Tabla valorA #2:
 

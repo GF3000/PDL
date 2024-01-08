@@ -1,8 +1,0 @@
-Tabla Global #1:
-* LEXEMA : 'x'
-	+ tipo : 'entero'
-	+ desplazamiento : 0
-* LEXEMA : 'b'
-	+ tipo : 'boolean'
-	+ desplazamiento : 1
-

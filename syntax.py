@@ -106,6 +106,7 @@ class Syntax:
             hay_error = True
             with open(FILE_ERRORS, "a") as f:
                 f.write(str(e) + "\n")
+            return False
             
         #Analiza la cadena de entrada y devuelve la lista de tokens
         while True:
@@ -164,6 +165,7 @@ class Syntax:
                         hay_error = True
                         with open(FILE_ERRORS, "a") as f:
                             f.write(str(e) + "\n")
+                        return False
 
                 case self.EXITO:
                     # Analisis sintactico correcto
@@ -198,11 +200,12 @@ class Syntax:
                     hay_error = True
                     with open(FILE_ERRORS, "a") as f:
                         f.write(f"[-] Error Sintactico en la linea {mi_lexer.get_linea()} de la cadena de entrada. No se esperaba \'{token.valor}\'\n")
-                    try:
-                        token = mi_lexer.get_token()
-                    except Exception as e:
-                        with open(FILE_ERRORS, "a") as f:
-                            f.write(str(e) + "\n")
+                    # try:
+                    #     token = mi_lexer.get_token()
+                    # except Exception as e:
+                    #     with open(FILE_ERRORS, "a") as f:
+                    #         f.write(str(e) + "\n")
+                    return False
    
                 
 

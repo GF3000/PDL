@@ -18,10 +18,15 @@ class Lexer:
         self.tablaActual = 0
         self.nombreUltFuncion = "" 
         self.position = 0
+        self.lastPosition = 0
     
+
     def get_linea(self):
+        posicion_ultimo_caracter = self.lastPosition
+        while self.source_code[posicion_ultimo_caracter-1:posicion_ultimo_caracter] == '\n':
+            posicion_ultimo_caracter -= 2
         #Devuelve la linea actual
-        return self.source_code[:self.position].count('\n') + 1
+        return self.source_code[:posicion_ultimo_caracter].count('\n') + 1
 
     
 
@@ -42,6 +47,7 @@ class Lexer:
             for tipo, atributo, pattern in self.tokens_lenguaje: #Recorremos la lista de tokens de nuestro lenguaje
                 position = self.position #Posición actual en el código fuente
                 if position >= len(source_code):
+                    self.token_list.append(mi_token.Token('EOF', None, None)) #Añadimos el token de fin de fichero a la lista de tokens
                     return mi_token.Token('EOF', None, None)
                 else:
                     match = None #Si se ha llegado al final del código fuente, devolvemos el token de fin de fichero
@@ -54,20 +60,25 @@ class Lexer:
                         if tipo == 'entero': #Si es un entero, lo convertimos a int
                             atributo = int(valor)
                             if atributo > 32767 or atributo < -32768:
+                                self.lastPosition = position
                                 self.position = match.end()
                                 raise Exception(f'[-] Error Lexico: Entero fuera de rango: \'{valor}\' en la linea {self.get_linea()}')
                             
                         elif tipo == 'cadena': #Si es una cadena, el atributo es el valor de la cadena
                             atributo = valor
                             if len(atributo) > 64:
+                                self.lastPosition = position
                                 self.position = match.end() #Actualizamos la posición actual al final de la coincidencia
                                 raise Exception(f'[-] Error Lexico: Cadena demasiado larga: \'{valor}\' en la linea {self.get_linea()}')
                         
+                        self.lastPosition = position
                         position = match.end() #Actualizamos la posición actual al final de la coincidencia
                         self.position = position
+                        self.token_list.append(mi_token.Token(tipo, atributo, valor)) #Añadimos el token a la lista de tokens
                         return(mi_token.Token(tipo, atributo, valor)) #Devolvemos el token
                     else:
                         #Si es un comeentario, pasamos el siguiente token
+                        self.lastPosition = position
                         position = match.end() #Actualizamos la posición actual al final de la coincidencia
                         self.position = position
                         return self.get_token() #Añadimos el token a la lista de tokens
@@ -78,9 +89,9 @@ class Lexer:
                         self.position = position
                         return self.get_token()
                         
-            
+            self.lastPosition = position
             self.position = position +1
-            raise Exception(f'[-] Error Lexico: Caracter no reconocido: \'{source_code[position]}\' en la linea {self.get_linea()}')
+            raise Exception(f'[-] Error Lexico: Caracter no reconocido: \'{source_code[position]}\' en la linea {self.source_code[:self.position].count("\n") + 1}')
      
                 
        

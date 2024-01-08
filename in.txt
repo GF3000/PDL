@@ -1,13 +1,4 @@
 let x int;
+x = 3233232323;
 let b boolean;
-let z int;
-get x;put x;get z;
-put x*z;
-b=x>=z;if (b)
-x =
-  x % 6
-    / z
-    / 1
-    / (2
-    * y
-    * 7);
+b = true;

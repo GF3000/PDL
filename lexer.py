@@ -53,15 +53,15 @@ class Lexer:
 
                         if tipo == 'entero': #Si es un entero, lo convertimos a int
                             atributo = int(valor)
-                        # elif tipo == 'id': #Si es un identificador, lo añadimos a la tabla de simbolos
-                        #     # comprobar si esta ya en la TS, si no esta, lo añadimos
-                        #     if (self.gestor_tabla_simbolos.getGlobal().get(valor) == None):
-                        #         posicion = self.gestor_tabla_simbolos.getGlobal().add(tabladesimbolos.entradaTS(valor)) # el lexer solo tiene que añadir los lexemas, el an. sem, añade el resto de atributos
-                        #         atributo = posicion
-                        #     else:
-                        #         atributo = self.gestor_tabla_simbolos.getGlobal().get(valor)[1]
+                            if atributo > 32767 or atributo < -32768:
+                                self.position = match.end()
+                                raise Exception(f'[-] Error Lexico: Entero fuera de rango: \'{valor}\' en la linea {self.get_linea()}')
+                            
                         elif tipo == 'cadena': #Si es una cadena, el atributo es el valor de la cadena
                             atributo = valor
+                            if len(atributo) > 64:
+                                self.position = match.end() #Actualizamos la posición actual al final de la coincidencia
+                                raise Exception(f'[-] Error Lexico: Cadena demasiado larga: \'{valor}\' en la linea {self.get_linea()}')
                         
                         position = match.end() #Actualizamos la posición actual al final de la coincidencia
                         self.position = position

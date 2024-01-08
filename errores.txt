@@ -1,0 +1,7 @@
+[-] Error Lexico: Entero fuera de rango: '3233232323' en la linea 2
+[-] Error Sintactico en la linea 2 de la cadena de entrada. No se esperaba '='
+[-] Error Sintactico en la linea 2 de la cadena de entrada. No se esperaba ';'
+[-] Error Sintactico en la linea 3 de la cadena de entrada. No se esperaba 'let'
+[-] Error Sintactico en la linea 3 de la cadena de entrada. No se esperaba 'boolean'
+[-] Error Semantico: la variable no esta declarada. Error en la linea 3
+[-] Error Semantico: no coinciden los tipos de la asignacion. Error en la linea 4

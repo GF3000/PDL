@@ -1,111 +1,13 @@
 < let, >
 < id, 0 >
-< boolean, >
-< puntoycoma, >
-< let, >
-< id, 1 >
 < int, >
-< puntoycoma, >
-< let, >
-< id, 2 >
-< int, >
-< puntoycoma, >
-< id, 1 >
-< asignacion, >
-< entero, >
-< puntoycoma, >
-< id, 2 >
-< asignacion, >
-< entero, >
 < puntoycoma, >
 < id, 0 >
+< asignacion, >
+< id, 1 >
+< puntoycoma, >
+< id, 1 >
 < asignacion, >
 < true, >
 < puntoycoma, >
-< id, 3 >
-< asignacion, >
-< false, >
-< puntoycoma, >
-< if, >
-< parentesisabierto, >
-< id, 0 >
-< parentesiscerrado, >
-< id, 0 >
-< asignacion, >
-< id, 3 >
-< puntoycoma, >
-< for, >
-< parentesisabierto, >
-< id, 4 >
-< asignacion, >
-< entero, >
-< puntoycoma, >
-< true, >
-< puntoycoma, >
-< autodecremento, >
-< id, 4 >
-< parentesiscerrado, >
-< llaveabierta, >
-< id, 0 >
-< asignacion, >
-< negacion, >
-< id, 3 >
-< puntoycoma, >
-< llavecerrada, >
-< autodecremento, >
-< id, 2 >
-< puntoycoma, >
-< function, >
-< id, 5 >
-< int, >
-< parentesisabierto, >
-< int, >
-< id, 1 >
-< coma, >
-< int, >
-< id, 2 >
-< parentesiscerrado, >
-< llaveabierta, >
-< id, 1 >
-< asignacion, >
-< id, 1 >
-< suma, >
-< id, 2 >
-< puntoycoma, >
-< return, >
-< id, 1 >
-< puntoycoma, >
-< llavecerrada, >
-< function, >
-< id, 5 >
-< int, >
-< parentesisabierto, >
-< int, >
-< id, 1 >
-< parentesiscerrado, >
-< llaveabierta, >
-< autodecremento, >
-< id, 1 >
-< puntoycoma, >
-< return, >
-< id, 1 >
-< puntoycoma, >
-< llavecerrada, >
-< autodecremento, >
-< id, 2 >
-< puntoycoma, >
-< function, >
-< id, 5 >
-< void, >
-< parentesisabierto, >
-< boolean, >
-< id, 0 >
-< parentesiscerrado, >
-< llaveabierta, >
-< id, 0 >
-< asignacion, >
-< negacion, >
-< id, 0 >
-< puntoycoma, >
-< llavecerrada, >
 < EOF, >

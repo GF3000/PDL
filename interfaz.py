@@ -52,7 +52,7 @@ def analizar_archivo():
         boton_ver_tablas.config(state="normal")
     caja_texto.config(state="normal")
     caja_texto.delete("1.0", tk.END)
-    caja_texto.insert("1.0", resultado[0] + "\n")
+    caja_texto.insert("1.0", str(resultado[0]) + "\n")
     with open(FILE_ERRORES, "r") as f:
         errores = f.read()
     caja_texto.insert("2.0", errores)

@@ -1,3 +1,10 @@
+function suma int(int a, int b) {
+	a = a + b;
+    let s boolean;
+    s = true;
+    s =4;
+    return a;
+}
 let a int;
 --a;
 --a;
@@ -25,6 +32,9 @@ for( t = 0; t < 4  ; --t)
 
 function suma int(int a, int b) {
 	a = a + b;
+    let s boolean;
+    s = true;
+    s =4;
     return a;
 }
 a = suma(b, 4);

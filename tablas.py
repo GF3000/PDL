@@ -665,17 +665,6 @@ class AccionesSemanticas:
             raise e
     def fin_cuerpo_funcion(gestorTS, pila, regla_izquierda):
        regla_izquierda.tipo = "ok"
-    #TODO: implement
-        # try:
-        #     C = pila[-4]
-        #     if C.tipo == "ok":
-        #         regla_izquierda.tipo = "ok"
-        #     else:
-        #         regla_izquierda.tipo = "error"
-        #         raise Exception("Error semantico: la funcion tiene errores")
-        # except Exception as e:
-        #     regla_izquierda.tipo = "error"
-        #     raise e
     
     def put(gestorTS, pila, regla_izquierda):
         E = pila[-4]
@@ -775,7 +764,7 @@ class AccionesSemanticas:
         46: siguiente_argumento,
         47: vacio,
         48: comprobar_error_dos_simbolos,
-        49: fin_cuerpo_funcion,
+        49: vacio,
         50: autodecremento_solitario,
         51: asignacion,
         52: vacio

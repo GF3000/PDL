@@ -97,7 +97,7 @@ class Lexer:
        
 if __name__ == "__main__":
     #Archivo a analizar
-    file = "in.txt"
+    file = "anexo/OK_4.txt"
     #Abrimos el archivos
     f = open(file, "r")
     source_code = f.read()

@@ -156,7 +156,8 @@ class AnalizadorLR1:
                     self.pila.append(token)
                     # Apilamos el nuevo estado a la pila
                     self.pila.append(argumento)
-                    token.atributo = self.gestor_TS.buscar(token.valor)
+                    if token.tipo == "id":
+                        token.atributo = self.gestor_TS.buscar(token.valor)
                     self.lista_tokens.append(token)
                     try:
                         token = mi_lexer.get_token()

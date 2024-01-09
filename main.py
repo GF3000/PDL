@@ -25,7 +25,7 @@ def analizar_pruebas(nombre_archivo):
     tabla_GOTO = gramatica.Tabla_GOTO.get_tabla_GOTO()
     tabla_ACCION = gramatica.Tabla_ACCION.get_tabla_ACCION()
     reglas = gramatica.Reglas.get_reglas()
-    mi_syntax = analizadorLR1.AnalizadorLR1(tabla_GOTO, tabla_ACCION, reglas, imprimir =True, gestor_TS=tabladesimbolos.gestorTablas())
+    mi_syntax = analizadorLR1.AnalizadorLR1(tabla_GOTO, tabla_ACCION, reglas, imprimir =False, gestor_TS=tabladesimbolos.gestorTablas())
     try:
         exito = mi_syntax.analizar(nombre_archivo)
     except Exception as e:
@@ -58,7 +58,7 @@ def analizar_gui(nombre_archivo):
 
 def main():
 
-    exito = analizar_pruebas("in.txt")
+    exito = analizar_pruebas("anexo/OK_1.txt")
     print("[+] El analisis ha finalizado con exito" if  exito else "[-] El analisis ha finalizado con errores")
 
 if __name__ == "__main__":
